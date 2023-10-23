@@ -1,0 +1,48 @@
+// Font Family
+$font-family: 'Lato', sans-serif;
+
+// Font Weights
+$font-weight-light:     300;
+$font-weight-regular:   400;
+$font-weight-semibold:  600;
+$font-weight-bold:      700;
+
+// Font Sizes in rem
+$font-size-small:       0.875rem;
+$font-size-medium:      1rem;
+$font-size-large:       1.125rem;
+$font-size-xlarge:      1.25rem;
+
+// Line Height
+$line-height:           1.5;
+
+// Heading Fonts
+$heading-font-family:   $font-family;
+$heading-font-weight:   $font-weight-bold;
+$heading-font-size-h1:  2.25rem;
+$heading-font-size-h2:  1.875rem;
+$heading-font-size-h3:  1.5rem;
+$heading-font-size-h4:  1.25rem;
+$heading-font-size-h5:  1.125rem;
+$heading-font-size-h6:  1rem;
+
+// Body Text Fonts
+$body-font-family:      $font-family;
+$body-font-weight:      $font-weight-regular;
+$body-font-size:        $font-size-medium;
+
+// Buttons
+$button-font-family:    $font-family;
+$button-font-weight:    $font-weight-semibold;
+$button-font-size:      $font-size-medium;
+
+// Labels and Small Text
+$label-font-family:     $font-family;
+$label-font-weight:     $font-weight-regular;
+$label-font-size:       $font-size-small;
+
+// Footer Font
+$footer-font-size:      0.875rem;
+
+// Sidebar Navigation Font
+$sidebar-font-size:     1.125rem;
