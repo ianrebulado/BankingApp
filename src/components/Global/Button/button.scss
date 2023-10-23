@@ -1,0 +1,40 @@
+button {
+    position: relative;
+    border-radius: 5rem;
+    padding: 0.5rem 0.5rem;
+    height: fit-content;
+    width: 5rem;
+    border: none;
+    outline: none;
+    box-shadow: 1px 1px 5px gray;
+    color: black;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+button:hover{
+    color:white;
+    transition: all 0.3s ease-in;
+}
+
+button > * {
+    position: inherit;
+    z-index: 1;
+}
+
+button::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translateY(100%);
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    z-index: 0;
+}
+
+button:hover::after {
+    transform: translateY(0);
+    transition: all 0.75s ease-in-out;
+}
