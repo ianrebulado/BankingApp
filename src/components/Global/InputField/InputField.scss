@@ -1,0 +1,22 @@
+.inputField {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    input {
+        border-radius: 5rem;
+        padding: 0.5rem 0.75rem;
+        height: fit-content;
+        width: clamp(10rem, 6.429rem + 9.524vw, 15rem);
+        border: none;
+        outline: none;
+        box-shadow: 1px 1px 5px grey;
+        color: red;
+    }
+
+    span {
+        font-size: small;
+        color: grey;
+    }
+}
+
