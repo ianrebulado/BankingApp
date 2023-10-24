@@ -10,13 +10,14 @@
         width: clamp(10rem, 6.429rem + 9.524vw, 15rem);
         border: none;
         outline: none;
-        box-shadow: 1px 1px 5px grey;
-        color: black;
+        box-shadow: $box-shadow;
+        background-color: $primary-color;
+        color: $background-color-dark;
 
     }
 
     span {
-        font-size: small;
-        color: grey;
+        font-size: $font-size-small;
+        color: $secondary-color-light;
     }
 }
