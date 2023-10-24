@@ -1,22 +1,26 @@
-export default function InputForm({
-    type, 
-    name, 
-    placeholder, 
-    value, 
-    status, 
-    message, 
-  }) {
-  
+// InputField.js
+import React from 'react';
+
+function InputField({ type, name, placeholder, status, message }) {
+  const { formState, handleInputChange } = useFormContext();
+
+  const handleChange = (e) => {
+    handleInputChange(name, e.target.value);
+  };
+
   return (
-    <div className="inputField">
+    <div>
       <label htmlFor={name}>{name}</label>
-      <input 
-        type={type} 
-        placeholder={placeholder}
+      <input
+        type={type}
         name={name}
-        value={value}
-        className={`${name.toLowerCase().replace(/\s+/g, '-')}`} />
-        {!status && <span>{message}</span>}
+        placeholder={placeholder}
+        value={formState[name] || ''}
+        onChange={handleChange}
+      />
+      {!status && <span className="error">{message}</span>}
     </div>
-  )
+  );
 }
+
+export default InputField;
