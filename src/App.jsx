@@ -1,7 +1,14 @@
+import AdminDashboard from "./pages/AdminDashboard"
+import './styles/css/styles.css'
+
 function App() {
 
   return (
-    <main></main>
+    <>
+      <main>
+        <AdminDashboard user={'Admin'} />
+      </main>
+    </>
   )
 }
 

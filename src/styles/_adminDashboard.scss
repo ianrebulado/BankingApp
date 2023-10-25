@@ -1,0 +1,41 @@
+@use '../styles/variables/theme' as theme;
+
+.admin-dashboard {
+    display:            flex;
+    flex-direction:     column;
+    gap:                2;
+    padding:            theme.$body-padding;
+    background-color:   theme.$secondary-color-light;
+    font-family:        theme.$font-family;
+    height: 100%;
+}
+
+.cards-container {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: theme.$body-padding;
+    gap: 1rem;
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: theme.$body-padding;
+}
+
+.buttons-container {
+    display:    flex;
+    gap:        0.25rem;
+}
+
+@media (max-width: 768px) {
+    .cards-container, .search-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}

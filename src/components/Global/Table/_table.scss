@@ -1,1 +1,18 @@
-// @use '../../../styles/variables/theme'
+@use '../../../styles/variables/theme' as theme;
+
+.table-container {
+    background-color:   theme.$secondary-color-light;
+    padding:            theme.$body-padding;
+    box-shadow:         theme.$box-shadow;
+}
+
+th {
+    padding:            theme.$body-padding;
+    font-size:          theme.$font-size-small;
+    font-weight:        theme.$font-weight-semibold;
+    background-color:   theme.$white-color-light;
+}
+
+tr {
+    border-bottom: theme.$border-solid;
+}
