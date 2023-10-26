@@ -1,3 +1,5 @@
+@use "../../../styles//variables/theme";
+
 button {
     position: relative;
     border-radius: 5rem;
@@ -6,14 +8,14 @@ button {
     width: 5rem;
     border: none;
     outline: none;
-    box-shadow: 1px 1px 5px gray;
-    color: black;
+    box-shadow: theme.$box-shadow;
+    color: theme.$white-color-light;
+    background-color: theme.$primary-color;
     overflow: hidden;
     cursor: pointer;
 }
 
 button:hover{
-    color:white;
     transition: all 0.3s ease-in;
 }
 
@@ -30,7 +32,7 @@ button::after {
     content: "";
     height: 100%;
     width: 100%;
-    background-color: black;
+    background-color: theme.$secondary-color-dark;
     z-index: 0;
 }
 
