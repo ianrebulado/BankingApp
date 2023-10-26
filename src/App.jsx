@@ -1,4 +1,5 @@
-import AdminDashboard from "./pages/AdminDashboard"
+// import AdminDashboard from "./pages/AdminDashboard"
+import ClientDashboard from "./pages/ClientDashboard"
 import './styles/css/styles.css'
 
 function App() {
@@ -6,7 +7,8 @@ function App() {
   return (
     <>
       <main>
-        <AdminDashboard user={'Admin'} />
+        {/* <AdminDashboard user={'Admin'} /> */}
+        <ClientDashboard user={'User'} />
       </main>
     </>
   )

@@ -7,7 +7,7 @@ import Table from '../components/Global/Table/Table';
 function AdminDashboard({user}) {
     return (
         <>
-            <div className='admin-dashboard'>
+            <div className='dashboard'>
                 <Header user={user} />
                 <div className='cards-container'>
                     <Card label={'Total Users'} value={''} />
