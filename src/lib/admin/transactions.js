@@ -10,6 +10,6 @@ export function send(){
 
 }
 
-export function get_balance(){
+export function getBalance(){
 
 }

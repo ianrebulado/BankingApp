@@ -1,15 +1,15 @@
-export function get_expense(){
+export function getExpense(){
 
 }
 
-export function add_expense(){
+export function addExpense(){
 
 }
 
-export function update_expense(){
+export function updateExpense(){
 
 }
 
-export function delete_expense(){
+export function deleteExpense(){
     
 }
