@@ -34,7 +34,6 @@ export default function CreateUserModal(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-
     let hasErrors = false;
     const newErrors = {};
 
@@ -63,6 +62,25 @@ export default function CreateUserModal(props) {
       email: "",
       amount: "",
     });
+    
+  }
+
+  function handleClose() {
+    setFormState({
+      fullname: "",
+      username: "",
+      password: "",
+      email: "",
+      amount: "",
+    });
+    setInputErrors({
+        fullname: false,
+        username: false,
+        password: false,
+        email: false,
+        amount: false,
+      });
+    props.onClose();
   }
 
   if (!props.show) {
@@ -77,7 +95,7 @@ export default function CreateUserModal(props) {
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit} method="post">
-            <label>Full Name</label>
+          <label>Full Name</label>
             <input
               type="text"
               required
@@ -137,7 +155,7 @@ export default function CreateUserModal(props) {
           <button type="submit" onClick={handleSubmit}>
             Create
           </button>
-          <button onClick={props.onClose} className="close-btn">
+          <button onClick={handleClose} className="close-btn">
             Close
           </button>
         </div>
