@@ -46,13 +46,15 @@ export default function CreateUserModal(props) {
 
     if (hasErrors) {
       setInputErrors(newErrors);
-      alert('Please fill in all the fields');
+      alert("Please fill in all the fields");
       return;
     }
 
-    console.log("handle submit", formState);
-
     const userKey = formState.username;
+    if (localStorage.getItem(userKey)) {
+      alert("Username is already taken");
+      return;
+    }
     localStorage.setItem(userKey, JSON.stringify(formState));
 
     setFormState({
@@ -62,7 +64,6 @@ export default function CreateUserModal(props) {
       email: "",
       amount: "",
     });
-    
   }
 
   function handleClose() {
@@ -73,13 +74,15 @@ export default function CreateUserModal(props) {
       email: "",
       amount: "",
     });
+
     setInputErrors({
-        fullname: false,
-        username: false,
-        password: false,
-        email: false,
-        amount: false,
-      });
+      fullname: false,
+      username: false,
+      password: false,
+      email: false,
+      amount: false,
+    });
+
     props.onClose();
   }
 
@@ -95,7 +98,7 @@ export default function CreateUserModal(props) {
         </div>
         <div className="modal-body">
           <form onSubmit={handleSubmit} method="post">
-          <label>Full Name</label>
+            <label>Full Name</label>
             <input
               type="text"
               required
