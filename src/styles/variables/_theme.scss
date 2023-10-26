@@ -1,0 +1,72 @@
+// Color Palette
+$primary-color:         #5B82A3;
+$secondary-color-light: #E7E7DA;
+$secondary-color-dark:  #1D1B21;
+$accent-color-light:    #BF8043;
+$accent-color-dark:     #A03E46;
+$white-color-light:     #fefefe;
+$white-color-lighter:   #f3f3f3;
+
+$background-blur:       rgba(255, 255, 255, 0.8);
+$plain-background-color:  transparent;
+
+// Font Family
+$font-family: 'Lato', sans-serif;
+
+// Font Weights
+$font-weight-light:     300;
+$font-weight-regular:   400;
+$font-weight-semibold:  600;
+$font-weight-bold:      700;
+
+// Font Sizes in rem
+$font-size-small:       0.875rem;
+$font-size-medium:      1rem;
+$font-size-large:       1.125rem;
+$font-size-xlarge:      1.25rem;
+
+// Line Height
+$line-height:           1.5;
+
+// Heading Fonts
+$heading-font-family:   $font-family;
+$heading-font-weight:   $font-weight-bold;
+$heading-font-size-h1:  2.25rem;
+$heading-font-size-h2:  1.875rem;
+$heading-font-size-h3:  1.5rem;
+$heading-font-size-h4:  1.25rem;
+$heading-font-size-h5:  1.125rem;
+$heading-font-size-h6:  1rem;
+
+// Body Text Fonts
+$body-font-family:      $font-family;
+$body-font-weight:      $font-weight-regular;
+$body-font-size:        $font-size-medium;
+
+// Footer Font
+$footer-font-size:      0.875rem;
+
+// Sidebar Navigation Font
+$sidebar-font-size:     1.125rem;
+
+// Box Shadows
+$box-shadow:                0 0.25rem 0.375rem -0.0625rem rgba(0,0,0,0.1),
+                            0 0.125rem 0.25rem -0.0625rem rgba(0,0,0,0.06);
+$plain-box-shadow:          none;
+
+// Padding
+$header-padding:            1rem;
+$body-padding:              $header-padding;
+$footer-padding:            $body-padding;
+
+$border-radius:             0.25rem;
+$border-solid:            2px solid $primary-color;
+
+// Page Header
+$page-header-padding:             0;
+$page-header-position:            relative;
+$page-header-overflow:            hidden;
+$page-header-display:             flex;
+$page-header-align-items:         center;
+$page-header-bg-size:             cover;
+$page-header-bg-position:         50%;
