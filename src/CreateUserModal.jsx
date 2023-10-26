@@ -1,38 +1,67 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
+import "./App.css";
 
 export default function CreateUserModal(props) {
   const [formState, setFormState] = useState({
-    fullname: '',
-    username: '',
-    password: '',
-    email: '',
-    amount: '',
+    fullname: "",
+    username: "",
+    password: "",
+    email: "",
+    amount: "",
   });
 
- 
+  const [inputErrors, setInputErrors] = useState({
+    fullname: false,
+    username: false,
+    password: false,
+    email: false,
+    amount: false,
+  });
+
   function handleInputChange(event) {
     const { name, value } = event.target;
     setFormState((prevState) => ({
       ...prevState,
       [name]: value,
     }));
+
+    setInputErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: false,
+    }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('handle submit', formState);
 
-   
-    const userKey = formState.username; 
+
+    let hasErrors = false;
+    const newErrors = {};
+
+    for (const field in formState) {
+      if (formState[field] === "") {
+        hasErrors = true;
+        newErrors[field] = true;
+      }
+    }
+
+    if (hasErrors) {
+      setInputErrors(newErrors);
+      alert('Please fill in all the fields');
+      return;
+    }
+
+    console.log("handle submit", formState);
+
+    const userKey = formState.username;
     localStorage.setItem(userKey, JSON.stringify(formState));
 
-    
     setFormState({
-      fullname: '',
-      username: '',
-      password: '',
-      email: '',
-      amount: '',
+      fullname: "",
+      username: "",
+      password: "",
+      email: "",
+      amount: "",
     });
   }
 
@@ -57,6 +86,7 @@ export default function CreateUserModal(props) {
               placeholder="Full Name"
               onChange={handleInputChange}
               value={formState.fullname}
+              className={inputErrors.fullname ? "error" : ""}
             />
             <label>Username</label>
             <input
@@ -67,6 +97,7 @@ export default function CreateUserModal(props) {
               placeholder="Username"
               onChange={handleInputChange}
               value={formState.username}
+              className={inputErrors.username ? "error" : ""}
             />
             <label>Password</label>
             <input
@@ -77,6 +108,7 @@ export default function CreateUserModal(props) {
               placeholder="Password"
               onChange={handleInputChange}
               value={formState.password}
+              className={inputErrors.password ? "error" : ""}
             />
             <label>Email</label>
             <input
@@ -87,6 +119,7 @@ export default function CreateUserModal(props) {
               placeholder="Email"
               onChange={handleInputChange}
               value={formState.email}
+              className={inputErrors.email ? "error" : ""}
             />
             <label>Amount</label>
             <input
@@ -95,6 +128,8 @@ export default function CreateUserModal(props) {
               required
               onChange={handleInputChange}
               value={formState.amount}
+              inputMode="none"
+              className={inputErrors.amount ? "error" : ""}
             />
           </form>
         </div>
