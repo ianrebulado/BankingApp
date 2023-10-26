@@ -1,8 +1,8 @@
-import React from "react"
+import '../../../styles/css/styles.css'
 
-const Tables = ({data, columns}) => {
+const Table = ({data, columns}) => {
     return (
-        <table>
+        <table className="table-container">
             <thead>
                 <tr>
                     {columns.map((column, index) => (
@@ -23,4 +23,4 @@ const Tables = ({data, columns}) => {
     )
 } 
 
-export default Tables
+export default Table

@@ -1,8 +1,12 @@
 @use './reset';
+
 @use './variables/theme';
 @use './variables/dark-version';
-@use './variables/header';
 
 @use '../components/Global/Card/cards';
+@use '../components/Global/Header/header';
+@use '../components/Global/Table/table';
 @use '../components/Global/Button/button';
+
+@use '../styles/dashboard';     
 

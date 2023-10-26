@@ -1,7 +1,16 @@
+import AdminDashboard from "./pages/AdminDashboard"
+// import ClientDashboard from "./pages/ClientDashboard"
+import './styles/css/styles.css'
+
 function App() {
 
   return (
-    <main></main>
+    <>
+      <main>
+        <AdminDashboard user={'Admin'} />
+        {/* <ClientDashboard user={'User'} /> */}
+      </main>
+    </>
   )
 }
 
