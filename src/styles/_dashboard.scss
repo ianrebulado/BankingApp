@@ -3,10 +3,12 @@
 .dashboard {
     display:            flex;
     flex-direction:     column;
+    flex-grow:          1;
     gap:                2;
     padding:            theme.$body-padding;
-    background-color:   theme.$secondary-color-light;
+    background-color:   theme.$white-color-light;
     font-family:        theme.$font-family;
+    // width: ;
     height: 100%;
 }
 

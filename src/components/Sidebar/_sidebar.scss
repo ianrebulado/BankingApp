@@ -1,1 +1,42 @@
 @use '../../styles/variables/theme' as theme;
+
+.sidebar {
+    background-color:   theme.$secondary-color-light;
+    width:              40vmin;
+    min-height:         100vh;
+    box-shadow:         theme.$box-shadow;
+    font-family:        theme.$font-family;
+    display:            flex;
+    flex-direction:     column;
+}
+
+.sidebar-header {
+    display:            flex;
+    align-items:        center;
+    height:             20%;
+}
+
+.logo {
+    width:              theme.$logo-medium;
+    height:             auto;
+}
+
+.nav-list {
+    padding:            calc(theme.$body-padding *3);
+    height:             70%;
+    line-height:        theme.$line-height;
+    font-weight:        theme.$font-weight-semibold;
+    font-size:          theme.$font-size-medium;
+
+    li {
+        padding-top:    theme.$body-padding;
+        cursor:         pointer;
+    }
+}
+
+.sidebar-control {
+    display:            flex;
+    padding:            theme.$body-padding;
+    height:             10%;
+}
+
