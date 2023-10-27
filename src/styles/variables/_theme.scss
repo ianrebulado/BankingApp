@@ -11,7 +11,7 @@ $background-blur:       rgba(255, 255, 255, 0.8);
 $plain-background-color:  transparent;
 
 // Font Family
-$font-family: 'Lato', sans-serif;
+$font-family:           'Lato', sans-serif;
 
 // Font Weights
 $font-weight-light:     300;
@@ -46,21 +46,18 @@ $body-font-size:        $font-size-medium;
 // Footer Font
 $footer-font-size:      0.875rem;
 
-// Sidebar Navigation Font
-$sidebar-font-size:     1.125rem;
-
 // Box Shadows
 $box-shadow:                0 0.25rem 0.375rem -0.0625rem rgba(0,0,0,0.1),
                             0 0.125rem 0.25rem -0.0625rem rgba(0,0,0,0.06);
 $plain-box-shadow:          none;
 
 // Padding
-$header-padding:            1rem;
-$body-padding:              $header-padding;
-$footer-padding:            $body-padding;
+$header-padding:                1rem;
+$body-padding:                  $header-padding;
+$footer-padding:                $body-padding;
 
-$border-radius:             0.25rem;
-$border-solid:            2px solid $primary-color;
+$border-radius:                 0.25rem;
+$border-solid:                  2px solid $primary-color;
 
 // Page Header
 $page-header-padding:             0;
@@ -70,3 +67,9 @@ $page-header-display:             flex;
 $page-header-align-items:         center;
 $page-header-bg-size:             cover;
 $page-header-bg-position:         50%;
+
+// Logo
+$logo-small:                       5rem;
+$logo-medium:                      10rem;
+$logo-large:                       15rem;
+$logo-xlarge:                      20rem;
