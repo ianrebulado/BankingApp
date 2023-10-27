@@ -1,7 +1,7 @@
 // InputField.js
 import React from 'react';
 
-function InputField({ type, name, placeholder, status, message }) {
+function InputField({ type, name, placeholder, message }) {
   const { formState, handleInputChange } = useFormContext();
 
   const handleChange = (e) => {
@@ -18,7 +18,7 @@ function InputField({ type, name, placeholder, status, message }) {
         value={formState[name] || ''}
         onChange={handleChange}
       />
-      {!status && <span className="error">{message}</span>}
+      <span className="error">{message}</span>
     </div>
   );
 }
