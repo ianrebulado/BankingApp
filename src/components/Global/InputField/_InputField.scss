@@ -1,3 +1,5 @@
+@use "../../../styles/variables/theme" as theme;
+
 .inputField {
     display: flex;
     flex-direction: column;
@@ -10,14 +12,14 @@
         width: clamp(10rem, 6.429rem + 9.524vw, 15rem);
         border: none;
         outline: none;
-        box-shadow: $box-shadow;
-        background-color: $primary-color;
-        color: $background-color-dark;
+        box-shadow: theme.$box-shadow;
+        background-color: theme.$white-color-lighter;
+        color: theme.$secondary-color-dark;
 
     }
 
     span {
-        font-size: $font-size-small;
-        color: $secondary-color-light;
+        font-size: theme.$font-size-small;
+        color: theme.$accent-color-dark;
     }
 }

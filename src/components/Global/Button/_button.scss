@@ -5,7 +5,8 @@ button {
     border-radius: 5rem;
     padding: 0.5rem 0.5rem;
     height: fit-content;
-    width: 5rem;
+    width: fit-content;
+    min-width: 7.5rem;
     border: none;
     outline: none;
     box-shadow: theme.$box-shadow;
@@ -16,27 +17,10 @@ button {
 }
 
 button:hover{
-    transition: all 0.3s ease-in;
+    filter: brightness(80%);
 }
 
-button > * {
-    position: inherit;
-    z-index: 1;
-}
-
-button::after {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    transform: translateY(100%);
-    content: "";
-    height: 100%;
-    width: 100%;
-    background-color: theme.$secondary-color-dark;
-    z-index: 0;
-}
-
-button:hover::after {
-    transform: translateY(0);
-    transition: all 0.75s ease-in-out;
+button:active{
+    transform: translate(0.1rem, 0.15rem);
+    transition: all 0.2s ease-in-out;
 }
