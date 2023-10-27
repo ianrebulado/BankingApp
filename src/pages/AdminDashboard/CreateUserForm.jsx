@@ -74,7 +74,7 @@ export default function CreateUserForm() {
     e.preventDefault();
     let isValidForm = true;
 
-    clearValidationMessages(inputState, setInputState, formState);
+    clearValidationMessages(inputState, setInputState);
 
     isValidForm = validateSignUpForm(inputState, setInputState, formState, usersModel);
 
@@ -95,7 +95,7 @@ export default function CreateUserForm() {
   return (
     <Modal title={"Create User"}>
       <div>Hello</div>
-      <FormProvider formValues={formState} handleInputChange={handleInputChange} handleSubmit={handleSubmit}>
+      <FormProvider formValues={formState} handleInputChange={handleInputChange}>
         <form onSubmit={handleSubmit}>
             {inputState.map(({type, label, name, placeholder, message}, index) => (
               <InputField
