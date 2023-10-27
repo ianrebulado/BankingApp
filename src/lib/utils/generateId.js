@@ -1,4 +1,4 @@
-export function generateId(type){
+export default function generateId(type){
     let id = '';
 
     if(type === 'user'){
