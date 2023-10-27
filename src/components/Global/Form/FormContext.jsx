@@ -1,5 +1,5 @@
 // FormContext.js
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 const FormContext = createContext();
 
@@ -7,24 +7,12 @@ export function useFormContext() {
   return useContext(FormContext);
 }
 
-export function FormProvider({ children }) {
-  const [formState, setFormState] = useState({});
+export function FormProvider({ formValues, handleInputChange, children }) {
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    //add submission logic
-  };
-
-  const handleInputChange = (name, value) => {
-    setFormState({ ...formState, [name]: value });
-  };
 
   return (
-    <FormContext.Provider value={{ formState, handleInputChange, handleSubmit }}>
-      <form onSubmit={handleSubmit}>
+    <FormContext.Provider value={{ formValues, handleInputChange }}>
         {children}
-        <button type="submit">Submit</button>
-      </form>
     </FormContext.Provider>
   );
 }
