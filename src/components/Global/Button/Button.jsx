@@ -1,5 +1,12 @@
-export default function Button({type, text, handleClick}) {
+export default function Button({ type, text, handleClick, secondary }) {
+  const className = text.toLowerCase().replace(/\s+/g, '-');
+
   return (
-    <button type={type} className={`${text.toLowerCase().replace(/\s+/g, '-')}-btn`} onClick={() => handleClick}><span>{text}</span></button>
-  )
+    <button 
+      type={type} 
+      className={`${className}-btn ${secondary? "secondary": "primary"}`} 
+      onClick={handleClick}>
+      <span>{text}</span>
+    </button>
+  );
 }
