@@ -1,8 +1,6 @@
 import { useState } from "react";
-import Button from "../../components/Global/Button/Button";
-import Modal from "../../components/Global/Modal/Modal";
+import {Button, Modal, InputField} from "../../components";
 import { FormProvider } from "../../components/Global/Form/FormContext";
-import InputField from "../../components/Global/InputField/InputField";
 import usersModel from "../../lib/constants/usersModel";
 import generateId from "../../lib/utils/generateId";
 import { clearValidationMessages, validateSignUpForm } from "../../lib/utils/validations";
@@ -70,7 +68,7 @@ export default function CreateUserForm() {
   const createdOn = new Date();
   const updatedOn = new Date();
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e){
     e.preventDefault();
     let isValidForm = true;
 
@@ -88,13 +86,12 @@ export default function CreateUserForm() {
       }
   };
 
-  const handleInputChange = (name, value) => {
+  function handleInputChange(name, value){
     setFormState({ ...formState, [name]: value });
   };
     
   return (
     <Modal title={"Create User"}>
-      <div>Hello</div>
       <FormProvider formValues={formState} handleInputChange={handleInputChange}>
         <form onSubmit={handleSubmit}>
             {inputState.map(({type, label, name, placeholder, message}, index) => (
