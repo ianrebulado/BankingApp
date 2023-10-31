@@ -16,7 +16,21 @@ export function validateSignUpForm(inputState, setInputState, formState, usersMo
 
     setInputState(updatedInputState);
 
-    isValid = updatedInputState.every((input) => input.message === "");
+    isValid = checkValidForm(updatedInputState);
+
+    return isValid;
+}
+
+export function validateSignInForm(inputState, setInputState, formState, usersModel){
+
+    let isValid = true;
+
+    const user = matchUserCredentials(formState, usersModel);
+
+    let updatedInputState = checkCredentials(inputState, user);
+    setInputState(updatedInputState);
+
+    isValid = checkValidForm(updatedInputState);
 
     return isValid;
 }
@@ -56,4 +70,45 @@ function checkDuplicate(inputState, formState, usersModel) {
   
     return !!duplicateProperty;
   }
+
+function matchUserCredentials({username, password}, users){
+
+    const user = {
+        username: null,
+        errorType: null,
+    }
+
+    let matchedUser = users.find(user => user.username === username);
+
+    if(!matchedUser){
+        user.errorType = "user";
+    } else if(matchedUser.signed_in){
+        user.errorType = "sign-in";
+    } else if(matchedUser.password !== password){
+        user.errorType = "password";
+    }
+
+    return user;
+
+}
+
+function checkCredentials(inputState, userCredentials){
+    const newInputState = inputState.map((input) => {
+        if (input.name === 'username' && userCredentials.errorType === "user") {
+            return { ...input, message: `Username not found.` };
+          } else if (input.name === 'password' && userCredentials.errorType === "password") {
+            return { ...input, message: `Wrong password detected` };
+          }
+          return {...input, message: ""};
+        })
+
+    return newInputState;
+}
+
+function checkValidForm(inputState){
+    return inputState.every((input) => input.message === "");
+}
+  
+
+
   
