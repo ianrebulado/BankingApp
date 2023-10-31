@@ -1,4 +1,5 @@
 import transactionsModel from "../constants/transactionsModel";
+
 export function deposit() {}
 
 export function withdraw() {}
@@ -53,17 +54,12 @@ export function getMonthlyBalance(userId) {
       let yearNum = new Date(transaction.created_on).getFullYear().toString();
 
       if (monthNum === month && yearNum === year) {
-        console.log([
-          monthlyBalance,
-          transaction.amount,
-          (monthlyBalance += transaction.amount),
-        ]);
         monthlyBalance += transaction.amount;
       }
     });
 
     monthlyBalances.push({
-      date: `${month}/${year}`,
+      date: month,
       balance: monthlyBalance,
     });
   });
