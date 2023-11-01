@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card } from '../../components';
+import { Button, Card, Table } from '../../components';
 
 function BudgetApp(props) {
 
@@ -9,8 +9,12 @@ function BudgetApp(props) {
     return (
         <>
             <div className='expenses-container'>
-                <Card label={'Current Balance'} value={'100,000'} />
-                <Card label={'Total Expenses'} value={'10,000'} />
+                <div className="card-container">
+                    <Card label={'Current Balance'} value={'100,000'} />
+                    <Card label={'Total Expenses'} value={'10,000'} />
+                </div>
+                <Button type={'submit'} text={'Add Expense'} handleClick={()=>{}} />
+                <Table data={[]} columns={['ID', 'Date', 'Description', 'Amount']} />
             </div>
         </>
     );

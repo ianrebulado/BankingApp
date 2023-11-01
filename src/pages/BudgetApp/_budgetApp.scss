@@ -2,9 +2,21 @@
 
 .expenses-container {
     display:            flex;
-    justify-content:    space-evenly;
-    align-items:        center;
+    flex-direction:     column;
+    flex-wrap:          wrap;
     width:              100%;
     padding:            theme.$body-padding;
+    gap:                1rem;
+
+    button {
+        align-self:     flex-end;
+    }
+}
+
+.card-container {
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    width:              100%;
     gap:                1rem;
 }
