@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Modal, InputField } from "../../components";
+import { Button, InputField } from "../../components";
 import { FormProvider } from "../../components/Global/Form/FormContext";
 import usersModel from "../../lib/constants/usersModel";
 import generateId from "../../lib/utils/generateId";
@@ -50,7 +50,7 @@ const inputs = [
   },
 ];
 
-export default function CreateUserForm() {
+export default function SignUpForm() {
   const [inputState, setInputState] = useState(inputs);
 
   const [formState, setFormState] = useState({
@@ -79,16 +79,12 @@ export default function CreateUserForm() {
     );
 
     if (isValidForm) {
-      usersModel.push({
-        ...formState,
-        user_id,
-        createdOn,
-        updatedOn,
-      });
-      //TODO: Add toast
-      //TODO: Close modal
+      usersModel.push({ ...formState, user_id, createdOn, updatedOn });
+      //Add toast
+      //Redirect to sign in page
     } else {
       console.log("Form is not valid");
+      //Add toast
     }
   }
 
@@ -97,28 +93,22 @@ export default function CreateUserForm() {
   }
 
   return (
-    <Modal title={"Create User"}>
-      <FormProvider
-        formValues={formState}
-        handleInputChange={handleInputChange}
-      >
-        <form onSubmit={handleSubmit}>
-          {inputState.map(
-            ({ type, label, name, placeholder, message }, index) => (
-              <InputField
-                key={index}
-                type={type}
-                label={label}
-                name={name}
-                placeholder={placeholder}
-                message={message}
-              />
-            )
-          )}
-          <Button type={"submit"} text={"Create User"} />
-          <Button type={"button"} text={"Cancel"} secondary />
-        </form>
-      </FormProvider>
-    </Modal>
+    <FormProvider formValues={formState} handleInputChange={handleInputChange}>
+      <form onSubmit={handleSubmit}>
+        {inputState.map(
+          ({ type, label, name, placeholder, message }, index) => (
+            <InputField
+              key={index}
+              type={type}
+              label={label}
+              name={name}
+              placeholder={placeholder}
+              message={message}
+            />
+          )
+        )}
+        <Button type={"submit"} text={"Sign In"} />
+      </form>
+    </FormProvider>
   );
 }

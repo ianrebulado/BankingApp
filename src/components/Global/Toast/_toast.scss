@@ -1,0 +1,61 @@
+@use "../../../styles/variables/theme" as theme;
+
+.toast-container {
+  position: absolute;
+  top: 1rem;
+  right: 50%;
+  transform: translateX(50%, -200%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  height: fit-content;
+  width: 80%;
+  font-family: theme.$font-family;
+  font-size: theme.$font-size-small;
+  background-color: theme.$white-color-lighter;
+  color: theme.$secondary-color-dark;
+  box-shadow: theme.$box-shadow;
+  animation: slideIn 5s cubic-bezier(0.7, 0.06, 0.6, 1.52);
+
+  .text-wrapper {
+    width: 100%;
+    padding: theme.$body-padding;
+    border-radius: 0.25rem;
+    text-align: center;
+  }
+
+  .toast-progress {
+    height: 0.5rem;
+    background-color: theme.$red;
+  }
+}
+
+.success {
+  .toast-progress {
+    background-color: theme.$green;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(-200%);
+  }
+  25% {
+    transform: translateY(0%);
+  }
+  75% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-200%);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .toast-container {
+    right: 1rem;
+    transform: translateX((0%));
+    width: fit-content;
+  }
+}

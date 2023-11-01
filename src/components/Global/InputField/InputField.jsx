@@ -1,6 +1,6 @@
-import { useFormContext } from '../Form/FormContext';
+import { useFormContext } from "../Form/FormContext";
 
-function InputField({ type, name, placeholder, message }) {
+function InputField({ type, label, name, placeholder, message }) {
   const { formValues, handleInputChange } = useFormContext();
 
   const handleChange = (e) => {
@@ -8,13 +8,13 @@ function InputField({ type, name, placeholder, message }) {
   };
 
   return (
-    <div className='inputField'>
-      <label htmlFor={name}>{name}</label>
+    <div className="inputField">
+      <label htmlFor={name}>{label}</label>
       <input
         type={type}
         name={name}
         placeholder={placeholder}
-        value={formValues[name] || ''}
+        value={formValues[name] || ""}
         onChange={handleChange}
       />
       <span className="error">{message}</span>
