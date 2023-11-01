@@ -1,15 +1,15 @@
-export function getExpense(){
+export function getExpense(expenseId){
 
 }
 
-export function addExpense(){
+export function addExpense(userId){
 
 }
 
-export function updateExpense(){
+export function updateExpense(expenseId){
 
 }
 
-export function deleteExpense(){
+export function deleteExpense(expenseId){
     
 }
