@@ -41,4 +41,10 @@ td {
     align-items:        center;
     gap:                1rem;
     padding:            theme.$body-padding;
+    font-size:          theme.$font-size-smaller;
+    font-weight:        theme.$font-weight-bold;
+
+    button {
+        font-size:      theme.$font-size-smaller;
+    }
 }

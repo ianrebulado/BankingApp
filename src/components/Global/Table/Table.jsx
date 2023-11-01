@@ -25,7 +25,7 @@ const Table = ({data, columns, itemsPerPage}) => {
                 </thead>
                 <tbody>
                     {currentData.map((item, rowIndex) => (
-                        <tr key={rowIndex}>
+                        <tr key={rowIndex} onClick={()=>{console.log(item)}}>
                             {columns.map((column, colIndex) => (
                             <td key={colIndex}>{item[column]}</td>
                             ))}
