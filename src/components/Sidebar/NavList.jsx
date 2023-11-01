@@ -5,7 +5,7 @@ function NavList({items}) {
         <nav className='nav-list'>
             <ul>
                 {items.map((item, index) => (
-                    <li key={index}><a href=''>{item}</a></li>
+                    <li key={index}><a href=''>{item.icon}{item.label}</a></li>
                 ))}
             </ul>
         </nav>
