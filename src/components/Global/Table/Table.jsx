@@ -30,9 +30,11 @@ const Table = ({data, columns, itemsPerPage, actions}) => {
                             {columns.map((column, colIndex) => (
                             <td key={colIndex}>{item[column]}</td>
                             ))}
-                            <td>
-                                { actions }
-                            </td>
+                            { actions ?                                 
+                                <td>{ actions }</td>
+                                :
+                                null
+                            }
                         </tr>
                     ))}
                 </tbody>
@@ -48,3 +50,9 @@ const Table = ({data, columns, itemsPerPage, actions}) => {
 
 export default Table;
 
+Table.propTypes = {
+    data: PropTypes.array.isRequired,
+    columns: PropTypes.array.isRequired,
+    itemsPerPage: PropTypes.number.isRequired,
+    actions: PropTypes.any
+}
