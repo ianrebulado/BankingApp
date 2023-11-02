@@ -20,3 +20,15 @@
     width:              100%;
     gap:                1rem;
 }
+
+@media (max-width: 768px){
+    .expenses-container, .card-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .expenses-container button {
+        align-self: center;
+    }
+}
