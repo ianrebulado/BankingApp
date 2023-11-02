@@ -22,6 +22,11 @@ const Table = ({data, columns, itemsPerPage, actions}) => {
                         {columns.map((column, index) => (
                             <th key={index}>{formatName(column)}</th>
                         ))}
+                        { actions ?                                 
+                                <th>Actions</th>
+                                :
+                                null
+                            }
                     </tr>
                 </thead>
                 <tbody>
