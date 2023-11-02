@@ -12,8 +12,8 @@ th {
     font-size:          theme.$font-size-small;
     font-weight:        theme.$font-weight-semibold;
     background-color:   theme.$white-color-lighter;
-    color: theme.$accent-color-light;
-    
+    color:              theme.$accent-color-light;
+    text-align:         start;
 }
 
 tr {
@@ -43,8 +43,14 @@ td {
     padding:            theme.$body-padding;
     font-size:          theme.$font-size-smaller;
     font-weight:        theme.$font-weight-bold;
+}
 
-    button {
-        font-size:      theme.$font-size-smaller;
-    }
+.button {
+    cursor: pointer;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    color: grey;
 }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { formatName } from '../../../lib/utils/formatName';
-import '../../../styles/css/styles.css'
+import { ChevronLeftSquare, ChevronRightSquare } from 'lucide-react';
 
 const Table = ({data, columns, itemsPerPage, actions}) => {
     const [currentPage, setCurrentPage] =  useState(1);
@@ -45,9 +45,15 @@ const Table = ({data, columns, itemsPerPage, actions}) => {
                 </tbody>
             </table>
             <div className="pagination">
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>Previous</button>
+                <ChevronLeftSquare 
+                    onClick={() => handlePageChange(currentPage - 1)} 
+                    className={currentPage === 1 ? 'button disabled' : 'button'}  
+                />
                 <span>{currentPage} of {totalPages}</span>
-                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>Next</button>
+                <ChevronRightSquare 
+                    onClick={() => handlePageChange(currentPage + 1)} 
+                    className={currentPage === totalPages ? 'button disabled' : 'button'}
+                />
             </div>
         </>
     )
