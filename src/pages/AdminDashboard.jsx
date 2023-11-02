@@ -10,9 +10,9 @@ function AdminDashboard({user}) {
             <div className='dashboard'>
                 <Header user={user} />
                 <div className='cards-container'>
-                    <Card label={'Total Users'} value={''} />
-                    <Card label={'Total Transactions'} value={''}/>
-                    <Card label={'Transaction Volume'} value={''}/>
+                    <Card title={'Total Users'} content={''} />
+                    <Card title={'Total Transactions'} content={''}/>
+                    <Card title={'Transaction Volume'} content={''}/>
                 </div>
                 <div className="search-container">
                     <span>Search</span>
