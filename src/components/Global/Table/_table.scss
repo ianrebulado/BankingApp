@@ -4,6 +4,7 @@
     background-color:   theme.$secondary-color-light;
     padding:            theme.$body-padding;
     box-shadow:         theme.$box-shadow;
+    border-radius:      theme.$border-radius;
 }
 
 th {
@@ -11,8 +12,45 @@ th {
     font-size:          theme.$font-size-small;
     font-weight:        theme.$font-weight-semibold;
     background-color:   theme.$white-color-lighter;
+    color:              theme.$accent-color-light;
+    text-align:         start;
 }
 
 tr {
-    border-bottom: theme.$border-solid;
+    border-bottom:      theme.$border-solid;
+    background-color:   theme.$white-color-light;
+    padding:            theme.$body-padding;
+    font-weight:        theme.$font-weight-light;
+    font-size:          theme.$font-size-small;
+    cursor:             pointer;
+
+    &:hover {
+        background-color:   theme.$primary-color;
+        color:              theme.$white-color-lighter;
+    }
+}
+
+td {
+    padding:            theme.$table-row-padding;
+}
+
+.pagination {
+    width:              100%;
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    gap:                0.2rem;
+    padding:            theme.$body-padding;
+    font-size:          theme.$font-size-smaller;
+    font-weight:        theme.$font-weight-bold;
+}
+
+.button {
+    cursor: pointer;
+}
+
+.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+    color: grey;
 }
