@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-// import AdminDashboard from "./pages/AdminDashboard"
+import AdminDashboard from "./pages/AdminDashboard";
 import ClientDashboard from "./pages/ClientDashboard";
 import Sidebar from "./components/Sidebar/Sidebar"
 import { MoreVertical } from 'lucide-react';
 import { getNavItems } from "./components/Sidebar/getNavItems";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import BudgetApp from "./pages/BudgetApp/BudgetApp";
 
 function App() {
@@ -14,23 +14,24 @@ function App() {
   const toggleSideBar = () =>{
       setSidebarOpen(!isSidebarOpen);
   }
-  
 
+  const { pathname } = useLocation();
+  
   return (
-    <>
-      <Router>
         <main>
           <Sidebar isOpen={isSidebarOpen} navItems={getNavItems(user)} />
-          <Switch>
-            <Route path="/expenses" component={BudgetApp} />
-          </Switch>
-          {/* <AdminDashboard user={'Admin'} /> */}
-          <ClientDashboard user={user} />
+          {
+            user === 'admin' ?
+              (pathname === '/dashboard' ? (<AdminDashboard user={user} />) : null)
+            :
+              (
+                pathname === '/account' ? (<ClientDashboard user={user} />) :
+                pathname === '/expenses' ? (<BudgetApp />) : null
+              )
+          }
           <MoreVertical className="mobile-menu" onClick={toggleSideBar} />
         </main>
-      </Router>
-    </>
   )
 }
 
-export default App
+export default App;

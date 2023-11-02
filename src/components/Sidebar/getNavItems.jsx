@@ -8,7 +8,7 @@ export function getNavItems(userType){
             {
                 label: 'Dashboard', 
                 icon: <LayoutDashboard className="nav-icon" />,
-                link: '/'
+                link: '/dashboard'
             }, 
             {
                 label: 'Transactions', 
