@@ -1,0 +1,42 @@
+@use "../../styles/variables/theme" as theme;
+
+.expenses-container {
+    display:            flex;
+    flex-direction:     column;
+    flex-wrap:          wrap;
+    width:              100%;
+    padding:            theme.$body-padding;
+    gap:                1rem;
+
+    button {
+        align-self:     flex-end;
+    }
+}
+
+.card-container {
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    width:              100%;
+    gap:                1rem;
+}
+
+.buttons-container {
+    display:            flex;
+    justify-content:    flex-end;
+    align-items:        center;
+    gap:                1rem;
+    padding:            theme.$body-padding;
+}
+
+@media (max-width: 768px){
+    .expenses-container, .card-container {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .expenses-container button {
+        align-self: center;
+    }
+}
