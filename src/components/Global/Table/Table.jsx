@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { formatName } from '../../../lib/utils/formatName';
 import '../../../styles/css/styles.css'
 
-const Table = ({data, columns, itemsPerPage}) => {
+const Table = ({data, columns, itemsPerPage, actions}) => {
     const [currentPage, setCurrentPage] =  useState(1);
     const totalPages = Math.ceil(data.length / itemsPerPage);
     const handlePageChange = (page) => {
@@ -29,6 +30,9 @@ const Table = ({data, columns, itemsPerPage}) => {
                             {columns.map((column, colIndex) => (
                             <td key={colIndex}>{item[column]}</td>
                             ))}
+                            <td>
+                                { actions }
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -42,4 +46,5 @@ const Table = ({data, columns, itemsPerPage}) => {
     )
 } 
 
-export default Table
+export default Table;
+
