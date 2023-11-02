@@ -2,7 +2,7 @@
 
 .sidebar {
     background-color:   theme.$secondary-color-light;
-    width:              40vmin;
+    min-width:          40vmin;
     height:             100vh;
     box-shadow:         theme.$box-shadow;
     font-family:        theme.$font-family;
