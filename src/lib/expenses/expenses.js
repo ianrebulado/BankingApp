@@ -1,6 +1,5 @@
 import generateId from "../utils/generateId";
 import expensesModel from "../constants/expensesModel";
-import exp from "constants";
 
 export function getExpense(id) {
   return expensesModel.find((expenses) => expenses.expense_id === id);
