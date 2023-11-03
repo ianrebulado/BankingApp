@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SidebarHeader from './SidebarHeader';
 import SidebarControl from './SidebarControl';
 import NavList from './NavList';
 
-function Sidebar({navItems}) {
+
+function Sidebar({isOpen, navItems}) {
+   
     return (
         <>
-            <div className="sidebar">
+            <div className={`sidebar ${isOpen ? 'open' : ''}`}>
                 <SidebarHeader />
                 <NavList items={navItems} />
                 <SidebarControl />

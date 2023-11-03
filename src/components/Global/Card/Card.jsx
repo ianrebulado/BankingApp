@@ -1,10 +1,18 @@
-import '../../../styles/css/styles.css'
-
-export default function Card({label, value}){
+import PropTypes from 'prop-types'
+export default function Card({title, content}){
     return (
         <div className='card'>
-            <span className='card-header'>{label}</span>
-            <span className='card-body'>{value}</span>
+            <div className='card-header'>
+                {title}
+            </div>
+            <div className='card-body'>
+                {content}
+            </div>
         </div>
     )
+}
+
+Card.propTypes = {
+    title: PropTypes.string.isRequired,
+    content: PropTypes.node.isRequired
 }
