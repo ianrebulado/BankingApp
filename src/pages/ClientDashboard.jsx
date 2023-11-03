@@ -19,9 +19,7 @@ function ClientDashboard({ user }) {
         <Header user={user} />
         <div className="cards-container">
           <BalanceCard balance={balance} />
-          <Card title={"Balance Overview"}>
-            <BalanceChart data={monthlyBalance} />
-          </Card>
+          <BalanceChart data={monthlyBalance} />
         </div>
         {/* <Table data={[]} columns={["Expenses", "Date", "Amount"]} /> */}
         <div className="buttons-container">
