@@ -10,6 +10,9 @@
 @use "../components/Global/Modal/modal.";
 @use "../components/Global/InputField/inputField";
 @use "../components/Sidebar/sidebar";
+@use "../components//Global/Toast/toast";
+
+@use "../pages/BudgetApp/budgetApp";
 
 @use "../styles/main";
 @use "../styles/dashboard";
