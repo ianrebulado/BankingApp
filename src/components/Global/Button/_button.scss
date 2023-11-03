@@ -24,3 +24,8 @@ button:active{
     transform: translate(0.1rem, 0.15rem);
     transition: all 0.2s ease-in-out;
 }
+
+.secondary{
+    background-color: theme.$white-color-lighter;
+    color: theme.$primary-color;
+}
