@@ -1,10 +1,42 @@
-import transactionsModel from "../constants/transactionsModel";
+import generateId from "../utils/generateId";
+import transactionsModel from "../constants/transactionsModel.json";
 
-export function deposit() {}
+function createTransaction(userId, type, amount) {
+  let transactionAmount = type === "deposit" ? amount : -amount;
 
-export function withdraw() {}
+  return {
+    transaction_id: generateId(),
+    user_id: userId,
+    type: type,
+    amount: transactionAmount,
+    created_on: new Date(),
+  };
+}
 
-export function send() {}
+export function deposit(userId, amount) {
+  if (!userId && !amount) return false;
+
+  transactionsModel.push(createTransaction(userId, "deposit", amount));
+
+  return true;
+}
+
+export function withdraw(userId, amount) {
+  if (!userId && !amount) return false;
+
+  transactionsModel.push(createTransaction(userId, "withdraw", amount));
+
+  return true;
+}
+
+export function send(sendingUserId, receivingUserId, amount) {
+  if (!sendingUserId && !receivingUserId && !amount) return false;
+
+  transactionsModel.push(createTransaction(sendingUserId, "withdraw", amount));
+  transactionsModel.push(createTransaction(receivingUserId, "deposit", amount));
+
+  return true;
+}
 
 function getTransactions(userId) {
   let transactions = [];
@@ -15,6 +47,18 @@ function getTransactions(userId) {
   });
 
   return transactions;
+}
+
+export function storeInitialTranssactions() {
+  localStorage.setItem("transactions", JSON.stringify(transactionsModel));
+}
+
+export function fetchTransactions() {
+  try {
+    localStorage.getItem("transactions");
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function getBalance(userId) {
