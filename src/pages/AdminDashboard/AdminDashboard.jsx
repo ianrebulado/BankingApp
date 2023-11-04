@@ -37,13 +37,31 @@ function AdminDashboard({ user }) {
         );
         break;
       case "deposit":
-        setFormComponent(<DepositForm />);
+        setFormComponent(
+          <DepositForm
+            usersData={usersData}
+            setShowModal={setShowModal}
+            setShowToast={setShowToast}
+          />
+        );
         break;
       case "withdraw":
-        setFormComponent(<WithdrawForm />);
+        setFormComponent(
+          <WithdrawForm
+            usersData={usersData}
+            setShowModal={setShowModal}
+            setShowToast={setShowToast}
+          />
+        );
         break;
       case "transfer":
-        setFormComponent(<TransferForm />);
+        setFormComponent(
+          <TransferForm
+            usersData={usersData}
+            setShowModal={setShowModal}
+            setShowToast={setShowToast}
+          />
+        );
         break;
       default:
         setFormComponent(null);
