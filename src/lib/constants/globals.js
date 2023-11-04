@@ -49,3 +49,29 @@ export const initialCreateUserFormState = [
     password: null,
   },
 ];
+
+export const depositFormInputs = [
+  {
+    type: "text",
+    label: "Username",
+    name: "username",
+    placeholder: "JuanDeLaCruz",
+    isRequired: true,
+    message: "",
+  },
+  {
+    type: "number",
+    label: "Amount to Deposit",
+    name: "amount",
+    placeholder: 0.0,
+    isRequired: true,
+    message: "",
+  },
+];
+
+export const initialDepositFormState = [
+  {
+    username: null,
+    amount: 0,
+  },
+];
