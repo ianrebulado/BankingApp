@@ -7,8 +7,10 @@ import {
 } from "../../../lib/constants/globals";
 import {
   clearValidationMessages,
-  validateDepositForm,
+  validateTransactionForm,
 } from "../../../lib/utils/validations";
+import { deposit } from "../../../lib/utils/transactions";
+import { filterUsersByName } from "../../../lib/utils/users";
 
 export default function DepositForm({ usersData, setShowModal, setShowToast }) {
   const [inputState, setInputState] = useState(depositFormInputs);
@@ -17,11 +19,11 @@ export default function DepositForm({ usersData, setShowModal, setShowToast }) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    let isValidForm = false;
+    let isValidForm = true;
 
     clearValidationMessages(inputState, setInputState);
 
-    isValidForm = validateDepositForm(
+    isValidForm = validateTransactionForm(
       inputState,
       setInputState,
       formState,
@@ -29,7 +31,9 @@ export default function DepositForm({ usersData, setShowModal, setShowToast }) {
     );
 
     if (isValidForm) {
-      deposit(formState);
+      const userId = filterUsersByName(formState.username).user_id;
+
+      deposit(userId, formState.amount);
 
       setShowToast(true);
       setShowModal(false);
