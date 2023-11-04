@@ -1,5 +1,5 @@
-import usersModel from "../constants/usersModel";
 import { fetchUsers } from "./users";
+const usersData = fetchUsers();
 
 export function clearValidationMessages(inputState, setInputState) {
   const updatedInputState = inputState.map((input) => ({
@@ -13,7 +13,7 @@ export function validateSignUpForm(
   inputState,
   setInputState,
   formState,
-  users = fetchUsers()
+  users = usersData
 ) {
   let isValid = true;
 
@@ -32,11 +32,11 @@ export function validateSignInForm(
   inputState,
   setInputState,
   formState,
-  usersModel
+  usersData
 ) {
   let isValid = true;
 
-  const user = matchUserCredentials(formState, usersModel);
+  const user = matchUserCredentials(formState, usersData);
 
   let updatedInputState = checkCredentials(inputState, user);
   setInputState(updatedInputState);
@@ -58,10 +58,10 @@ function checkMissingValues(inputState, formState) {
   return newInputState;
 }
 
-function checkDuplicate(inputState, formState, usersModel) {
+function checkDuplicate(inputState, formState, usersData) {
   const newInputState = inputState.map((input) => {
     if (input.name === "username" || input.name === "email") {
-      if (isDuplicate(input.name, formState, usersModel)) {
+      if (isDuplicate(input.name, formState, usersData)) {
         return { ...input, message: `${input.name} already exists.` };
       } else {
         return { ...input, message: "" };
@@ -73,8 +73,8 @@ function checkDuplicate(inputState, formState, usersModel) {
   return newInputState;
 }
 
-function isDuplicate(property, formState, usersModel) {
-  const duplicateProperty = usersModel.find(
+function isDuplicate(property, formState, usersData) {
+  const duplicateProperty = usersData.find(
     (user) => user[property] === formState[property]
   );
 
@@ -119,3 +119,5 @@ function checkCredentials(inputState, userCredentials) {
 function checkValidForm(inputState) {
   return inputState.every((input) => input.message === "");
 }
+
+export function validateDepositForm() {}
