@@ -1,5 +1,11 @@
+.cards-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
 .balance-overview-chart-container {
-  height: fit-content;
-  width: auto;
+  height: 100%;
+  width: 100%;
   padding: 1rem;
 }
