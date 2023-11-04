@@ -13,33 +13,44 @@ function ClientDashboard({ user }) {
   const userId = 'u-l2hckqwf1p';
   const balance = getBalance(userId);
   const monthlyBalance = getMonthlyBalance(userId);
+  const userExpenses = getUserExpenses(userId)
+  const columns = ['expense_id', 'created_on', 'description', 'amount'];
+  const [showModal, setShowModal] = useState(false);
+  const [expenses, setExpenses] = useState(userExpenses); 
 
-  const [expenses, setExpenses] = useState([]);
+  const tableData = expenses.map((item) => {
+    const {expense_id, created_on, description, amount} = item;
+    return {expense_id, created_on, description, amount}
+  })
+    
+  
+  const [data, setData] = useState(tableData);
 
-    const columns = ['expense_id', 'created_on', 'description', 'amount'];
-    const data = expenses.map((item) => {
-        const {expense_id, created_on, description, amount} = item;
-        return {expense_id, created_on, description, amount}
-    })
+  const updateExpenses = () => {
+    setExpenses(userExpenses);
+  }
 
-    const userExpenses = getUserExpenses(userId)
+  useEffect(()=>{
+      setData(tableData);
+  }, [expenses])
 
-    useEffect(()=>{
-        setExpenses(userExpenses);
-    }, [])
 
-    const [showModal, setShowModal] = useState(false)
-    const handleAddClick = () => {
-        setShowModal(true)
+
+  const handleAddClick = () => {
+      setShowModal(true)
+  }
+
+  const handleEditClick = (e) => {
+    const row = e.target.closest('tr')
+    if(row){
+      console.log(row)
     }
+      setShowModal(true)
+  }
 
-    const handleEditClick = () => {
+  const handleDeleteClick = () => {
 
-    }
-
-    const handleDeleteClick = () => {
-
-    }
+  }
 
   return (
     <>
@@ -54,15 +65,15 @@ function ClientDashboard({ user }) {
           {
               showModal && (
                   <Modal title={"New Expense"} >
-                      <AddExpenseForm setShowModal={setShowModal} />
+                      <AddExpenseForm setShowModal={setShowModal} updateExpenses={updateExpenses} />
                   </Modal>
               )
           }
-          <Table data={data} columns={columns} itemsPerPage={3}
+          <Table data={data} columns={columns} itemsPerPage={5}
               actions={ (
                   <>
-                      <FileEdit onClick={() => handleEditClick} />
-                      <FileX onClick={() => handleDeleteClick} />
+                      <FileEdit onClick={handleEditClick} />
+                      <FileX onClick={handleDeleteClick} />
                   </>
               )} />
         </div>

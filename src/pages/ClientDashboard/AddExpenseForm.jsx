@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { FormProvider } from '../../components/Global/Form/FormContext';
 import { Button, InputField } from '../../components';
-import {checkMissingValues} from '../../lib/utils/validations';
+import {validateExpenseForm} from '../../lib/utils/validations';
 import { addExpense } from '../../lib/utils/expenses';
 
-const AddExpenseForm = ({setShowModal}) => {
+const AddExpenseForm = ({setShowModal, updateExpenses}) => {
     const userId ='u-l2hckqwf1p';
     const inputs = [
         {
@@ -38,11 +38,13 @@ const AddExpenseForm = ({setShowModal}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const missingValues = checkMissingValues(inputState, formState)
+        const validForm = validateExpenseForm(inputState, setInputState, formState)
         
-
-        addExpense(formState)
-        setShowModal(false)
+        if(validForm){
+            addExpense(formState)
+            updateExpenses();
+            setShowModal(false)
+        }
     }
 
     const handleCancel = () => {
