@@ -1,5 +1,4 @@
-import { fetchUsers } from "./users";
-const usersData = fetchUsers();
+import Validator from "./validator";
 
 export function clearValidationMessages(inputState, setInputState) {
   const updatedInputState = inputState.map((input) => ({
@@ -13,13 +12,13 @@ export function validateSignUpForm(
   inputState,
   setInputState,
   formState,
-  users = usersData
+  usersData
 ) {
   let isValid = true;
 
   let updatedInputState = checkMissingValues(inputState, formState);
 
-  updatedInputState = checkDuplicate(updatedInputState, formState, users);
+  updatedInputState = checkDuplicate(updatedInputState, formState, usersData);
 
   setInputState(updatedInputState);
 
@@ -81,7 +80,7 @@ function isDuplicate(property, formState, usersData) {
   return !!duplicateProperty;
 }
 
-function matchUserCredentials({ username, password }, users) {
+function matchUserCredentials({ username = null, password = null }, users) {
   const user = {
     username: null,
     errorType: null,
@@ -117,7 +116,33 @@ function checkCredentials(inputState, userCredentials) {
 }
 
 function checkValidForm(inputState) {
-  return inputState.every((input) => input.message === "");
+  return inputState.every((input) => input.message === "" || !input.message);
 }
 
-export function validateDepositForm() {}
+export function validateTransactionForm(
+  inputState,
+  setInputState,
+  formState,
+  usersData
+) {
+  let updatedInputState = inputState.map((input) => {
+    if (input.name === "username") {
+      input.value = formState.username;
+      return {
+        ...input,
+        message: Validator.for(input).isRequired().userExists(usersData)
+          .errorMessage,
+      };
+    } else if (input.name === "amount") {
+      input.value = formState.amount;
+      return {
+        ...input,
+        message: Validator.for(input).isRequired().greater(500).errorMessage,
+      };
+    }
+  });
+
+  setInputState(updatedInputState);
+
+  return checkValidForm(updatedInputState);
+}
