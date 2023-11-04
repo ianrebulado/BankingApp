@@ -7,11 +7,14 @@ import {
   WithdrawForm,
   TransferForm,
 } from "./Forms";
+import { fetchUsers } from "../../lib/utils/users";
 
 function AdminDashboard({ user }) {
   const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [formComponent, setFormComponent] = useState(null);
+
+  const usersData = fetchUsers(); //TODO: Move this to App.jsx and pass as a prop
 
   const columns = ["user_id", "first_name", "last_name", "email", "balance"];
   const data = usersModel.map((item) => {
@@ -27,6 +30,7 @@ function AdminDashboard({ user }) {
       case "createUser":
         setFormComponent(
           <CreateUserForm
+            usersData={usersData}
             setShowModal={setShowModal}
             setShowToast={setShowToast}
           />

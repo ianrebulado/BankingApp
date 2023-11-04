@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
-import { Button, Modal, InputField } from "../../../components/";
-import { FormProvider } from "../../../components/Global/Form/FormContext";
-import usersModel from "../../../lib/constants/usersModel";
+import { useState } from "react";
+import { Button, Modal, InputField, FormProvider } from "../../../components/";
 import { createUser } from "../../../lib/utils/users";
 import {
   createUserFormInputs,
@@ -12,7 +10,11 @@ import {
   validateSignUpForm,
 } from "../../../lib/utils/validations";
 
-export default function CreateUserForm({ setShowModal, setShowToast }) {
+export default function CreateUserForm({
+  usersData,
+  setShowModal,
+  setShowToast,
+}) {
   const [inputState, setInputState] = useState(createUserFormInputs);
   const [formState, setFormState] = useState(initialCreateUserFormState);
 
@@ -26,7 +28,7 @@ export default function CreateUserForm({ setShowModal, setShowToast }) {
       inputState,
       setInputState,
       formState,
-      usersModel
+      usersData
     );
 
     if (isValidForm) {
