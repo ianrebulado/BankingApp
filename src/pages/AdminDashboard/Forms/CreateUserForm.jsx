@@ -15,6 +15,7 @@ import {
 export default function CreateUserForm({ setShowModal, setShowToast }) {
   const [inputState, setInputState] = useState(createUserFormInputs);
   const [formState, setFormState] = useState(initialCreateUserFormState);
+
   function handleSubmit(e) {
     e.preventDefault();
     let isValidForm = false;
@@ -36,6 +37,10 @@ export default function CreateUserForm({ setShowModal, setShowToast }) {
     } else {
       console.log("Form is not valid");
     }
+  }
+
+  function handleCancel() {
+    setShowModal(false);
   }
 
   function handleInputChange(name, value) {
@@ -63,7 +68,12 @@ export default function CreateUserForm({ setShowModal, setShowToast }) {
               )
             )}
             <Button type={"submit"} text={"Create User"} />
-            <Button type={"button"} text={"Cancel"} secondary />
+            <Button
+              type={"button"}
+              text={"Cancel"}
+              handleClick={handleCancel}
+              secondary
+            />
           </form>
         </FormProvider>
       </Modal>
