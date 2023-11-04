@@ -4,19 +4,22 @@ import transactionsModel from "../constants/transactionsModel.json";
 function createTransaction(userId, type, amount) {
   let transactionAmount = type === "deposit" ? amount : -amount;
 
-  return {
+  transactionsModel.push({
     transaction_id: generateId(),
     user_id: userId,
     type: type,
     amount: transactionAmount,
     created_on: new Date(),
-  };
+  });
+
+  storeTransactions(transactionsModel);
 }
 
 export function deposit(userId, amount) {
+  console.log(userId, amount);
   if (!userId && !amount) return false;
 
-  transactionsModel.push(createTransaction(userId, "deposit", amount));
+  createTransaction(userId, "deposit", amount);
 
   return true;
 }
@@ -49,13 +52,15 @@ function getTransactions(userId) {
   return transactions;
 }
 
-export function storeInitialTranssactions() {
-  localStorage.setItem("transactions", JSON.stringify(transactionsModel));
+function storeTransactions(transactionsData) {
+  localStorage.setItem("transactions", JSON.stringify(transactionsData));
 }
 
 export function fetchTransactions() {
   try {
-    localStorage.getItem("transactions");
+    const transactionsData = localStorage.getItem("transactions");
+
+    return JSON.parse(transactionsData);
   } catch (error) {
     console.log(error);
   }
