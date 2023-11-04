@@ -23,15 +23,15 @@ const Table = ({data, columns, itemsPerPage, actions}) => {
                             <th key={index}>{formatName(column)}</th>
                         ))}
                         { actions ?                                 
-                                <th>Actions</th>
-                                :
-                                null
-                            }
+                            <th>Actions</th>
+                            :
+                            null
+                        }
                     </tr>
                 </thead>
                 <tbody>
                     {currentData.map((item, rowIndex) => (
-                        <tr key={rowIndex} onClick={()=>{console.log(item)}}>
+                        <tr key={rowIndex}>
                             {columns.map((column, colIndex) => (
                             <td key={colIndex}>{item[column]}</td>
                             ))}

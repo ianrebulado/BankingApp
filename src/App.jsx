@@ -1,34 +1,28 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import AdminDashboard from "./pages/AdminDashboard";
 import ClientDashboard from "./pages/ClientDashboard";
-import Sidebar from "./components/Sidebar/Sidebar"
+// import Sidebar from "./components/Sidebar/Sidebar"
 import { MoreVertical } from 'lucide-react';
-import { getNavItems } from "./components/Sidebar/getNavItems";
+// import { getNavItems } from "./components/Sidebar/getNavItems";
 import { useLocation } from 'react-router-dom';
 import BudgetApp from "./pages/BudgetApp/BudgetApp";
+import { storeInitialExpenses } from "./lib/utils/expenses";
+import expensesModel from './lib/constants/expensesModel.json';
 
 function App() {
 
-  const user = 'Mae'
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSideBar = () =>{
       setSidebarOpen(!isSidebarOpen);
   }
 
-  const { pathname } = useLocation();
+  useEffect(()=>{
+    storeInitialExpenses(expensesModel);
+  },[])
   
   return (
         <main>
-          <Sidebar isOpen={isSidebarOpen} navItems={getNavItems(user)} />
-          {
-            user === 'admin' ?
-              (pathname === '/dashboard' ? (<AdminDashboard user={user} />) : null)
-            :
-              (
-                pathname === '/account' ? (<ClientDashboard user={user} />) :
-                pathname === '/expenses' ? (<BudgetApp />) : null
-              )
-          }
+          <BudgetApp />
           <MoreVertical className="mobile-menu" onClick={toggleSideBar} />
         </main>
   )

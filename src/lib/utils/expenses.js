@@ -1,5 +1,6 @@
 import generateId from "../utils/generateId";
-import expensesModel from "../constants/expensesModel";
+import expensesModel from "../constants/expensesModel.json";
+import { formatDate } from "./formatDate";
 
 export function getExpense(id) {
   return expensesModel.find((expenses) => expenses.expense_id === id);
@@ -10,16 +11,18 @@ export function addExpense(newExpense) {
   const createdOn = new Date();
   const updatedOn = createdOn;
 
+  const data = expensesModel
+  const expenses = data ? data : [];
+
   newExpense = {
-    ...newExpense,
     expense_id: expenseId,
-    created_on: createdOn,
-    updated_on: updatedOn,
+    ...newExpense,
+    created_on: formatDate(createdOn),
+    updated_on: formatDate(updatedOn),
   };
 
-  const expenses = data ? JSON.parse(data) : [];
-
   expenses.push(newExpense);
+  localStorage.setItem('expenses', JSON.stringify(expenses))
 }
 
 export function updateExpense(id, editedAmount) {
@@ -51,12 +54,15 @@ export function storeInitialExpenses(data) {
 
 export function getUserExpenses(userId) {
   const expenses = localStorage.getItem("expenses");
+
+  if(!expenses) return
+
   const userExpenses = JSON.parse(expenses).filter(
     (item) => item.user_id === userId
   );
   return userExpenses;
 }
 
-function findExpenseIndex(id) {
+export function findExpenseIndex(id) {
   return expensesModel.findIndex((expense) => expense.expense_id === id);
 }

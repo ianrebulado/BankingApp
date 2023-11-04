@@ -7,7 +7,7 @@ import Table from '../components/Global/Table/Table';
 import usersModel from '../lib/constants/usersModel';
 
 function AdminDashboard({user}) {
-    const isAdmin = //retrieve the role of the user (i.e. can be through the props)
+    const isAdmin = false;//retrieve the role of the user (i.e. can be through the props)
     const columns = ['user_id', 'first_name', 'last_name', 'email', 'balance'];
     const data = usersModel.map((item) => {
         const { user_id, first_name, last_name, email } = item;
