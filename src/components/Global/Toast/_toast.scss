@@ -1,7 +1,8 @@
 @use "../../../styles/variables/theme" as theme;
 
 .toast-container {
-  position: absolute;
+  position: fixed;
+  z-index: 100;
   top: 1rem;
   right: 50%;
   transform: translateX(50%, -200%);
