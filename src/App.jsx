@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import AdminDashboard from "./pages/AdminDashboard";
-import ClientDashboard from "./pages/ClientDashboard";
+import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 // import Sidebar from "./components/Sidebar/Sidebar"
 import { MoreVertical } from 'lucide-react';
 // import { getNavItems } from "./components/Sidebar/getNavItems";
@@ -22,7 +22,8 @@ function App() {
   
   return (
         <main>
-          <BudgetApp />
+          {/* <BudgetApp /> */}
+          <ClientDashboard />
           <MoreVertical className="mobile-menu" onClick={toggleSideBar} />
         </main>
   )

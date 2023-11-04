@@ -13,31 +13,31 @@
 }
 
 .cards-container {
-    position: relative;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    padding: theme.$body-padding;
-    gap: 1rem;
+    position:           relative;
+    display:            flex;
+    justify-content:    space-around;
+    align-items:        center;
+    width:              100%;
+    padding:            theme.$body-padding;
+    gap:                1rem;
 }
 
 .search-container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: theme.$body-padding;
+    position:           relative;
+    display:            flex;
+    justify-content:    space-between;
+    align-items:        center;
+    padding:            theme.$body-padding;
 }
 
 .buttons-container {
-    display:    flex;
-    gap:        0.25rem;
+    display:            flex;
+    gap:                0.25rem;
 }
 
 @media (max-width: 768px) {
     .cards-container, .search-container {
         flex-direction: column;
-        gap: 1rem;
+        gap:            1rem;
     }
 }
