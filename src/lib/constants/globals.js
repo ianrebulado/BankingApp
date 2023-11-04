@@ -69,9 +69,7 @@ export const depositFormInputs = [
   },
 ];
 
-export const initialDepositFormState = [
-  {
-    username: null,
-    amount: 0,
-  },
-];
+export const initialDepositFormState = {
+  username: null,
+  amount: 0,
+};
