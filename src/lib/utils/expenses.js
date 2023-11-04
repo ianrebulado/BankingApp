@@ -1,5 +1,5 @@
 import generateId from "../utils/generateId";
-import expensesModel from "../constants/expensesModel";
+import expensesModel from "../constants/expensesModel.json";
 
 export function getExpense(id) {
   return expensesModel.find((expenses) => expenses.expense_id === id);
@@ -45,8 +45,16 @@ export function deleteExpense(id) {
   return false;
 }
 
-export function storeInitialExpenses(data) {
-  localStorage.setItem("expenses", JSON.stringify(data));
+export function storeInitialExpenses() {
+  localStorage.setItem("expenses", JSON.stringify(expensesModel));
+}
+
+export function fetchExpenses() {
+  try {
+    return localStorage.getItem("transactions");
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function getUserExpenses(userId) {
