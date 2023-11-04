@@ -1,6 +1,33 @@
 import usersModel from "../constants/usersModel";
+import generateId from "./generateId";
 
-export function createUser() {}
+export function createUser(newUserForm) {
+  const user_id = generateId("user");
+  const createdOn = new Date();
+  const updatedOn = new Date();
+
+  usersModel.push({
+    ...newUserForm,
+    user_id,
+    createdOn,
+    updatedOn,
+  });
+
+  storeUsers(usersModel);
+}
+
+export function storeUsers(usersData) {
+  localStorage.setItem("users", JSON.stringify(usersData));
+}
+
+export function fetchUsers() {
+  try {
+    console.log("running");
+    return localStorage.getItem("users");
+  } catch (error) {
+    console.log("Could not retrieve users: ", error);
+  }
+}
 
 export function filterUsersByName(name) {
   const matchedUser = usersModel.filter(
