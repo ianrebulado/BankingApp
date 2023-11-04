@@ -55,7 +55,7 @@ export const depositFormInputs = [
     type: "text",
     label: "Username",
     name: "username",
-    placeholder: "JuanDeLaCruz",
+    placeholder: "",
     isRequired: true,
     message: "",
   },
@@ -70,6 +70,30 @@ export const depositFormInputs = [
 ];
 
 export const initialDepositFormState = {
+  username: null,
+  amount: 0,
+};
+
+export const withdrawFormInputs = [
+  {
+    type: "text",
+    label: "Username",
+    name: "username",
+    placeholder: "",
+    isRequired: true,
+    message: "",
+  },
+  {
+    type: "number",
+    label: "Amount to Withdraw",
+    name: "amount",
+    placeholder: 0.0,
+    isRequired: true,
+    message: "",
+  },
+];
+
+export const initialWithdrawFormState = {
   username: null,
   amount: 0,
 };
