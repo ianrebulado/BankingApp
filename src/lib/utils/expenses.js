@@ -48,8 +48,16 @@ export function deleteExpense(id) {
   return false;
 }
 
-export function storeInitialExpenses(data) {
-  localStorage.setItem("expenses", JSON.stringify(data));
+export function storeInitialExpenses() {
+  localStorage.setItem("expenses", JSON.stringify(expensesModel));
+}
+
+export function fetchExpenses() {
+  try {
+    return localStorage.getItem("transactions");
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function getUserExpenses(userId) {
