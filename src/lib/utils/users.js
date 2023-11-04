@@ -22,7 +22,6 @@ export function storeUsers(usersData) {
 
 export function fetchUsers() {
   try {
-    console.log("running");
     return localStorage.getItem("users");
   } catch (error) {
     console.log("Could not retrieve users: ", error);
