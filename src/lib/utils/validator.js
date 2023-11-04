@@ -86,6 +86,20 @@ export default class Validator {
     return this;
   }
 
+  isValidWithdrawalAmount(
+    userBalance,
+    errorMessage = `Balance is insufficient`
+  ) {
+    if (this._checkError()) return this;
+    const withdrawResult = userBalance - this.value;
+
+    if (withdrawResult <= 0) {
+      this.errorMessage = errorMessage;
+    }
+
+    return this;
+  }
+
   isEmail(errorMessage = `${this.label} must be a valid email`) {
     if (this._checkError()) return this;
 
