@@ -2,14 +2,11 @@ import React from 'react'
 
 export default function Modal({title, children}) {
   return (
-    <div className="modal">
-        <div className="modal-content">
-            <div className="modal-header">
-                <h2 className="modal-title">{title}</h2>
-            </div>
-        </div>
-        <div className="modal-body">
-            {children}
+    <div class="modal-container">
+        <div class="modal">
+            <h1> Modal </h1>
+            <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, ut.</p>
+            <button id="close"> Close </button>
         </div>
     </div>
   )
