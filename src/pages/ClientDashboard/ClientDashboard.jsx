@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { Button, Card, Header, Modal, Table } from '../../components';
+import { Button, Card, Header, Modal, Table, Toast } from '../../components';
 import BalanceCard from "./BalanceCard";
 import BalanceChart from "./BalanceChart";
 
@@ -20,12 +20,13 @@ function ClientDashboard({ user }) {
   const monthlyBalance = getMonthlyBalance(userId);
   const userExpenses = getUserExpenses(userId);
 
+  const [showToast, setShowToast] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleteExpense, setDeleteExpense] = useState({});
   const [data, setData] = useState([]);
-
   const [inputValues, setInputValues] = useState(initialInput);
+  const [action, setAction] = useState('');
 
   const updateExpenses = (expenses) => {
 
@@ -57,6 +58,7 @@ function ClientDashboard({ user }) {
 
       setInputValues(initialInput)
       setShowModal(true);
+      setAction('add');
 
   }
 
@@ -69,8 +71,9 @@ function ClientDashboard({ user }) {
       const expenseId = row.getAttribute('data-id')
       const expenseItem = getExpense(expenseId)
       
-      setInputValues(expenseItem)
-      setShowModal(true)
+      setInputValues(expenseItem);
+      setShowModal(true);
+      setAction('update');
 
     }
 
@@ -83,12 +86,30 @@ function ClientDashboard({ user }) {
 
     setDeleteExpense(expense);
     setShowDeleteConfirm(true);
-    setShowModal(true)
+    setShowModal(true);
+    setAction('delete');
 
   }
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        setShowToast(false)
+    }, 5000);
+
+    return () => {
+        clearTimeout(timer);
+    };
+}, [showToast])
+
   return (
     <>
+      {showToast && (
+        <Toast type={"success"} message={
+          action === "delete" ? "expense succesfully deleted." 
+          : action === "add" ? "expense successfully added." 
+          : "expense successfully updated."} 
+        />
+      )}
       <div className="dashboard">
         <div className="expenses-container">
           <Header user={user} />
@@ -99,11 +120,22 @@ function ClientDashboard({ user }) {
           <Button type={'button'} text={'New Expense'} handleClick={handleAddClick}/>
           { 
             showModal && (
-                <Modal title={ showDeleteConfirm ? 'Delete Expense' : inputValues.expense_id ? "Update Expense" : "New Expense"} >
+                <Modal title={ showDeleteConfirm ? 'Delete Expense' : inputValues.expense_id ? "Update Expense" : "New Expense"} setShowModal={setShowModal}>
                     {showDeleteConfirm ?
-                        <ConfirmExpenseDelete expense={deleteExpense} setShowDeleteConfirm={setShowDeleteConfirm} setShowModal={setShowModal} updateExpenses={updateExpenses} />
+                        <ConfirmExpenseDelete 
+                          expense={deleteExpense} 
+                          setShowDeleteConfirm={setShowDeleteConfirm} 
+                          setShowModal={setShowModal} 
+                          updateExpenses={updateExpenses} 
+                          setShowToast={setShowToast} 
+                        />
                       :
-                        <AddExpenseForm setShowModal={setShowModal} updateExpenses={updateExpenses} inputValues={inputValues} />
+                        <AddExpenseForm 
+                          setShowModal={setShowModal} 
+                          updateExpenses={updateExpenses} 
+                          inputValues={inputValues} 
+                          setShowToast={setShowToast} 
+                        />
                     }
                 </Modal>
             )

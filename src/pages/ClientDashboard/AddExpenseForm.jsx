@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FormProvider } from '../../components/Global/Form/FormContext';
 import { Button, InputField } from '../../components';
 import {validateExpenseForm} from '../../lib/utils/validations';
 import { addExpense, getUserExpenses, updateExpense } from '../../lib/utils/expenses';
 
-const AddExpenseForm = ({setShowModal, updateExpenses, inputValues}) => {
+const AddExpenseForm = ({setShowModal, setShowToast, updateExpenses, inputValues}) => {
     const userId ='u-l2hckqwf1p';
     const inputs = [
         {
@@ -29,6 +29,7 @@ const AddExpenseForm = ({setShowModal, updateExpenses, inputValues}) => {
 
     const [inputState, setInputState] = useState(inputs);
     const [formState, setFormState] = useState(inputValues)
+    
 
     const handleInputChange = (name, value) => {
         setFormState({ ...formState, [name]: value })
@@ -49,6 +50,7 @@ const AddExpenseForm = ({setShowModal, updateExpenses, inputValues}) => {
             const expenses = getUserExpenses(userId);
 
             updateExpenses(expenses);
+            setShowToast(true);
             setShowModal(false);
 
         }
@@ -58,27 +60,32 @@ const AddExpenseForm = ({setShowModal, updateExpenses, inputValues}) => {
         setShowModal(false)
     }
 
+    
+
     return (
-        <FormProvider formValues={formState} handleInputChange={handleInputChange}>
-            <form onSubmit={handleSubmit}>
-                {
-                    inputState.map(({type, label, name, placeholder, message}, index) => (
-                        <InputField
-                            key={index}
-                            type={type}
-                            label={label}
-                            name={name}
-                            placeholder={placeholder}
-                            message={message}
-                        />
-                    ))
-                }
-                <div className="buttons-container">
-                    <Button type={'submit'} text={editExpense ? 'Update Expense' : 'Add Expense'} />
-                    <Button type={'button'} text={'Cancel'} handleClick={handleCancel} secondary />
-                </div>
-            </form>
-        </FormProvider>
+        <>
+            
+            <FormProvider formValues={formState} handleInputChange={handleInputChange}>
+                <form onSubmit={handleSubmit}>
+                    {
+                        inputState.map(({type, label, name, placeholder, message}, index) => (
+                            <InputField
+                                key={index}
+                                type={type}
+                                label={label}
+                                name={name}
+                                placeholder={placeholder}
+                                message={message}
+                            />
+                        ))
+                    }
+                    <div className="buttons-container">
+                        <Button type={'submit'} text={editExpense ? 'Update Expense' : 'Add Expense'} />
+                        <Button type={'button'} text={'Cancel'} handleClick={handleCancel} secondary />
+                    </div>
+                </form>
+            </FormProvider>
+        </>
     );
 }
 

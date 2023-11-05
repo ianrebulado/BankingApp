@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import AdminDashboard from "./pages/AdminDashboard";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 // import Sidebar from "./components/Sidebar/Sidebar"
 import { MoreVertical } from 'lucide-react';

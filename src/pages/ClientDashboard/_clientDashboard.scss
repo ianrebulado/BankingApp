@@ -1,4 +1,4 @@
-@use '/src/styles/variables/theme' as theme;
+@use '../../styles/variables/theme' as theme;
 
 .balance-overview-chart-container {
   height: 100%;
@@ -52,12 +52,12 @@
   justify-content:    center;
   align-items:        center;
   gap:                1rem;
-  width:              50%;
+  width:              100%;
 }
 
 .confirm-delete-title {
   color:              theme.$accent-color-dark;
-  font-size:          theme.$font-size-medium;
+  font-size:          theme.$font-size-small;
   font-weight:        theme.$font-weight-bold;
   text-transform:     capitalize;
 }
@@ -68,7 +68,6 @@
   background-color:   theme.$white-color-lighter;
   line-height:        theme.$line-height;
   font-size:          theme.$font-size-small;
-  border:             theme.$border-solid;
   border-radius:      theme.$border-radius;
   padding:            theme.$body-padding;
   width:              100%;
