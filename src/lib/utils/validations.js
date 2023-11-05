@@ -1,114 +1,148 @@
+import Validator from "./validator";
+
 export function clearValidationMessages(inputState, setInputState) {
-    const updatedInputState = inputState.map((input) => ({
-      ...input,
-      message: "",
-    }));
-    setInputState(updatedInputState);
-  }
-  
-export function validateSignUpForm(inputState, setInputState, formState, usersModel){
-
-    let isValid = true;
-
-    let updatedInputState = checkMissingValues(inputState, formState);
-
-    updatedInputState = checkDuplicate(updatedInputState, formState, usersModel);
-
-    setInputState(updatedInputState);
-
-    isValid = checkValidForm(updatedInputState);
-
-    return isValid;
+  const updatedInputState = inputState.map((input) => ({
+    ...input,
+    message: "",
+  }));
+  setInputState(updatedInputState);
 }
 
-export function validateSignInForm(inputState, setInputState, formState, usersModel){
+export function validateSignUpForm(
+  inputState,
+  setInputState,
+  formState,
+  usersData
+) {
+  let isValid = true;
 
-    let isValid = true;
+  let updatedInputState = checkMissingValues(inputState, formState);
 
-    const user = matchUserCredentials(formState, usersModel);
+  updatedInputState = checkDuplicate(updatedInputState, formState, usersData);
 
-    let updatedInputState = checkCredentials(inputState, user);
-    setInputState(updatedInputState);
+  setInputState(updatedInputState);
 
-    isValid = checkValidForm(updatedInputState);
+  isValid = checkValidForm(updatedInputState);
 
-    return isValid;
+  return isValid;
 }
 
-function checkMissingValues(inputState, formState){
-    const newInputState = inputState.map((input) => {
-        if (!formState[input.name] && input.isRequired) {
-            return { ...input, message: "This field is required" };
-        } 
-        
+export function validateSignInForm(
+  inputState,
+  setInputState,
+  formState,
+  usersData
+) {
+  let isValid = true;
+
+  const user = matchUserCredentials(formState, usersData);
+
+  let updatedInputState = checkCredentials(inputState, user);
+  setInputState(updatedInputState);
+
+  isValid = checkValidForm(updatedInputState);
+
+  return isValid;
+}
+
+function checkMissingValues(inputState, formState) {
+  const newInputState = inputState.map((input) => {
+    if (!formState[input.name] && input.isRequired) {
+      return { ...input, message: "This field is required" };
+    }
+
+    return { ...input, message: "" };
+  });
+
+  return newInputState;
+}
+
+function checkDuplicate(inputState, formState, usersData) {
+  const newInputState = inputState.map((input) => {
+    if (input.name === "username" || input.name === "email") {
+      if (isDuplicate(input.name, formState, usersData)) {
+        return { ...input, message: `${input.name} already exists.` };
+      } else {
         return { ...input, message: "" };
-    })
-
-    return newInputState;
-
-}
-  
-function checkDuplicate(inputState, formState, usersModel) {
-  
-    const newInputState = inputState.map((input) => {
-      if (input.name === 'username' || input.name === 'email') {
-        if (isDuplicate(input.name, formState, usersModel)) {
-          return { ...input, message: `${input.name} already exists.` };
-        } else {
-          return { ...input, message: "" };
-        }
       }
-      return input;
-    });
-
-    return newInputState;
-  
-  }
-  
-  function isDuplicate(property, formState, usersModel) {
-    const duplicateProperty = usersModel.find((user) => user[property] === formState[property]);
-  
-    return !!duplicateProperty;
-  }
-
-function matchUserCredentials({username, password}, users){
-
-    const user = {
-        username: null,
-        errorType: null,
     }
+    return input;
+  });
 
-    let matchedUser = users.find(user => user.username === username);
+  return newInputState;
+}
 
-    if(!matchedUser){
-        user.errorType = "user";
-    } else if(matchedUser.signed_in){
-        user.errorType = "sign-in";
-    } else if(matchedUser.password !== password){
-        user.errorType = "password";
+function isDuplicate(property, formState, usersData) {
+  const duplicateProperty = usersData.find(
+    (user) => user[property] === formState[property]
+  );
+
+  return !!duplicateProperty;
+}
+
+function matchUserCredentials({ username = null, password = null }, users) {
+  const user = {
+    username: null,
+    errorType: null,
+  };
+
+  let matchedUser = users.find((user) => user.username === username);
+
+  if (!matchedUser) {
+    user.errorType = "user";
+  } else if (matchedUser.signed_in) {
+    user.errorType = "sign-in";
+  } else if (matchedUser.password !== password) {
+    user.errorType = "password";
+  }
+
+  return user;
+}
+
+function checkCredentials(inputState, userCredentials) {
+  const newInputState = inputState.map((input) => {
+    if (input.name === "username" && userCredentials.errorType === "user") {
+      return { ...input, message: `Username not found.` };
+    } else if (
+      input.name === "password" &&
+      userCredentials.errorType === "password"
+    ) {
+      return { ...input, message: `Wrong password detected` };
     }
+    return { ...input, message: "" };
+  });
 
-    return user;
-
+  return newInputState;
 }
 
-function checkCredentials(inputState, userCredentials){
-    const newInputState = inputState.map((input) => {
-        if (input.name === 'username' && userCredentials.errorType === "user") {
-            return { ...input, message: `Username not found.` };
-          } else if (input.name === 'password' && userCredentials.errorType === "password") {
-            return { ...input, message: `Wrong password detected` };
-          }
-          return {...input, message: ""};
-        })
-
-    return newInputState;
+function checkValidForm(inputState) {
+  return inputState.every((input) => input.message === "" || !input.message);
 }
 
-function checkValidForm(inputState){
-    return inputState.every((input) => input.message === "");
+export function validateTransactionForm(
+  inputState,
+  setInputState,
+  formState,
+  usersData
+) {
+  let updatedInputState = inputState.map((input) => {
+    if (input.name === "username") {
+      input.value = formState.username;
+      return {
+        ...input,
+        message: Validator.for(input).isRequired().userExists(usersData)
+          .errorMessage,
+      };
+    } else if (input.name === "amount") {
+      input.value = formState.amount;
+      return {
+        ...input,
+        message: Validator.for(input).isRequired().greater(500).errorMessage,
+      };
+    }
+  });
+
+  setInputState(updatedInputState);
+
+  return checkValidForm(updatedInputState);
 }
-  
-
-
-  
