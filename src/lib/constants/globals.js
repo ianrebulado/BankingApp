@@ -97,3 +97,36 @@ export const initialWithdrawFormState = {
   username: null,
   amount: 0,
 };
+
+export const transferFormInputs = [
+  {
+    type: "text",
+    label: "Transfer from",
+    name: "sendingUsername",
+    placeholder: "",
+    isRequired: true,
+    message: "",
+  },
+  {
+    type: "text",
+    label: "Transfer to",
+    name: "receivingUsername",
+    placeholder: "",
+    isRequired: true,
+    message: "",
+  },
+  {
+    type: "number",
+    label: "Amount to Transfer",
+    name: "amount",
+    placeholder: 0.0,
+    isRequired: true,
+    message: "",
+  },
+];
+
+export const initialTransferFormState = {
+  sendingUsername: null,
+  receivingUsername: null,
+  amount: 0,
+};
