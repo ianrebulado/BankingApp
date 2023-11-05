@@ -1,10 +1,12 @@
+import usersModel from "../constants/usersModel";
 import generateId from "../utils/generateId";
 import transactionsModel from "../constants/transactionsModel.json";
 
 function createTransaction(userId, type, amount) {
+  let transactionsData = fetchTransactions();
   let transactionAmount = type === "deposit" ? amount : -amount;
 
-  transactionsModel.push({
+  transactionsData.push({
     transaction_id: generateId(),
     user_id: userId,
     type: type,
@@ -12,11 +14,10 @@ function createTransaction(userId, type, amount) {
     created_on: new Date(),
   });
 
-  storeTransactions(transactionsModel);
+  storeTransactions(transactionsData);
 }
 
 export function deposit(userId, amount) {
-  console.log(userId, amount);
   if (!userId && !amount) return false;
 
   createTransaction(userId, "deposit", amount);
@@ -27,23 +28,28 @@ export function deposit(userId, amount) {
 export function withdraw(userId, amount) {
   if (!userId && !amount) return false;
 
-  transactionsModel.push(createTransaction(userId, "withdraw", amount));
+  let transactionsData = fetchTransactions();
+
+  transactionsData.push(createTransaction(userId, "withdraw", amount));
 
   return true;
 }
 
 export function send(sendingUserId, receivingUserId, amount) {
   if (!sendingUserId && !receivingUserId && !amount) return false;
+  let transactionsData = fetchTransactions();
 
-  transactionsModel.push(createTransaction(sendingUserId, "withdraw", amount));
-  transactionsModel.push(createTransaction(receivingUserId, "deposit", amount));
+  transactionsData.push(createTransaction(sendingUserId, "withdraw", amount));
+  transactionsData.push(createTransaction(receivingUserId, "deposit", amount));
 
   return true;
 }
 
 function getTransactions(userId) {
+  let transactionsData = fetchTransactions();
   let transactions = [];
-  transactionsModel.forEach((transaction) => {
+
+  transactionsData.forEach((transaction) => {
     if (transaction.user_id === userId) {
       transactions.push(transaction);
     }
@@ -57,13 +63,11 @@ function storeTransactions(transactionsData) {
 }
 
 export function fetchTransactions() {
-  try {
-    const transactionsData = localStorage.getItem("transactions");
+  const modelData = transactionsModel;
 
-    return JSON.parse(transactionsData);
-  } catch (error) {
-    console.log(error);
-  }
+  const localStorageData = localStorage.getItem("transactions");
+
+  return !localStorageData ? modelData : JSON.parse(localStorageData);
 }
 
 export function getBalance(userId) {
