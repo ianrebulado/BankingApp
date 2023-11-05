@@ -4,48 +4,64 @@ import BalanceCard from "./BalanceCard";
 import BalanceChart from "./BalanceChart";
 
 import { FileEdit, FileX } from 'lucide-react';
-import { getUserExpenses } from '../../lib/utils/expenses';
+import { getUserExpenses, getExpense } from '../../lib/utils/expenses';
 import AddExpenseForm from '../ClientDashboard/AddExpenseForm';
 
 import { getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
+import { formatDate, formatAmount, sortDescendingOrder } from "../../lib/utils/formatter";
 
 function ClientDashboard({ user }) {
   const userId = 'u-l2hckqwf1p';
+  const columns = ['expense_id', 'created_on', 'description', 'amount'];
+
   const balance = getBalance(userId);
   const monthlyBalance = getMonthlyBalance(userId);
-  const userExpenses = getUserExpenses(userId)
-  const columns = ['expense_id', 'created_on', 'description', 'amount'];
+  const userExpenses = getUserExpenses(userId);
+
   const [showModal, setShowModal] = useState(false);
-  const [expenses, setExpenses] = useState(userExpenses); 
+  const [data, setData] = useState([]);
+  const [inputValues, setInputValues] = useState({
+        user_id: userId,
+        description: null, 
+        amount: null
+  });
 
-  const tableData = expenses.map((item) => {
-    const {expense_id, created_on, description, amount} = item;
-    return {expense_id, created_on, description, amount}
-  })
-    
-  
-  const [data, setData] = useState(tableData);
+  const updateExpenses = (expenses) => {
 
-  const updateExpenses = () => {
-    setExpenses(userExpenses);
+    const newData = sortDescendingOrder(expenses).map((item) => {
+      const {expense_id, created_on, description, amount} = item;
+      const formattedDate = formatDate(created_on)
+      const formattedAmount = formatAmount(amount)
+      return {expense_id, created_on: formattedDate, description, amount: formattedAmount}
+    });
+
+    setData(newData);
   }
 
   useEffect(()=>{
-      setData(tableData);
-  }, [expenses])
+      updateExpenses(userExpenses);
+  }, [])
 
 
 
   const handleAddClick = () => {
+      setInputValues({
+        user_id: userId,
+        description: null, 
+        amount: null
+      })
       setShowModal(true)
   }
 
   const handleEditClick = (e) => {
     const row = e.target.closest('tr')
     if(row){
-      console.log(row)
-    }
+      const expenseId = row.getAttribute('data-id')
+      const expenseItem = getExpense(expenseId)
+      setInputValues(expenseItem)
+
       setShowModal(true)
+    }
   }
 
   const handleDeleteClick = () => {
@@ -65,11 +81,11 @@ function ClientDashboard({ user }) {
           {
               showModal && (
                   <Modal title={"New Expense"} >
-                      <AddExpenseForm setShowModal={setShowModal} updateExpenses={updateExpenses} />
+                      <AddExpenseForm setShowModal={setShowModal} updateExpenses={updateExpenses} inputValues={inputValues} />
                   </Modal>
               )
           }
-          <Table data={data} columns={columns} itemsPerPage={5}
+          <Table data={data} columns={columns} itemsPerPage={5} rowKey={'expense_id'}
               actions={ (
                   <>
                       <FileEdit onClick={handleEditClick} />
