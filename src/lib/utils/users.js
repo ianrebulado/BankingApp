@@ -29,12 +29,23 @@ export function fetchUsers() {
   }
 }
 
+export function filterUsersByUsername(username) {
+  const matchedUser = usersModel.filter((user) =>
+    user.username.toLowerCase().includes(username.toLowerCase())
+  );
+
+  return matchedUser[0];
+}
+
 export function filterUsersByName(name) {
+  console.log("filterUsersByName: ", name);
   const matchedUser = usersModel.filter(
     (user) =>
       user.first_name.toLowerCase().includes(name.toLowerCase()) ||
       user.last_name.toLowerCase().includes(name.toLowerCase())
   );
+
+  console.log("matched: ", matchedUser[0]);
 
   return matchedUser[0];
 }
