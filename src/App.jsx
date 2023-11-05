@@ -19,17 +19,8 @@ function App() {
   
   return (
         <main>
-          <Sidebar isOpen={isSidebarOpen} navItems={getNavItems(user)} />
-          {
-            user === 'admin' ?
-              (pathname === '/dashboard' ? (<AdminDashboard user={user} />) : null)
-            :
-              (
-                pathname === '/account' ? (<ClientDashboard user={user} />) :
-                pathname === '/expenses' ? (<BudgetApp />) : null
-              )
-          }
-          <MoreVertical className="mobile-menu" onClick={toggleSideBar} />
+          
+          {/* <MoreVertical className="mobile-menu" onClick={toggleSideBar} /> */}
         </main>
   )
 }
