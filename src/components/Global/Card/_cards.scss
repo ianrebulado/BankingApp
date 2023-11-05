@@ -2,38 +2,35 @@
 @use '../../../styles/variables/theme' as theme;
 
 .card {
-    box-shadow:         theme.$box-shadow;
+    font-family:        theme.$font-family;
     background-color:   theme.$secondary-color-light;
     color:              theme.$secondary-color-dark;
+    border-radius:      theme.$border-radius;
+    box-shadow:         theme.$box-shadow;
     display:            flex;
     flex-direction:     column;
-    align-items:        flex-start;
-    position:           relative;
-    min-width:          20vw;
-    width:              100%;
-    border-radius:      theme.$border-radius;
-    font-family:        theme.$font-family;
+    width:              max-content;
+    height:             auto;
+    min-width:          30vw;
+    min-height:         10vh;
 }
 
 .card-header {
-    padding:            theme.$header-padding;
+    color:              theme.$accent-color-dark;
+    padding:            calc(theme.$header-padding * 2);
     font-weight:        theme.$font-weight-bold;
     line-height:        theme.$line-height;
-    text-align: left;
+    text-align:         left;
 }
 
 .card-body {
-    padding:            theme.$body-padding;
-    min-height:         10rem;
+    line-height:        theme.$line-height;
+    padding:            calc(theme.$body-padding * 2);
 }
 
-.card-footer {
-    padding:            theme.$footer-padding;
-}
 
 @media (max-width: 768px) {
     .card {
-        width: 100%;
-        min-width: 100%;
+        width: 100vw;
     }
 }
