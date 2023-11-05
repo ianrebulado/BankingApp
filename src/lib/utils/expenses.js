@@ -10,16 +10,18 @@ export function addExpense(newExpense) {
   const createdOn = new Date();
   const updatedOn = createdOn;
 
+  const data = expensesModel
+  const expenses = data ? data : [];
+
   newExpense = {
-    ...newExpense,
     expense_id: expenseId,
+    ...newExpense,
     created_on: createdOn,
     updated_on: updatedOn,
   };
 
-  const expenses = data ? JSON.parse(data) : [];
-
   expenses.push(newExpense);
+  localStorage.setItem('expenses', JSON.stringify(expenses))
 }
 
 export function updateExpense(id, editedAmount) {
@@ -28,6 +30,8 @@ export function updateExpense(id, editedAmount) {
   if (expenseIndex !== -1) {
     expensesModel[expenseIndex].amount = editedAmount;
     expensesModel[expenseIndex].updated_on = new Date();
+
+    localStorage.setItem('expenses', JSON.stringify(expensesModel))
     return true;
   }
 
@@ -38,7 +42,8 @@ export function deleteExpense(id) {
   const expenseIndex = findExpenseIndex(id);
 
   if (expenseIndex !== -1) {
-    expensesModel.splies(expenseIndex, 1);
+    expensesModel.splice(expenseIndex, 1);
+    localStorage.setItem('expenses', JSON.stringify(expensesModel));
     return true;
   }
 
@@ -59,12 +64,16 @@ export function fetchExpenses() {
 
 export function getUserExpenses(userId) {
   const expenses = localStorage.getItem("expenses");
+
+  if(!expenses) return;
+
   const userExpenses = JSON.parse(expenses).filter(
     (item) => item.user_id === userId
   );
+
   return userExpenses;
 }
 
-function findExpenseIndex(id) {
+export function findExpenseIndex(id) {
   return expensesModel.findIndex((expense) => expense.expense_id === id);
 }

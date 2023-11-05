@@ -35,7 +35,15 @@ export function validateSignInForm(inputState, setInputState, formState, usersMo
     return isValid;
 }
 
-function checkMissingValues(inputState, formState){
+export function validateExpenseForm(inputState, setInputState, formState){
+    const updatedInputState = checkMissingValues(inputState, formState);
+    setInputState(updatedInputState)
+    
+    const isValid = checkValidForm(updatedInputState)
+    return isValid;
+}
+
+export function checkMissingValues(inputState, formState){
     const newInputState = inputState.map((input) => {
         if (!formState[input.name] && input.isRequired) {
             return { ...input, message: "This field is required" };

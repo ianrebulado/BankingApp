@@ -7,8 +7,6 @@ export default function BalanceChart({ data }) {
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(150);
 
-  console.log([height, width]);
-
   useEffect(() => {
     function handleResize() {
       if (chartContainerRef.current) {

@@ -32,6 +32,9 @@ tr {
 
 td {
     padding:            theme.$table-row-padding;
+    text-overflow:      ellipsis;
+    text-wrap:          nowrap;
+    text-transform:     capitalize;
 }
 
 .pagination {

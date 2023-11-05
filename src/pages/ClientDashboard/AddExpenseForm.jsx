@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { FormProvider } from '../../components/Global/Form/FormContext';
 import { Button, InputField } from '../../components';
-// import checkMissingValues from '../../lib/utils/validations'
+import {validateExpenseForm} from '../../lib/utils/validations';
+import { addExpense, getUserExpenses, updateExpense } from '../../lib/utils/expenses';
 
-function AddExpenseForm(props) {
+const AddExpenseForm = ({setShowModal, updateExpenses, inputValues}) => {
+    const userId ='u-l2hckqwf1p';
     const inputs = [
         {
             type: "text",
@@ -23,19 +25,37 @@ function AddExpenseForm(props) {
         }
     ]
 
+    const editExpense = inputValues.hasOwnProperty('expense_id');
+
     const [inputState, setInputState] = useState(inputs);
-    const [formState, setFormState] = useState({
-        description: null, 
-        amount: null
-    })
+    const [formState, setFormState] = useState(inputValues)
 
     const handleInputChange = (name, value) => {
         setFormState({ ...formState, [name]: value })
     }
 
     const handleSubmit = (e) => {
-        e.prevendDefault();
-        // checkMissingValues(inputState, formState)
+        e.preventDefault();
+        const validForm = validateExpenseForm(inputState, setInputState, formState)
+        
+        if(validForm){
+
+            if(!editExpense){
+                addExpense(formState)
+            } else {
+                updateExpense(formState.expense_id, formState.amount)
+            }
+
+            const expenses = getUserExpenses(userId);
+
+            updateExpenses(expenses);
+            setShowModal(false);
+
+        }
+    }
+
+    const handleCancel = () => {
+        setShowModal(false)
     }
 
     return (
@@ -54,8 +74,8 @@ function AddExpenseForm(props) {
                     ))
                 }
                 <div className="buttons-container">
-                    <Button type={'submit'} text={'Add Expense'} />
-                    <Button type={'button'} text={'Cancel'} secondary />
+                    <Button type={'submit'} text={editExpense ? 'Update Expense' : 'Add Expense'} />
+                    <Button type={'button'} text={'Cancel'} handleClick={handleCancel} secondary />
                 </div>
             </form>
         </FormProvider>
