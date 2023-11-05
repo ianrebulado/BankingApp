@@ -4,6 +4,17 @@
   height: 100%;
   width: 100%;
   padding: 1rem;
+  flex-grow: 1;
+}
+
+.balance-div {
+  font-weight:        theme.$font-weight-bold;
+  font-size:          theme.$font-size-large;
+  line-height:        theme.$line-height;
+  padding: theme.$body-padding;
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
 }
 
 .expenses-container {
@@ -33,6 +44,11 @@
   align-items:        center;
   gap:                1rem;
   padding:            theme.$body-padding;
+}
+
+.logout-icon {
+  cursor:             pointer;
+  color:              theme.$accent-color-dark;
 }
 
 .edit-icon {

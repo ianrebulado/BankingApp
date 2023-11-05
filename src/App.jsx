@@ -22,7 +22,7 @@ function App() {
   return (
         <main>
           {/* <BudgetApp /> */}
-          <ClientDashboard />
+          <ClientDashboard user={'Mae'} />
           <MoreVertical className="mobile-menu" onClick={toggleSideBar} />
         </main>
   )

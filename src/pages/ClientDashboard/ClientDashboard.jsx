@@ -3,7 +3,7 @@ import { Button, Card, Header, Modal, Table, Toast } from '../../components';
 import BalanceCard from "./BalanceCard";
 import BalanceChart from "./BalanceChart";
 
-import { FileEdit, Trash2, FileX } from 'lucide-react';
+import { FileEdit, Trash2, LogOut, PlusSquare } from 'lucide-react';
 import { getUserExpenses, getExpense } from '../../lib/utils/expenses';
 import AddExpenseForm from '../ClientDashboard/AddExpenseForm';
 
@@ -112,12 +112,15 @@ function ClientDashboard({ user }) {
       )}
       <div className="dashboard">
         <div className="expenses-container">
-          <Header user={user} />
+          <div className="header-container">
+            <Header user={user} />
+            <LogOut className="logout-icon" />
+          </div>
           <div className="cards-container">
             <BalanceCard balance={balance} />
             <BalanceChart data={monthlyBalance} />
           </div>
-          <Button type={'button'} text={'New Expense'} handleClick={handleAddClick}/>
+          <Button type={'button'} text={"New Expense"} handleClick={handleAddClick}/>
           { 
             showModal && (
                 <Modal title={ showDeleteConfirm ? 'Delete Expense' : inputValues.expense_id ? "Update Expense" : "New Expense"} setShowModal={setShowModal}>
