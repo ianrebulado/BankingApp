@@ -35,14 +35,71 @@
   padding:            theme.$body-padding;
 }
 
+.edit-icon {
+  color:              theme.$accent-color-light;
+  padding:            0 3px;
+}
+
+.delete-icon {
+  color:              theme.$accent-color-dark;
+  padding:            0 3px;
+}
+
+.confirm-delete-container {
+  padding:            theme.$body-padding;
+  display:            flex;
+  flex-direction:     column;
+  justify-content:    center;
+  align-items:        center;
+  gap:                1rem;
+  width:              50%;
+}
+
+.confirm-delete-title {
+  color:              theme.$accent-color-dark;
+  font-size:          theme.$font-size-medium;
+  font-weight:        theme.$font-weight-bold;
+  text-transform:     capitalize;
+}
+
+.confirm-delete-item {
+  display:            flex;
+  flex-direction:     column;
+  background-color:   theme.$white-color-lighter;
+  line-height:        theme.$line-height;
+  font-size:          theme.$font-size-small;
+  border:             theme.$border-solid;
+  border-radius:      theme.$border-radius;
+  padding:            theme.$body-padding;
+  width:              100%;
+}
+
+.item-container {
+  display:            flex;
+}
+
+.item-title {
+  width:              50%;
+  font-weight:        theme.$font-weight-bold;
+}
+
+.item-desc {
+  text-transform:     capitalize;
+}
+
 @media (max-width: 768px){
   .expenses-container, .card-container {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      flex-direction:   column;
+      justify-content:  center;
+      align-items:      center;
   }
 
   .expenses-container button {
-      align-self: center;
+      align-self:       center;
   }
+
+  .confirm-delete-container {
+      width:             100%;
+  }
+
 }

@@ -46,7 +46,7 @@ const AddExpenseForm = ({setShowModal, updateExpenses, inputValues}) => {
                 updateExpense(formState.expense_id, formState.amount)
             }
 
-            const expenses = getUserExpenses(userId).sort((a,b) => b.created_on - a.created_on)
+            const expenses = getUserExpenses(userId);
 
             updateExpenses(expenses);
             setShowModal(false);

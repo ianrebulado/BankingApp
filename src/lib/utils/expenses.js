@@ -42,7 +42,8 @@ export function deleteExpense(id) {
   const expenseIndex = findExpenseIndex(id);
 
   if (expenseIndex !== -1) {
-    expensesModel.splies(expenseIndex, 1);
+    expensesModel.splice(expenseIndex, 1);
+    localStorage.setItem('expenses', JSON.stringify(expensesModel));
     return true;
   }
 
