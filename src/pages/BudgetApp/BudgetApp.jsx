@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Header, Modal, Table } from '../../components';
 import { FileEdit, FileX } from 'lucide-react';
-import expensesModel from '../../lib/constants/expensesModel';
-import { storeInitialExpenses, getUserExpenses } from '../../lib/utils/expenses';
-import AddExpenseForm from './AddExpenseForm';
+import { getUserExpenses } from '../../lib/utils/expenses';
+import AddExpenseForm from '../ClientDashboard/Forms/AddExpenseForm';
 
 function BudgetApp() {
 
@@ -16,12 +15,10 @@ function BudgetApp() {
         return {expense_id, created_on, description, amount}
     })
 
-    useEffect(()=>{
-        setExpenses(
-            getUserExpenses(userId)
-        );
+    const userExpenses = getUserExpenses(userId)
 
-        storeInitialExpenses(expensesModel);
+    useEffect(()=>{
+        setExpenses(userExpenses);
     }, [])
 
     const [showModal, setShowModal] = useState(false)
@@ -48,8 +45,8 @@ function BudgetApp() {
                 <Button type={'button'} text={'Add Expense'} handleClick={handleAddClick}/>
                 {
                     showModal && (
-                        <Modal title={"New Expense"} onClose={()=>setShowModal(false)}>
-                            <AddExpenseForm />
+                        <Modal title={"New Expense"} >
+                            <AddExpenseForm setShowModal={setShowModal} />
                         </Modal>
                     )
                 }

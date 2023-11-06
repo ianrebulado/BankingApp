@@ -86,6 +86,8 @@ export default function SignUpForm() {
       console.log("Form is not valid");
       //Add toast
     }
+
+    console.log(usersModel)
   }
 
   function handleInputChange(name, value) {

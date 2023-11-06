@@ -1,6 +1,7 @@
 import { getBalance } from "./transactions";
 import { filterUsersByName } from "./users";
 import Validator from "./validator";
+import { usersModel } from "../constants";
 
 export function clearValidationMessages(inputState, setInputState) {
   const updatedInputState = inputState.map((input) => ({
@@ -45,6 +46,14 @@ export function validateSignInForm(
   isValid = checkValidForm(updatedInputState);
 
   return isValid;
+}
+
+export function validateExpenseForm(inputState, setInputState, formState){
+    const updatedInputState = checkMissingValues(inputState, formState);
+    setInputState(updatedInputState)
+    
+    const isValid = checkValidForm(updatedInputState)
+    return isValid;
 }
 
 function checkMissingValues(inputState, formState) {

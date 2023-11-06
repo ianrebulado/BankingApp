@@ -1,4 +1,4 @@
-export const createUserFormInputs = [
+export const CreateUserFormInputs = [
   {
     type: "text",
     label: "Username",
