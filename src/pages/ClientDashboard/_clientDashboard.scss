@@ -1,64 +1,74 @@
 @use '../../styles/variables/theme' as theme;
 
-.balance-overview-chart-container {
-  height: 100%;
-  width: 100%;
-  padding: 1rem;
-  flex-grow: 1;
-}
-
-.balance-div {
-  font-weight:        theme.$font-weight-bold;
-  font-size:          theme.$font-size-large;
-  line-height:        theme.$line-height;
-  padding: theme.$body-padding;
-  display:            flex;
-  justify-content:    center;
-  align-items:        center;
-}
 
 .expenses-container {
+  padding:            theme.$body-padding;
   display:            flex;
   flex-direction:     column;
   flex-wrap:          wrap;
   width:              100%;
-  padding:            theme.$body-padding;
   gap:                1rem;
 
-  button {
-      align-self:     flex-end;
+  .cards-container {
+    display:            flex;
+    justify-content:    space-around;
+    align-items:        center;
+    width:              100%;
+    height:             50vh;
+    gap:                2rem;
+  
+    .balance-cards-container {
+      display:            flex;
+      flex-direction:     column;
+      width:              30%;
+      gap:                1rem;
+  
+      .balance-div {
+        font-weight:        theme.$font-weight-bold;
+        font-size:          theme.$font-size-large;
+        line-height:        theme.$line-height;
+        color:              theme.$grey;
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+        width:              100%;
+      }
+    }
+  
+    .chart-container {
+      width:              80%;
+      height:             100%;
+      flex-grow:          1;
+  
+      .balance-overview-chart-container {
+        font-size:        theme.$font-size-small;
+        padding:          theme.$body-padding;
+      }
+    }
   }
-}
 
-.card-container {
-  display:            flex;
-  justify-content:    center;
-  align-items:        center;
-  width:              100%;
-  gap:                1rem;
-}
+  .expense-button {
+    align-self:       flex-end;
+  }
 
-.buttons-container {
-  display:            flex;
-  justify-content:    flex-end;
-  align-items:        center;
-  gap:                1rem;
-  padding:            theme.$body-padding;
+  .expense-table {
+    width:            100%;
+
+    .edit-icon {
+      color:              theme.$accent-color-light;
+      padding:            0 3px;
+    }
+    
+    .delete-icon {
+      color:              theme.$accent-color-dark;
+      padding:            0 3px;
+    }
+  }
 }
 
 .logout-icon {
   cursor:             pointer;
   color:              theme.$accent-color-dark;
-}
-
-.edit-icon {
-  color:              theme.$accent-color-light;
-  padding:            0 3px;
-}
-
-.delete-icon {
-  color:              theme.$accent-color-dark;
-  padding:            0 3px;
 }
 
 .confirm-delete-container {
@@ -103,18 +113,32 @@
 }
 
 @media (max-width: 768px){
-  .expenses-container, .card-container {
+  .expenses-container {
       flex-direction:   column;
       justify-content:  center;
       align-items:      center;
-  }
 
-  .expenses-container button {
-      align-self:       center;
+      button {
+        align-self:     center;
+      }
+
+      .cards-container {
+        flex-direction:     column;
+        align-items:        center;
+        width:              100%;
+        height:             100%;
+        min-width:          100vw;
+
+        .balance-cards-container, .chart-container {
+          width:             100%;
+          min-width:         100%;
+          height:            100%;
+        }
+      }
   }
 
   .confirm-delete-container {
-      width:             100%;
+    width:             100%;
   }
 
 }

@@ -74,6 +74,17 @@ export function getUserExpenses(userId) {
   return userExpenses;
 }
 
+export function getTotalExpenses(userId) {
+  let total = 0;
+  let expenses = getUserExpenses(userId);
+
+  expenses.forEach((expense) => {
+    total += expense.amount;
+  });
+
+  return total;
+}
+
 export function findExpenseIndex(id) {
   return expensesModel.findIndex((expense) => expense.expense_id === id);
 }

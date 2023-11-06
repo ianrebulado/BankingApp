@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Card } from "../../components";
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 
-export default function BalanceChart({ data }) {
+export default function BalanceChart({ title, data }) {
   const chartContainerRef = useRef(null);
   const [width, setWidth] = useState(400);
   const [height, setHeight] = useState(150);
@@ -36,7 +36,7 @@ export default function BalanceChart({ data }) {
 
   if (!data) return null;
   return (
-    <Card title={"Balance Overview"}>
+    <Card title={title}>
       <div ref={chartContainerRef} className="balance-overview-chart-container">
         <BarChart
           className="balance-overview-chart"

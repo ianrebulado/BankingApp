@@ -4,7 +4,7 @@ import BalanceCard from "./BalanceCard";
 import BalanceChart from "./BalanceChart";
 
 import { FileEdit, Trash2, LogOut, PlusSquare } from 'lucide-react';
-import { getUserExpenses, getExpense } from '../../lib/utils/expenses';
+import { getUserExpenses, getExpense, getTotalExpenses } from '../../lib/utils/expenses';
 import AddExpenseForm from '../ClientDashboard/AddExpenseForm';
 
 import { getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
@@ -17,6 +17,7 @@ function ClientDashboard({ user }) {
   const initialInput = {user_id: userId, description: null, amount: null}
 
   const balance = getBalance(userId);
+  const totalExpenses = getTotalExpenses(userId)
   const monthlyBalance = getMonthlyBalance(userId);
   const userExpenses = getUserExpenses(userId);
 
@@ -52,8 +53,6 @@ function ClientDashboard({ user }) {
 
   }, [])
 
-
-
   const handleAddClick = () => {
 
       setInputValues(initialInput)
@@ -76,7 +75,6 @@ function ClientDashboard({ user }) {
       setAction('update');
 
     }
-
   }
 
   const handleDeleteClick = (e) => {
@@ -117,10 +115,15 @@ function ClientDashboard({ user }) {
             <LogOut className="logout-icon" />
           </div>
           <div className="cards-container">
-            <BalanceCard balance={balance} />
-            <BalanceChart data={monthlyBalance} />
+            <div className="balance-cards-container">
+              <BalanceCard title={'Account Balance'} balance={balance} />
+              <BalanceCard title={'Total Expenses'} balance={totalExpenses} />
+            </div>
+            <div className="chart-container">
+               <BalanceChart title={'Expenses Overview'} data={monthlyBalance} />
+            </div>
           </div>
-          <Button type={'button'} text={"New Expense"} handleClick={handleAddClick}/>
+          <Button className={'expense-button'} type={'button'} text={"New Expense"} handleClick={handleAddClick}/>
           { 
             showModal && (
                 <Modal title={ showDeleteConfirm ? 'Delete Expense' : inputValues.expense_id ? "Update Expense" : "New Expense"} setShowModal={setShowModal}>
@@ -143,7 +146,7 @@ function ClientDashboard({ user }) {
                 </Modal>
             )
           }
-          <Table data={data} columns={columns} itemsPerPage={5} rowKey={'expense_id'}
+          <Table className={'expense-table'} data={data} columns={columns} itemsPerPage={5} rowKey={'expense_id'}
               actions={ (
                   <>
                       <FileEdit className="edit-icon" onClick={handleEditClick} />
