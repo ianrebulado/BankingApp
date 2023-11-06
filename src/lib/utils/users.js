@@ -1,5 +1,6 @@
 import usersModel from "../constants/usersModel.json";
 import generateId from "./generateId";
+import { updateLocalStorage } from "../../pages/LoginPage/SignInForm";
 
 export function createUser(newUserForm) {
   const user_id = generateId("user");
@@ -43,3 +44,17 @@ export function filterUsersByName(name) {
     localStorage.setItem ('users', JSON.stringify(usersModel))
   }
   
+
+  export function userSignedIn(username, password) {
+    
+    const user = usersModel.find((u) => u.username === username && u.password === password);
+  
+    if (user) {
+      console.log('Signed In User:', user);
+      updateLocalStorage('SignedInUser', JSON.stringify(user));
+      } else {
+      localStorage.removeItem('SignedInUser')
+    }
+    
+    return user
+  }

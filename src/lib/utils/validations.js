@@ -1,4 +1,5 @@
 import Validator from "./validator";
+import { usersModel } from "../constants";
 
 export function clearValidationMessages(inputState, setInputState) {
   const updatedInputState = inputState.map((input) => ({
@@ -44,6 +45,8 @@ export function validateSignInForm(
 
   return isValid;
 }
+
+
 
 function checkMissingValues(inputState, formState) {
   const newInputState = inputState.map((input) => {

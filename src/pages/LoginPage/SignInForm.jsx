@@ -3,8 +3,9 @@ import { Button, InputField } from "../../components";
 import { FormProvider } from "../../components/Global/Form/FormContext";
 import { usersModel } from "../../lib/constants";
 import { validateSignInForm } from "../../lib/utils/validations";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import SignupPage from "../SignupPage";
+import { userSignedIn } from "../../lib/utils/users";
 
 const inputs = [
   {
@@ -25,7 +26,7 @@ const inputs = [
   },
 ];
 
-function updateLocalStorage(key, value) {
+export function updateLocalStorage(key, value) {
   localStorage.setItem(key, value);
 }
 
@@ -48,19 +49,9 @@ export default function SignInForm() {
     if (validUser) {
       updateLocalStorage("username", formState.username);
       updateLocalStorage("signedIn", true);
-      userSignedIn(formState.username, formState.password)
-    }
-  }
-
-  function userSignedIn(username, password) {
-    
-    const user = usersModel.find((u) => u.username === username && u.password === password);
-  
-    if (user) {
-      console.log('Signed In User:', user);
-      updateLocalStorage('SignedInUser', JSON.stringify(user));
-      } else {
-      localStorage.removeItem('SignedInUser')
+      const SignedInUser = userSignedIn(formState.username, formState.password);
+      const userRole = SignedInUser.role 
+      userRole === 'admin' ? <Navigate to={'/admindashboard'}/> : <Navigate to={'/dashboard'} />
     }
   }
 
