@@ -1,25 +1,39 @@
 @use "../../../styles/variables/theme" as theme;
 
 .inputField {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  font-size:            theme.$font-size-small;
+  padding-bottom:          theme.$body-padding;
+  display:              flex;
+  flex-direction:       column;
+  gap:                  0.5rem;
 
   input {
-    border-radius: 5rem;
-    padding: 0.5rem 0.75rem;
-    height: fit-content;
-    width: 100%;
-    min-width: 5rem;
-    border: none;
-    outline: none;
-    box-shadow: theme.$box-shadow;
-    background-color: theme.$white-color-lighter;
-    color: theme.$secondary-color-dark;
+    background-color:   theme.$white-color-lighter;
+    color:              theme.$secondary-color-dark;
+    box-shadow:         theme.$box-shadow;
+    padding:            0.5rem 0.75rem;
+    height:             fit-content;
+    border-radius:      5rem;
+    width:              100%;
+    min-width:          5rem;
+    border:             none;
+    outline:            none;
   }
 
   span {
-    font-size: theme.$font-size-small;
-    color: theme.$accent-color-dark;
+    color:              theme.$accent-color-dark;
   }
+}
+
+.input-label {
+  font-weight:          theme.$font-weight-semibold;
+  color:                theme.$grey;
+}
+
+.error {
+  font-size:            theme.$font-size-smaller;
+  color:                theme.$white-color-light;
+  background-color:     theme.$red;
+  border-radius:        theme.$border-radius;
+  padding:              0.5rem;
 }

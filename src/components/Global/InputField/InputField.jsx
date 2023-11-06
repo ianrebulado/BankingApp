@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useFormContext } from "../Form/FormContext";
 
 function InputField({ type, label, name, placeholder, message }) {
@@ -9,7 +10,7 @@ function InputField({ type, label, name, placeholder, message }) {
 
   return (
     <div className="inputField">
-      <label htmlFor={name}>{label}</label>
+      <label className="input-label" htmlFor={name}>{label}</label>
       <input
         type={type}
         name={name}
@@ -17,7 +18,7 @@ function InputField({ type, label, name, placeholder, message }) {
         value={formValues[name] || ""}
         onChange={handleChange}
       />
-      <span className="error">{message}</span>
+      <span className={message ? "error" : "" }>{message}</span>
     </div>
   );
 }
