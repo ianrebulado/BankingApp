@@ -119,3 +119,25 @@ export function getMonthlyBalance(userId) {
 
   return monthlyBalances;
 }
+
+export function getTotalTransactions() {
+  let transactionsData = fetchTransactions();
+
+  if (transactionsData) {
+    return transactionsData.length;
+  }
+}
+
+export function getTransactionsVolume() {
+  let transactionsData = fetchTransactions();
+
+  if (transactionsData) {
+    let totalTransactionsVolumne = 0;
+
+    transactionsData.forEach((transaction) => {
+      totalTransactionsVolumne += parseFloat(transaction.amount);
+    });
+
+    return totalTransactionsVolumne;
+  }
+}
