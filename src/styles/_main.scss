@@ -1,10 +1,10 @@
 @use './variables/theme' as theme;
 
+body {
+    font-family:    theme.$font-family;
+}
+
 main {
     display:    flex;
     width:      100vw;
-}
-
-body {
-    min-width:      100vw;
 }

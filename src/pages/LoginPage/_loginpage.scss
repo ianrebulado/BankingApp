@@ -1,0 +1,71 @@
+@use "/src/styles/variables/theme" as theme;
+  
+  .login-page {
+    background-color:   theme.$secondary-color-light;
+    display:            flex;
+    justify-content:    center;
+    width:              100vw;
+    height:             100vh;
+
+    .home-img {
+        box-shadow:     theme.$box-shadow;
+        width:          auto;
+        height:         auto;
+        flex-grow:      1;
+    }
+    
+    .home-logo {
+        padding:        theme.$body-padding;
+        width:          45%;
+    }
+
+    .login-container {
+        padding:            theme.$body-padding;
+        display:            flex;
+        flex-direction:     column;
+        justify-content:    flex-start;
+        align-items:        center;
+        width:              35%;
+        height:             auto;
+        gap:                3rem;
+    }
+    
+    .login-form {
+        background-color:   theme.$white-color-light;
+        box-shadow: theme.$box-shadow;
+        padding:            calc(theme.$body-padding * 2);
+        border-radius:      theme.$border-radius-2;
+    }
+
+  }
+
+    .buttons-container {
+        display:            flex;
+        gap:                1rem;
+    }
+
+  .sign-up-link a {
+    font-size:              theme.$font-size-smaller;
+    color:                  theme.$accent-color-light;
+    text-decoration:        none;
+  }
+
+  @media (max-width: 768px){
+    .home-logo {
+        width: 100%;
+    }
+
+    .home-img {
+        display:            none;
+    }
+
+    .login-container {
+        justify-content:    center;
+        width:              100%;
+    }
+
+    .buttons-container {
+        flex-direction:     column;
+    }
+  }
+  
