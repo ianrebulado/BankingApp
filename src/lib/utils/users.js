@@ -8,12 +8,14 @@ export function createUser(newUserForm) {
   const user_id = generateId("user");
   const createdOn = new Date();
   const updatedOn = new Date();
+  const role = "client";
 
   usersData.push({
     ...newUserForm,
     user_id,
     createdOn,
     updatedOn,
+    role
   });
 
   storeUsers(usersData);
@@ -68,7 +70,7 @@ export function getTotalUsers() {
 }
 
 export function userSignedIn(username, password) {
-  const user = usersModel.find(
+  const user = usersData.find(
     (u) => u.username === username && u.password === password
   );
 

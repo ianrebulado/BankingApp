@@ -11,7 +11,7 @@ import {
 } from "../../lib/utils/expenses";
 import AddExpenseForm from "./Forms/AddExpenseForm";
 
-import { getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
+import { getAccountBalance, getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
 import {
   formatDate,
   formatAmount,
@@ -31,6 +31,7 @@ function ClientDashboard() {
   const balance = getBalance(userId);
   const monthlyBalance = getMonthlyBalance(userId);
   const userExpenses = getUserExpenses(userId);
+  const accountBalance = getAccountBalance(balance,totalExpenses)
 
   const [showToast, setShowToast] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -126,7 +127,7 @@ function ClientDashboard() {
           </div>
           <div className="cards-container">
             <div className="balance-cards-container">
-              <BalanceCard title={"Account Balance"} balance={balance} />
+              <BalanceCard title={"Account Balance"} balance={accountBalance} />
               <BalanceCard title={"Total Expenses"} balance={totalExpenses} />
             </div>
             <div className="chart-container">

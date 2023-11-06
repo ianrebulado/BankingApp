@@ -7,6 +7,7 @@ import {
   clearValidationMessages,
   validateSignUpForm,
 } from "../../lib/utils/validations";
+import { createUser } from "../../lib/utils/users";
 
 const inputs = [
   {
@@ -79,7 +80,8 @@ export default function SignUpForm() {
     );
 
     if (isValidForm) {
-      usersModel.push({ ...formState, user_id, createdOn, updatedOn });
+      createUser(formState);
+      // usersModel.push({ ...formState, user_id, createdOn, updatedOn });
       //Add toast
       //Redirect to sign in page
     } else {
