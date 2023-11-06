@@ -1,4 +1,5 @@
 import Validator from "./validator";
+import { usersModel } from "../constants";
 
 export function clearValidationMessages(inputState, setInputState) {
   const updatedInputState = inputState.map((input) => ({

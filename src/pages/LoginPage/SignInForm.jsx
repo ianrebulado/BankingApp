@@ -3,6 +3,9 @@ import { Button, InputField } from "../../components";
 import { FormProvider } from "../../components/Global/Form/FormContext";
 import { usersModel } from "../../lib/constants";
 import { validateSignInForm } from "../../lib/utils/validations";
+import { Link, useNavigate} from "react-router-dom";
+import SignupPage from "../SignupPage";
+import { userSignedIn } from "../../lib/utils/users";
 
 const inputs = [
   {
@@ -17,13 +20,13 @@ const inputs = [
     type: "password",
     label: "Password",
     name: "password",
-    placeholder: "",
+    placeholder: "Password",
     isRequired: true,
     message: "",
   },
 ];
 
-function updateLocalStorage(key, value) {
+export function updateLocalStorage(key, value) {
   localStorage.setItem(key, value);
 }
 
@@ -33,6 +36,8 @@ export default function SignInForm() {
     username: null,
     password: null,
   });
+
+  const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -46,8 +51,14 @@ export default function SignInForm() {
     if (validUser) {
       updateLocalStorage("username", formState.username);
       updateLocalStorage("signedIn", true);
-      //Load Dashboard
+      const SignedInUser = userSignedIn(formState.username, formState.password);
+      const userRole = SignedInUser.role 
+      userRole === 'admin' ? navigate('/admindashboard') : navigate('/dashboard') 
+      console.log(SignedInUser)
     }
+    
+    console.log(usersModel)
+    
   }
 
   function handleInputChange(name, value) {
@@ -70,8 +81,14 @@ export default function SignInForm() {
           )
         )}
         <Button type={"submit"} text={"Sign In"} />
-        <Button type={"button"} text={"Cancel"} secondary />
+        
+        <SignupLink />
+
       </form>
     </FormProvider>
   );
+}
+
+function SignupLink () {
+  return  <Link to='/signup'> Not yet a member? Sign up! </Link> 
 }

@@ -1,5 +1,6 @@
-import usersModel from "../constants/usersModel";
+import usersModel from "../constants/usersModel.json";
 import generateId from "./generateId";
+import { updateLocalStorage } from "../../pages/LoginPage/SignInForm";
 
 export function createUser(newUserForm) {
   const user_id = generateId("user");
@@ -32,9 +33,28 @@ export function fetchUsers() {
 export function filterUsersByName(name) {
   const matchedUser = usersModel.filter(
     (user) =>
-      user.first_name.toLowerCase().includes(name.toLowerCase()) ||
-      user.last_name.toLowerCase().includes(name.toLowerCase())
-  );
+    user.first_name.toLowerCase().includes(name.toLowerCase()) ||
+    user.last_name.toLowerCase().includes(name.toLowerCase())
+    );
+    
+    return matchedUser[0];
+  }
+  
+  export function initialUsers() {
+    localStorage.setItem ('users', JSON.stringify(usersModel))
+  }
+  
 
-  return matchedUser[0];
-}
+  export function userSignedIn(username, password) {
+    
+    const user = usersModel.find((u) => u.username === username && u.password === password);
+  
+    if (user) {
+      console.log('Signed In User:', user);
+      updateLocalStorage('SignedInUser', JSON.stringify(user));
+      } else {
+      localStorage.removeItem('SignedInUser')
+    }
+    
+    return user
+  }
