@@ -3,7 +3,7 @@ import { Button, InputField } from "../../components";
 import { FormProvider } from "../../components/Global/Form/FormContext";
 import { usersModel } from "../../lib/constants";
 import { validateSignInForm } from "../../lib/utils/validations";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import SignupPage from "../SignupPage";
 import { userSignedIn } from "../../lib/utils/users";
 
@@ -37,6 +37,8 @@ export default function SignInForm() {
     password: null,
   });
 
+  const navigate = useNavigate()
+
   function handleSubmit(e) {
     e.preventDefault();
     let validUser = validateSignInForm(
@@ -51,7 +53,7 @@ export default function SignInForm() {
       updateLocalStorage("signedIn", true);
       const SignedInUser = userSignedIn(formState.username, formState.password);
       const userRole = SignedInUser.role 
-      userRole === 'admin' ? <Navigate to={'/admindashboard'}/> : <Navigate to={'/dashboard'} />
+      userRole === 'admin' ? navigate('/admindashboard') : navigate('/dashboard') 
     }
   }
 
