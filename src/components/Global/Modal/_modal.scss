@@ -1,0 +1,58 @@
+@use '../../../styles/variables/theme' as theme;
+
+.modal {
+  background-color:     theme.$background-blur;
+  display:              flex;
+  justify-content:      center;
+  align-items:          center;
+  position:             fixed;
+  height:               100%;
+  width:                100%;
+  opacity:              1;
+  top:                  0;
+  left:                 0;
+  z-index:              10;
+}
+
+.modal-container {
+  font-family:          theme.$font-family;
+  background-color:     theme.$white-color-light;
+  box-shadow:           theme.$box-shadow;
+  border-radius:        theme.$border-radius;
+  display:              flex;
+  flex-direction:       column;
+  justify-content:      flex-start;
+  width:                30vw;
+  height:               auto;
+  z-index:              20;
+}
+
+.modal-header {
+  background-color:         theme.$primary-color;
+  color:                    theme.$white-color-light;
+  font-size:                theme.$font-size-small;
+  padding:                  theme.$header-padding;
+  border-top-right-radius:  theme.$border-radius;
+  border-top-left-radius:   theme.$border-radius;
+  display:                  flex;
+  justify-content:          space-between;
+  align-items:              center;
+  width:                    100%;
+  z-index:                  30;
+}
+
+.modal-children {
+  width:                100%;
+  padding:              calc(theme.$body-padding * 2);
+  z-index:              40;
+}
+
+.modal-close {
+  cursor:               pointer;
+}
+
+@media (max-width: 768px){
+  .modal-container {
+    width: 100vw;
+  }
+}

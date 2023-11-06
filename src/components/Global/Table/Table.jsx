@@ -23,10 +23,10 @@ const Table = ({data, columns, itemsPerPage, rowKey, actions}) => {
                             <th key={index}>{formatName(column)}</th>
                         ))}
                         { actions ?                                 
-                                <th>Actions</th>
-                                :
-                                null
-                            }
+                            <th>Actions</th>
+                            :
+                            null
+                        }
                     </tr>
                 </thead>
                 <tbody>

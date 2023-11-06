@@ -1,0 +1,160 @@
+@use '../../styles/variables/theme' as theme;
+
+.client-dashboard {
+  width:              100vw;
+}
+
+.expenses-container {
+  padding:            theme.$body-padding;
+  display:            flex;
+  flex-direction:     column;
+  width:              100vw;
+  gap:                1rem;
+
+  .cards-container {
+    display:            flex;
+    justify-content:    center;
+    align-items:        center;
+    width:              100%;
+    height:             50vh;
+    gap:                3rem;
+  
+    .balance-cards-container {
+      display:            flex;
+      flex-direction:     column;
+      width:              30%;
+      gap:                2rem;
+  
+      .balance-div {
+        font-weight:        theme.$font-weight-bold;
+        font-size:          theme.$font-size-large;
+        line-height:        theme.$line-height;
+        color:              theme.$grey;
+        display:            flex;
+        justify-content:    center;
+        align-items:        center;
+        width:              100%;
+        height:             100%;
+      }
+    }
+  
+    .chart-container {
+      width:                60%;
+      height:               100%;
+  
+      .balance-overview-chart-container {
+        font-size:        theme.$font-size-small;
+        padding:          theme.$body-padding;
+      }
+    }
+  }
+
+  .new-expense-btn {
+    align-self:       flex-end;
+  }
+
+  
+}
+
+// .expense-table {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100vw;
+// }
+
+.edit-icon {
+  color:              theme.$accent-color-light;
+  padding:            0 3px;
+}
+
+.delete-icon {
+  color:              theme.$accent-color-dark;
+  padding:            0 3px;
+}
+
+.logout-icon {
+  cursor:             pointer;
+  color:              theme.$accent-color-dark;
+}
+
+.buttons-container {
+  padding:            theme.$body-padding;
+  display:            flex;
+  justify-content:    center;
+  align-items:        center;
+}
+
+.confirm-delete-container {
+  padding:            theme.$body-padding;
+  display:            flex;
+  flex-direction:     column;
+  justify-content:    center;
+  align-items:        center;
+  gap:                1rem;
+  width:              100%;
+}
+
+.confirm-delete-title {
+  color:              theme.$accent-color-dark;
+  font-size:          theme.$font-size-small;
+  font-weight:        theme.$font-weight-bold;
+  text-transform:     capitalize;
+}
+
+.confirm-delete-item {
+  display:            flex;
+  flex-direction:     column;
+  background-color:   theme.$white-color-lighter;
+  line-height:        theme.$line-height;
+  font-size:          theme.$font-size-small;
+  border-radius:      theme.$border-radius;
+  padding:            theme.$body-padding;
+  width:              100%;
+}
+
+.item-container {
+  display:            flex;
+}
+
+.item-title {
+  width:              50%;
+  font-weight:        theme.$font-weight-bold;
+}
+
+.item-desc {
+  text-transform:     capitalize;
+}
+
+@media (max-width: 768px){
+  .expenses-container {
+      flex-direction:   column;
+      justify-content:  center;
+      align-items:      center;
+      width:            100vw;
+
+      .cards-container {
+        flex-direction:     column;
+        align-items:        center;
+        width:              100%;
+        height:             100%;
+        min-width:          100vw;
+
+        .balance-cards-container, .chart-container {
+          width:             100%;
+          min-width:         100%;
+          height:            100%;
+        }
+      }
+
+      .new-expense-btn {
+        align-self:        center;
+      }
+  }
+
+  .confirm-delete-container {
+    width:             100%;
+  }
+
+}

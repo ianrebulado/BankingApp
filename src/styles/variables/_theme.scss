@@ -1,77 +1,80 @@
 // Color Palette
-$primary-color: #5b82a3;
-$secondary-color-light: #e7e7da;
-$secondary-color-dark: #1d1b21;
-$accent-color-light: #bf8043;
-$accent-color-dark: #a03e46;
-$white-color-light: #fefefe;
-$white-color-lighter: #f3f3f3;
+$primary-color:             #5b82a3;
+$secondary-color-light:     #e7e7da;
+$secondary-color-dark:      #1d1b21;
+$accent-color-light:        #bf8043;
+$accent-color-dark:         #a03e46;
+$white-color-light:         #fefefe;
+$white-color-lighter:       #f3f3f3;
 
-$red: #f7a4a4;
-$green: #b3e283;
+$red:                       #f7a4a4;
+$green:                     #b3e283;
+$grey:                      #666666;
 
-$background-blur: rgba(255, 255, 255, 0.8);
-$plain-background-color: transparent;
+$background-blur:           rgba(0, 0, 0, 0.3);
+$plain-background-color:      transparent;
 
 // Font Family
-$font-family: "Lato", sans-serif;
+$font-family:                 "Lato", sans-serif;
 
 // Font Weights
-$font-weight-light: 300;
-$font-weight-regular: 400;
-$font-weight-semibold: 600;
-$font-weight-bold: 700;
+$font-weight-light:           300;
+$font-weight-regular:         400;
+$font-weight-semibold:        600;
+$font-weight-bold:            700;
 
 // Font Sizes in rem
-$font-size-smaller: 0.6rem;
-$font-size-small: 0.875rem;
-$font-size-medium: 1rem;
-$font-size-large: 1.125rem;
-$font-size-xlarge: 1.25rem;
+$font-size-smaller:           0.6rem;
+$font-size-small:             0.875rem;
+$font-size-medium:            1rem;
+$font-size-large:             1.5rem;
+$font-size-xlarge:            2rem;
 
 // Line Height
-$line-height: 1.5;
+$line-height:                 1.5;
 
 // Heading Fonts
-$heading-font-family: $font-family;
-$heading-font-weight: $font-weight-bold;
-$heading-font-size-h1: 2.25rem;
-$heading-font-size-h2: 1.875rem;
-$heading-font-size-h3: 1.5rem;
-$heading-font-size-h4: 1.25rem;
-$heading-font-size-h5: 1.125rem;
-$heading-font-size-h6: 1rem;
+$heading-font-family:         $font-family;
+$heading-font-weight:         $font-weight-bold;
+$heading-font-size-h1:        2.25rem;
+$heading-font-size-h2:        1.875rem;
+$heading-font-size-h3:        1.5rem;
+$heading-font-size-h4:        1.25rem;
+$heading-font-size-h5:        1.125rem;
+$heading-font-size-h6:        1rem;
 
 // Body Text Fonts
-$body-font-family: $font-family;
-$body-font-weight: $font-weight-regular;
-$body-font-size: $font-size-medium;
+$body-font-family:            $font-family;
+$body-font-weight:            $font-weight-regular;
+$body-font-size:              $font-size-medium;
 
 // Footer Font
-$footer-font-size: 0.875rem;
+$footer-font-size:            0.875rem;
 
 // Box Shadows
-$box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1),
-  0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06);
-$plain-box-shadow: none;
+$box-shadow:                  0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1),
+                              0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06);
+$plain-box-shadow:            none;
 
 // Padding
-$header-padding: 1rem;
-$body-padding: $header-padding;
-$footer-padding: $body-padding;
-$table-row-padding: 0.5rem;
+$header-padding:              1rem;
+$body-padding:                $header-padding;
+$footer-padding:              $body-padding;
+$table-row-padding:           0.5rem;
 
-$border-radius: 0.25rem;
-$border-solid: 2px solid $primary-color;
+$border-radius:               0.3rem;
+$border-solid-primary:                2px solid $primary-color;
+$border-solid-accent:                2px solid $accent-color-light;
+$border-solid-white:                2px solid $white-color-lighter;
 
 // Page Header
-$page-header-padding: 0;
-$page-header-position: relative;
-$page-header-overflow: hidden;
-$page-header-display: flex;
-$page-header-align-items: center;
-$page-header-bg-size: cover;
-$page-header-bg-position: 50%;
+$page-header-padding:         0;
+$page-header-position:        relative;
+$page-header-overflow:        hidden;
+$page-header-display:         flex;
+$page-header-align-items:     center;
+$page-header-bg-size:         cover;
+$page-header-bg-position:     50%;
 
 // Logo
 $logo-small:                       5rem;
