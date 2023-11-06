@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { FormProvider } from '../../components/Global/Form/FormContext';
-import { Button, InputField } from '../../components';
-import {validateExpenseForm} from '../../lib/utils/validations';
-import { addExpense, getUserExpenses, updateExpense } from '../../lib/utils/expenses';
+import React, { useEffect, useState, useRef } from 'react';
+import { FormProvider } from '../../../components/Global/Form/FormContext';
+import { Button, InputField } from '../../../components';
+import {validateExpenseForm} from '../../../lib/utils/validations';
+import { addExpense, getUserExpenses, updateExpense } from '../../../lib/utils/expenses';
 
 const AddExpenseForm = ({setShowModal, setShowToast, updateExpenses, inputValues}) => {
     const userId ='u-l2hckqwf1p';
@@ -29,6 +29,14 @@ const AddExpenseForm = ({setShowModal, setShowToast, updateExpenses, inputValues
 
     const [inputState, setInputState] = useState(inputs);
     const [formState, setFormState] = useState(inputValues)
+
+    const focusRef = useRef(null);
+
+    useEffect(() => {
+        if(focusRef.current){
+            focusRef.current.focus();
+        }
+    }, [])
     
 
     const handleInputChange = (name, value) => {
@@ -41,11 +49,9 @@ const AddExpenseForm = ({setShowModal, setShowToast, updateExpenses, inputValues
         
         if(validForm){
 
-            if(!editExpense){
-                addExpense(formState)
-            } else {
-                updateExpense(formState.expense_id, formState.amount)
-            }
+            !editExpense 
+                ? addExpense(formState) 
+                : updateExpense(formState.expense_id, formState.amount)
 
             const expenses = getUserExpenses(userId);
 
@@ -76,6 +82,7 @@ const AddExpenseForm = ({setShowModal, setShowToast, updateExpenses, inputValues
                                 name={name}
                                 placeholder={placeholder}
                                 message={message}
+                                focusRef={'description'}
                             />
                         ))
                     }

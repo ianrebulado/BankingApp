@@ -19,6 +19,7 @@
     padding:            theme.$header-padding;
     font-weight:        theme.$font-weight-bold;
     line-height:        theme.$line-height;
+    border-radius:      theme.$border-radius;
     text-align:         left;
 }
 
@@ -27,6 +28,7 @@
     padding:            theme.$body-padding;
     width:              100%;
     height:             auto;
+    flex-grow:          1;
 }
 
 

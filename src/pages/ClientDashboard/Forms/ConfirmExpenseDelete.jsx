@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from '../../components';
-import { formatDate, formatAmount } from '../../lib/utils/formatter';
-import { deleteExpense, getUserExpenses } from '../../lib/utils/expenses';
+import { Button } from '../../../components';
+import { formatDate, formatAmount } from '../../../lib/utils/formatter';
+import { deleteExpense, getUserExpenses } from '../../../lib/utils/expenses';
 
 function ConfirmExpenseDelete({ expense, setShowDeleteConfirm, updateExpenses, setShowModal, setShowToast }) {
 

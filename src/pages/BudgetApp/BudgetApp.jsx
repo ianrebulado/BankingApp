@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Header, Modal, Table } from '../../components';
 import { FileEdit, FileX } from 'lucide-react';
 import { getUserExpenses } from '../../lib/utils/expenses';
-import AddExpenseForm from '../ClientDashboard/AddExpenseForm';
+import AddExpenseForm from '../ClientDashboard/Forms/AddExpenseForm';
 
 function BudgetApp() {
 

@@ -75,12 +75,14 @@ export function getUserExpenses(userId) {
 }
 
 export function getTotalExpenses(userId) {
+  const expenses = getUserExpenses(userId);
   let total = 0;
-  let expenses = getUserExpenses(userId);
 
-  expenses.forEach((expense) => {
-    total += expense.amount;
-  });
+  if(expenses){
+    expenses.forEach((expense) => {
+      total += Number(expense.amount);
+    });
+  }
 
   return total;
 }

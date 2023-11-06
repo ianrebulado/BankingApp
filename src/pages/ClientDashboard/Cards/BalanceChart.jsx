@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Card } from "../../components";
+import { Card } from "../../../components";
 import { BarChart, Bar, XAxis, YAxis } from "recharts";
 
 export default function BalanceChart({ title, data }) {

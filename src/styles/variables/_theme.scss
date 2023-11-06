@@ -63,7 +63,9 @@ $footer-padding:              $body-padding;
 $table-row-padding:           0.5rem;
 
 $border-radius:               0.3rem;
-$border-solid:                2px solid $primary-color;
+$border-solid-primary:                2px solid $primary-color;
+$border-solid-accent:                2px solid $accent-color-light;
+$border-solid-white:                2px solid $white-color-lighter;
 
 // Page Header
 $page-header-padding:         0;

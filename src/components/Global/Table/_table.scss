@@ -12,12 +12,12 @@ th {
     font-size:          theme.$font-size-small;
     font-weight:        theme.$font-weight-semibold;
     background-color:   theme.$white-color-lighter;
-    color:              theme.$accent-color-light;
+    color:              theme.$accent-color-dark;
     text-align:         start;
 }
 
 tr {
-    border-bottom:      theme.$border-solid;
+    border-bottom:      theme.$border-solid-white;
     background-color:   theme.$white-color-light;
     padding:            theme.$body-padding;
     font-weight:        theme.$font-weight-light;

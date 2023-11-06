@@ -1,23 +1,23 @@
 import React, {useState, useEffect} from "react";
 import { Button, Card, Header, Modal, Table, Toast } from '../../components';
-import BalanceCard from "./BalanceCard";
-import BalanceChart from "./BalanceChart";
+import BalanceCard from "./Cards/BalanceCard";
+import BalanceChart from "./Cards/BalanceChart";
 
 import { FileEdit, Trash2, LogOut, PlusSquare } from 'lucide-react';
 import { getUserExpenses, getExpense, getTotalExpenses } from '../../lib/utils/expenses';
-import AddExpenseForm from '../ClientDashboard/AddExpenseForm';
+import AddExpenseForm from './Forms/AddExpenseForm';
 
 import { getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
 import { formatDate, formatAmount, sortDescendingOrder } from "../../lib/utils/formatter";
-import ConfirmExpenseDelete from "./ConfirmExpenseDelete";
+import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
 
 function ClientDashboard({ user }) {
   const userId = 'u-l2hckqwf1p';
   const columns = ['expense_id', 'created_on', 'description', 'amount'];
   const initialInput = {user_id: userId, description: null, amount: null}
 
+  let totalExpenses = getTotalExpenses(userId);
   const balance = getBalance(userId);
-  const totalExpenses = getTotalExpenses(userId)
   const monthlyBalance = getMonthlyBalance(userId);
   const userExpenses = getUserExpenses(userId);
 
@@ -30,26 +30,27 @@ function ClientDashboard({ user }) {
   const [action, setAction] = useState('');
 
   const updateExpenses = (expenses) => {
+    if(expenses){
+      const newData = expenses.map((item) => {
+  
+        const {expense_id, created_on, description, amount} = item;
+        const formattedDate = formatDate(created_on)
+        const formattedAmount = formatAmount(amount)
+  
+        return {expense_id, created_on: formattedDate, description, amount: formattedAmount}
+  
+      });
+  
+      setData(newData);
+    }
 
-    const newData = expenses.map((item) => {
-
-      const {expense_id, created_on, description, amount} = item;
-      const formattedDate = formatDate(created_on)
-      const formattedAmount = formatAmount(amount)
-
-      return {expense_id, created_on: formattedDate, description, amount: formattedAmount}
-
-    });
-
-    setData(newData);
     setInputValues(initialInput);
 
   }
 
   useEffect(()=>{
-
+      
       updateExpenses(userExpenses);
-      console.log(initialInput, inputValues);
 
   }, [])
 
@@ -108,7 +109,7 @@ function ClientDashboard({ user }) {
           : "expense successfully updated."} 
         />
       )}
-      <div className="dashboard">
+      <div className="client-dashboard">
         <div className="expenses-container">
           <div className="header-container">
             <Header user={user} />
@@ -123,7 +124,7 @@ function ClientDashboard({ user }) {
                <BalanceChart title={'Expenses Overview'} data={monthlyBalance} />
             </div>
           </div>
-          <Button className={'expense-button'} type={'button'} text={"New Expense"} handleClick={handleAddClick}/>
+          <Button type={'button'} text={"New Expense"} handleClick={handleAddClick}/>
           { 
             showModal && (
                 <Modal title={ showDeleteConfirm ? 'Delete Expense' : inputValues.expense_id ? "Update Expense" : "New Expense"} setShowModal={setShowModal}>
@@ -146,7 +147,7 @@ function ClientDashboard({ user }) {
                 </Modal>
             )
           }
-          <Table className={'expense-table'} data={data} columns={columns} itemsPerPage={5} rowKey={'expense_id'}
+          <Table data={data} columns={columns} itemsPerPage={5} rowKey={'expense_id'}
               actions={ (
                   <>
                       <FileEdit className="edit-icon" onClick={handleEditClick} />
