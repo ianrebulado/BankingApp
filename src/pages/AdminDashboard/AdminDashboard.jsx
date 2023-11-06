@@ -21,6 +21,7 @@ import {
   getTotalTransactions,
   getTransactionsVolume,
 } from "../../lib/utils/transactions";
+import { formatNumber } from "../../lib/utils/formatter";
 
 const initialUsersTable = createUsersTable(usersModel);
 
@@ -31,11 +32,11 @@ function AdminDashboard({ user }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [usersTableData, setUsersTableData] = useState(initialUsersTable);
 
-  const totalUsers = getTotalUsers();
-  const totalTransactions = getTotalTransactions();
-  const totalTransactionsVolume = getTransactionsVolume();
+  const totalUsers = formatNumber(getTotalUsers());
+  const totalTransactions = formatNumber(getTotalTransactions());
+  const totalTransactionsVolume = formatNumber(getTransactionsVolume());
 
-  const usersData = fetchUsers(); //TODO: Move this to App.jsx and pass as a prop
+  const usersData = fetchUsers();
 
   const columns = ["user_id", "username", "name", "email", "balance"];
 
@@ -118,12 +119,9 @@ function AdminDashboard({ user }) {
         </div>
 
         <div className="cards-container">
-          <Card title={"Total Users"} content={totalUsers} />
-          <Card title={"Total Transactions"} content={totalTransactions} />
-          <Card
-            title={"Transaction Volume"}
-            content={totalTransactionsVolume}
-          />
+          <Card title={"Total Users"}>{totalUsers}</Card>
+          <Card title={"Total Transactions"}>{totalTransactions}</Card>
+          <Card title={"Transaction Volume"}>{totalTransactionsVolume}</Card>
         </div>
         <div className="search-container">
           <SearchInput
