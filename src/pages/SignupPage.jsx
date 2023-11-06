@@ -1,6 +1,5 @@
 import React from 'react'
-import SignUpForm from "./LoginPage/SignUpForm";
-import "../styles/css/loginpage.css";
+import SignUpForm from "./LoginPage/Forms/SignUpForm";
 
 export default function SignupPage() {
   return (

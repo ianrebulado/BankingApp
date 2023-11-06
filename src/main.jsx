@@ -1,13 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./styles/styles.scss";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignupPage from "./pages/SignupPage.jsx";
-// import LoginPage from './pages/LoginPage.jsx'
 import AdminDashboard from "./pages//AdminDashboard/AdminDashboard";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
-import LoginPage from "./pages/LoginPage.jsx";
-import { useEffect } from "react";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import "./styles/styles.scss";
 
 const router = createBrowserRouter([
   {
