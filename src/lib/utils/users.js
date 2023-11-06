@@ -1,19 +1,21 @@
 import usersModel from "../constants/usersModel";
 import generateId from "./generateId";
 
+const usersData = fetchUsers();
+
 export function createUser(newUserForm) {
   const user_id = generateId("user");
   const createdOn = new Date();
   const updatedOn = new Date();
 
-  usersModel.push({
+  usersData.push({
     ...newUserForm,
     user_id,
     createdOn,
     updatedOn,
   });
 
-  storeUsers(usersModel);
+  storeUsers(usersData);
 }
 
 export function storeUsers(usersData) {
@@ -21,16 +23,23 @@ export function storeUsers(usersData) {
 }
 
 export function fetchUsers() {
-  try {
-    let usersData = localStorage.getItem("users");
-    return JSON.parse(usersData);
-  } catch (error) {
-    console.log("Could not retrieve users: ", error);
-  }
+  const modelData = usersModel;
+
+  const localStorageData = localStorage.getItem("users");
+
+  return !localStorageData ? modelData : JSON.parse(localStorageData);
+}
+
+export function filterUsersById(userId) {
+  const matchedUser = usersData.filter((user) =>
+    user.user_id.toLowerCase().includes(userId.toLowerCase())
+  );
+
+  return matchedUser[0];
 }
 
 export function filterUsersByUsername(username) {
-  const matchedUser = usersModel.filter((user) =>
+  const matchedUser = usersData.filter((user) =>
     user.username.toLowerCase().includes(username.toLowerCase())
   );
 
@@ -38,8 +47,7 @@ export function filterUsersByUsername(username) {
 }
 
 export function filterUsersByName(name) {
-  console.log("filterUsersByName: ", name);
-  const matchedUser = usersModel.filter(
+  const matchedUser = usersData.filter(
     (user) =>
       user.first_name.toLowerCase().includes(name.toLowerCase()) ||
       user.last_name.toLowerCase().includes(name.toLowerCase())
@@ -48,4 +56,10 @@ export function filterUsersByName(name) {
   console.log("matched: ", matchedUser[0]);
 
   return matchedUser[0];
+}
+
+export function getTotalUsers() {
+  if (usersData) {
+    return usersData.length;
+  }
 }
