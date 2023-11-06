@@ -1,20 +1,28 @@
-import React, {useState, useEffect} from "react";
-import { Button, Card, Header, Modal, Table, Toast } from '../../components';
+import React, { useState, useEffect } from "react";
+import { Button, Card, Header, Modal, Table, Toast } from "../../components";
 import BalanceCard from "./Cards/BalanceCard";
 import BalanceChart from "./Cards/BalanceChart";
 
-import { FileEdit, Trash2, LogOut, PlusSquare } from 'lucide-react';
-import { getUserExpenses, getExpense, getTotalExpenses } from '../../lib/utils/expenses';
-import AddExpenseForm from './Forms/AddExpenseForm';
+import { FileEdit, Trash2, LogOut, PlusSquare } from "lucide-react";
+import {
+  getUserExpenses,
+  getExpense,
+  getTotalExpenses,
+} from "../../lib/utils/expenses";
+import AddExpenseForm from "./Forms/AddExpenseForm";
 
 import { getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
-import { formatDate, formatAmount, sortDescendingOrder } from "../../lib/utils/formatter";
+import {
+  formatDate,
+  formatAmount,
+  sortDescendingOrder,
+} from "../../lib/utils/formatter";
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
 
 function ClientDashboard({ user }) {
-  const userId = 'u-l2hckqwf1p';
-  const columns = ['expense_id', 'created_on', 'description', 'amount'];
-  const initialInput = {user_id: userId, description: null, amount: null}
+  const userId = "u-l2hckqwf1p";
+  const columns = ["expense_id", "created_on", "description", "amount"];
+  const initialInput = { user_id: userId, description: null, amount: null };
 
   let totalExpenses = getTotalExpenses(userId);
   const balance = getBalance(userId);
@@ -27,86 +35,84 @@ function ClientDashboard({ user }) {
   const [deleteExpense, setDeleteExpense] = useState({});
   const [data, setData] = useState([]);
   const [inputValues, setInputValues] = useState(initialInput);
-  const [action, setAction] = useState('');
+  const [action, setAction] = useState("");
 
   const updateExpenses = (expenses) => {
-    if(expenses){
+    if (expenses) {
       const newData = expenses.map((item) => {
-  
-        const {expense_id, created_on, description, amount} = item;
-        const formattedDate = formatDate(created_on)
-        const formattedAmount = formatAmount(amount)
-  
-        return {expense_id, created_on: formattedDate, description, amount: formattedAmount}
-  
+        const { expense_id, created_on, description, amount } = item;
+        const formattedDate = formatDate(created_on);
+        const formattedAmount = formatAmount(amount);
+
+        return {
+          expense_id,
+          created_on: formattedDate,
+          description,
+          amount: formattedAmount,
+        };
       });
-  
+
       setData(newData);
     }
 
     setInputValues(initialInput);
+  };
 
-  }
-
-  useEffect(()=>{
-      
-      updateExpenses(userExpenses);
-
-  }, [])
+  useEffect(() => {
+    updateExpenses(userExpenses);
+  }, []);
 
   const handleAddClick = () => {
-
-      setInputValues(initialInput)
-      setShowModal(true);
-      setAction('add');
-
-  }
+    setInputValues(initialInput);
+    setShowModal(true);
+    setAction("add");
+  };
 
   const handleEditClick = (e) => {
+    const row = e.target.closest("tr");
 
-    const row = e.target.closest('tr')
-    
-    if(row){
-      
-      const expenseId = row.getAttribute('data-id')
-      const expenseItem = getExpense(expenseId)
-      
+    if (row) {
+      const expenseId = row.getAttribute("data-id");
+      const expenseItem = getExpense(expenseId);
+
       setInputValues(expenseItem);
       setShowModal(true);
-      setAction('update');
-
+      setAction("update");
     }
-  }
+  };
 
   const handleDeleteClick = (e) => {
-
-    const expenseId = e.target.closest('tr').getAttribute('data-id')
-    const expense = getExpense(expenseId)
+    const expenseId = e.target.closest("tr").getAttribute("data-id");
+    const expense = getExpense(expenseId);
 
     setDeleteExpense(expense);
     setShowDeleteConfirm(true);
     setShowModal(true);
-    setAction('delete');
-
-  }
+    setAction("delete");
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
-        setShowToast(false)
+      setShowToast(false);
     }, 5000);
 
     return () => {
-        clearTimeout(timer);
+      clearTimeout(timer);
     };
-}, [showToast])
+  }, [showToast]);
 
   return (
     <>
       {showToast && (
-        <Toast type={"success"} message={
-          action === "delete" ? "expense succesfully deleted." 
-          : action === "add" ? "expense successfully added." 
-          : "expense successfully updated."} 
+        <Toast
+          type={"success"}
+          message={
+            action === "delete"
+              ? "expense succesfully deleted."
+              : action === "add"
+              ? "expense successfully added."
+              : "expense successfully updated."
+          }
         />
       )}
       <div className="client-dashboard">
@@ -117,43 +123,59 @@ function ClientDashboard({ user }) {
           </div>
           <div className="cards-container">
             <div className="balance-cards-container">
-              <BalanceCard title={'Account Balance'} balance={balance} />
-              <BalanceCard title={'Total Expenses'} balance={totalExpenses} />
+              <BalanceCard title={"Account Balance"} balance={balance} />
+              <BalanceCard title={"Total Expenses"} balance={totalExpenses} />
             </div>
             <div className="chart-container">
-               <BalanceChart title={'Expenses Overview'} data={monthlyBalance} />
+              <BalanceChart title={"Expenses Overview"} data={monthlyBalance} />
             </div>
           </div>
-          <Button type={'button'} text={"New Expense"} handleClick={handleAddClick}/>
-          { 
-            showModal && (
-                <Modal title={ showDeleteConfirm ? 'Delete Expense' : inputValues.expense_id ? "Update Expense" : "New Expense"} setShowModal={setShowModal}>
-                    {showDeleteConfirm ?
-                        <ConfirmExpenseDelete 
-                          expense={deleteExpense} 
-                          setShowDeleteConfirm={setShowDeleteConfirm} 
-                          setShowModal={setShowModal} 
-                          updateExpenses={updateExpenses} 
-                          setShowToast={setShowToast} 
-                        />
-                      :
-                        <AddExpenseForm 
-                          setShowModal={setShowModal} 
-                          updateExpenses={updateExpenses} 
-                          inputValues={inputValues} 
-                          setShowToast={setShowToast} 
-                        />
-                    }
-                </Modal>
-            )
-          }
-          <Table data={data} columns={columns} itemsPerPage={5} rowKey={'expense_id'}
-              actions={ (
-                  <>
-                      <FileEdit className="edit-icon" onClick={handleEditClick} />
-                      <Trash2 className="delete-icon" onClick={handleDeleteClick} />
-                  </>
-              )} />
+          <Button
+            type={"button"}
+            text={"New Expense"}
+            handleClick={handleAddClick}
+          />
+          {showModal && (
+            <Modal
+              title={
+                showDeleteConfirm
+                  ? "Delete Expense"
+                  : inputValues.expense_id
+                  ? "Update Expense"
+                  : "New Expense"
+              }
+              setShowModal={setShowModal}
+            >
+              {showDeleteConfirm ? (
+                <ConfirmExpenseDelete
+                  expense={deleteExpense}
+                  setShowDeleteConfirm={setShowDeleteConfirm}
+                  setShowModal={setShowModal}
+                  updateExpenses={updateExpenses}
+                  setShowToast={setShowToast}
+                />
+              ) : (
+                <AddExpenseForm
+                  setShowModal={setShowModal}
+                  updateExpenses={updateExpenses}
+                  inputValues={inputValues}
+                  setShowToast={setShowToast}
+                />
+              )}
+            </Modal>
+          )}
+          <Table
+            data={data}
+            columns={columns}
+            itemsPerPage={5}
+            rowKey={"expense_id"}
+            actions={
+              <>
+                <FileEdit className="edit-icon" onClick={handleEditClick} />
+                <Trash2 className="delete-icon" onClick={handleDeleteClick} />
+              </>
+            }
+          />
         </div>
       </div>
     </>
