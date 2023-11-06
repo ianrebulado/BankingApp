@@ -1,8 +1,8 @@
-import React from "react";
-import SignInForm from "./LoginPage/SignInForm";
+import React from 'react'
+import SignUpForm from "./LoginPage/SignUpForm";
 import "../styles/css/loginpage.css";
 
-export default function LoginPage() {
+export default function SignupPage() {
   return (
     <>
       <div className="login-page">
@@ -14,10 +14,10 @@ export default function LoginPage() {
               alt="logo"
               className="home-logo"
             />
-            <SignInForm />
+            <SignUpForm />
           </div>
         </div>
       </div>
     </>
-  );
+  )
 }

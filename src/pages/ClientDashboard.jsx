@@ -4,7 +4,7 @@ import Card from "../components/Global/Card/Card";
 import Buttons from "../components/Global/Button/Button";
 import BalanceCard from "./ClientDashboard/BalanceCard";
 import BalanceChart from "./ClientDashboard/BalanceChart";
-import Table from "../components/Global/Table/Table";
+// import Table from "../components/Global/Table/Table";
 
 import { getBalance, getMonthlyBalance } from "../lib/utils/transactions";
 

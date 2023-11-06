@@ -3,6 +3,8 @@ import { Button, InputField } from "../../components";
 import { FormProvider } from "../../components/Global/Form/FormContext";
 import { usersModel } from "../../lib/constants";
 import { validateSignInForm } from "../../lib/utils/validations";
+import { Link } from "react-router-dom";
+import SignupPage from "../SignupPage";
 
 const inputs = [
   {
@@ -17,7 +19,7 @@ const inputs = [
     type: "password",
     label: "Password",
     name: "password",
-    placeholder: "",
+    placeholder: "Password",
     isRequired: true,
     message: "",
   },
@@ -46,7 +48,19 @@ export default function SignInForm() {
     if (validUser) {
       updateLocalStorage("username", formState.username);
       updateLocalStorage("signedIn", true);
-      //Load Dashboard
+      userSignedIn(formState.username, formState.password)
+    }
+  }
+
+  function userSignedIn(username, password) {
+    
+    const user = usersModel.find((u) => u.username === username && u.password === password);
+  
+    if (user) {
+      console.log('Signed In User:', user);
+      updateLocalStorage('SignedInUser', JSON.stringify(user));
+      } else {
+      localStorage.removeItem('SignedInUser')
     }
   }
 
@@ -70,8 +84,14 @@ export default function SignInForm() {
           )
         )}
         <Button type={"submit"} text={"Sign In"} />
-        <Button type={"button"} text={"Cancel"} secondary />
+        
+        <SignupLink />
+
       </form>
     </FormProvider>
   );
+}
+
+function SignupLink () {
+  return  <Link to='/signup'> Not yet a member? Sign up! </Link> 
 }
