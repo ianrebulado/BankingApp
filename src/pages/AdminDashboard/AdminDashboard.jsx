@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Header, Card, Button, Modal, Table, Toast } from "../../components";
+import {
+  Header,
+  Card,
+  Button,
+  Modal,
+  Table,
+  Toast,
+  SearchInput,
+} from "../../components";
 import usersModel from "../../lib/constants/usersModel";
 import {
   CreateUserForm,
@@ -7,21 +15,29 @@ import {
   WithdrawForm,
   TransferForm,
 } from "./Forms";
-import { fetchUsers } from "../../lib/utils/users";
+import { filterData, createUsersTable } from "../../lib/utils/helpers";
+import { fetchUsers, getTotalUsers } from "../../lib/utils/users";
+import {
+  getTotalTransactions,
+  getTransactionsVolume,
+} from "../../lib/utils/transactions";
+
+const initialUsersTable = createUsersTable(usersModel);
 
 function AdminDashboard({ user }) {
   const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [formComponent, setFormComponent] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [usersTableData, setUsersTableData] = useState(initialUsersTable);
+
+  const totalUsers = getTotalUsers();
+  const totalTransactions = getTotalTransactions();
+  const totalTransactionsVolume = getTransactionsVolume();
 
   const usersData = fetchUsers(); //TODO: Move this to App.jsx and pass as a prop
 
-  const columns = ["user_id", "first_name", "last_name", "email", "balance"];
-  const data = usersModel.map((item) => {
-    const { user_id, first_name, last_name, email } = item;
-    const { balance } = 0.0;
-    return { user_id, first_name, last_name, email, balance };
-  });
+  const columns = ["user_id", "username", "name", "email", "balance"];
 
   function handleClick(type) {
     setShowModal(!showModal);
@@ -69,6 +85,14 @@ function AdminDashboard({ user }) {
   }
 
   useEffect(() => {
+    if (searchTerm === "" || searchTerm.length === 1) {
+      setUsersTableData(initialUsersTable);
+    } else {
+      setUsersTableData(filterData(usersTableData, "username", searchTerm));
+    }
+  }, [usersTableData, searchTerm]);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       setShowToast(false);
     }, 5000);
@@ -94,12 +118,19 @@ function AdminDashboard({ user }) {
         </div>
 
         <div className="cards-container">
-          <Card title={"Total Users"} content={""} />
-          <Card title={"Total Transactions"} content={""} />
-          <Card title={"Transaction Volume"} content={""} />
+          <Card title={"Total Users"} content={totalUsers} />
+          <Card title={"Total Transactions"} content={totalTransactions} />
+          <Card
+            title={"Transaction Volume"}
+            content={totalTransactionsVolume}
+          />
         </div>
         <div className="search-container">
-          <span>Search</span>
+          <SearchInput
+            placeholder={"Search users..."}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+          />
           <div className="buttons-container">
             <Button
               type={"button"}
@@ -121,7 +152,9 @@ function AdminDashboard({ user }) {
         {showModal && (
           <Modal onClose={() => setShowModal(false)}>{formComponent}</Modal>
         )}
-        <Table data={data} columns={columns} itemsPerPage={3} />
+        {usersTableData && (
+          <Table data={usersTableData} columns={columns} itemsPerPage={5} />
+        )}
       </div>
     </>
   );

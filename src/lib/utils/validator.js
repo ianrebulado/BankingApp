@@ -86,6 +86,20 @@ export default class Validator {
     return this;
   }
 
+  isValidWithdrawalAmount(
+    userBalance,
+    errorMessage = `Balance is insufficient`
+  ) {
+    if (this._checkError()) return this;
+    const withdrawResult = userBalance - this.value;
+
+    if (withdrawResult <= 0) {
+      this.errorMessage = errorMessage;
+    }
+
+    return this;
+  }
+
   isEmail(errorMessage = `${this.label} must be a valid email`) {
     if (this._checkError()) return this;
 
@@ -107,6 +121,19 @@ export default class Validator {
     return this;
   }
 
+  isEqualTo(
+    valueToCompare,
+    errorMessage = `${this.label} must not be the same`
+  ) {
+    if (this._checkError()) return this;
+
+    if (this.value === valueToCompare) {
+      this.errorMessage = errorMessage;
+    }
+
+    return this;
+  }
+
   emailExists(users, errorMessage = `${this.label} not found`) {
     if (this._checkError()) return this;
 
@@ -117,10 +144,10 @@ export default class Validator {
     return this;
   }
 
-  userExists(users, errorMessage = `${this.label} not found`) {
+  userExists(users, errorMessage = `Username not found`) {
     if (this._checkError()) return this;
 
-    if (!users.some((user) => user[this.name] === this.value)) {
+    if (!users.some((user) => user.username === this.value)) {
       this.errorMessage = errorMessage;
     }
 

@@ -1,3 +1,5 @@
+import { getBalance } from "./transactions";
+import { filterUsersByName } from "./users";
 import Validator from "./validator";
 import { usersModel } from "../constants";
 
@@ -143,10 +145,71 @@ export function validateTransactionForm(
           .errorMessage,
       };
     } else if (input.name === "amount") {
+      if (formState.type === "deposit") {
+        input.value = formState.amount;
+        return {
+          ...input,
+          message: Validator.for(input).isRequired().greater(500).errorMessage,
+        };
+      } else if (formState.type === "withdraw") {
+        let userId = filterUsersByName(formState.username).user_id;
+        let balance = getBalance(userId);
+
+        if (!balance) return;
+
+        input.value = formState.amount;
+        return {
+          ...input,
+          message: Validator.for(input)
+            .isRequired()
+            .greater(500)
+            .isValidWithdrawalAmount(balance).errorMessage,
+        };
+      }
+    }
+  });
+
+  setInputState(updatedInputState);
+
+  return checkValidForm(updatedInputState);
+}
+
+export function validateTransferForm(
+  inputState,
+  setInputState,
+  formState,
+  usersData
+) {
+  let updatedInputState = inputState.map((input) => {
+    if (input.name === "sendingUsername") {
+      input.value = formState.sendingUsername;
+      return {
+        ...input,
+        message: Validator.for(input)
+          .isRequired()
+          .isEqualTo(formState.receivingUsername)
+          .userExists(usersData).errorMessage,
+      };
+    } else if (input.name === "receivingUsername") {
+      input.value = formState.receivingUsername;
+      return {
+        ...input,
+        message: Validator.for(input)
+          .isRequired()
+          .isEqualTo(formState.sendingUsername)
+          .userExists(usersData).errorMessage,
+      };
+    } else if (input.name === "amount") {
+      let sendingUserId = filterUsersByName(formState.sendingUsername).user_id;
+      let balance = getBalance(sendingUserId);
+
       input.value = formState.amount;
       return {
         ...input,
-        message: Validator.for(input).isRequired().greater(500).errorMessage,
+        message: Validator.for(input)
+          .isRequired()
+          .greater(500)
+          .isValidWithdrawalAmount(balance).errorMessage,
       };
     }
   });

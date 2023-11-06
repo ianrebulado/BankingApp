@@ -26,7 +26,7 @@ export default function DepositForm({ usersData, setShowModal, setShowToast }) {
     isValidForm = validateTransactionForm(
       inputState,
       setInputState,
-      formState,
+      { ...formState, type: "deposit" },
       usersData
     );
 
