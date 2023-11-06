@@ -19,8 +19,11 @@ import {
 } from "../../lib/utils/formatter";
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
 
-function ClientDashboard({ user }) {
-  const userId = "u-l2hckqwf1p";
+function ClientDashboard() {
+  const user = JSON.parse(localStorage.getItem("SignedInUser"));
+
+  const userId = user.user_id;
+
   const columns = ["expense_id", "created_on", "description", "amount"];
   const initialInput = { user_id: userId, description: null, amount: null };
 
@@ -118,7 +121,7 @@ function ClientDashboard({ user }) {
       <div className="client-dashboard">
         <div className="expenses-container">
           <div className="header-container">
-            <Header user={user} />
+            <Header user={user.first_name} />
             <LogOut className="logout-icon" />
           </div>
           <div className="cards-container">

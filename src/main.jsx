@@ -1,37 +1,37 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './styles/styles.scss'
-import { createBrowserRouter, RouterProvider} from 'react-router-dom'
-import SignupPage from './pages/SignupPage.jsx'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./styles/styles.scss";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SignupPage from "./pages/SignupPage.jsx";
 // import LoginPage from './pages/LoginPage.jsx'
-import AdminDashboard from './pages/AdminDashboard.jsx'
-import ClientDashboard from './pages/ClientDashboard.jsx'
-import LoginPage from './pages/LoginPage.jsx'
-import ProtectedRoute from './lib/utils/ProtectedRoute.jsx'
-import { useEffect } from 'react'
+import AdminDashboard from "./pages//AdminDashboard/AdminDashboard";
+import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
+import LoginPage from "./pages/LoginPage.jsx";
+import { useEffect } from "react";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <LoginPage />,
-    
   },
   {
-    path: '/signup',
-    element: <SignupPage />
+    path: "/signup",
+    element: <SignupPage />,
   },
   {
-    path: '/admindashboard',
-    element: <ProtectedRoute> <AdminDashboard /> </ProtectedRoute>
+    path: "/admindashboard",
+    element: (
+      <>
+        <AdminDashboard />
+      </>
+    ),
   },
   {
-    path: '/dashboard',
-    element: <ProtectedRoute> <ClientDashboard />   </ProtectedRoute>
-  }
+    path: "/dashboard",
+    element: <ClientDashboard />,
+  },
+]);
 
-])
-useEffect(()=> initialUsers(), [])
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-    <RouterProvider router={router}/>
-)
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
