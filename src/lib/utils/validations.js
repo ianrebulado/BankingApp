@@ -46,7 +46,13 @@ export function validateSignInForm(
   return isValid;
 }
 
-
+export function validateExpenseForm(inputState, setInputState, formState){
+    const updatedInputState = checkMissingValues(inputState, formState);
+    setInputState(updatedInputState)
+    
+    const isValid = checkValidForm(updatedInputState)
+    return isValid;
+}
 
 function checkMissingValues(inputState, formState) {
   const newInputState = inputState.map((input) => {

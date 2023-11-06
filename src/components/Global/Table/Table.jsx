@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { formatName } from '../../../lib/utils/formatName';
 import { ChevronLeftSquare, ChevronRightSquare } from 'lucide-react';
 
-const Table = ({data, columns, itemsPerPage, actions}) => {
+const Table = ({data, columns, itemsPerPage, rowKey, actions}) => {
     const [currentPage, setCurrentPage] =  useState(1);
     const totalPages = Math.ceil(data.length / itemsPerPage);
     const handlePageChange = (page) => {
@@ -23,15 +23,15 @@ const Table = ({data, columns, itemsPerPage, actions}) => {
                             <th key={index}>{formatName(column)}</th>
                         ))}
                         { actions ?                                 
-                                <th>Actions</th>
-                                :
-                                null
-                            }
+                            <th>Actions</th>
+                            :
+                            null
+                        }
                     </tr>
                 </thead>
                 <tbody>
                     {currentData.map((item, rowIndex) => (
-                        <tr key={rowIndex} onClick={()=>{console.log(item)}}>
+                        <tr key={rowIndex} data-id={item[rowKey]}>
                             {columns.map((column, colIndex) => (
                             <td key={colIndex}>{item[column]}</td>
                             ))}
@@ -65,5 +65,6 @@ Table.propTypes = {
     data: PropTypes.array.isRequired,
     columns: PropTypes.array.isRequired,
     itemsPerPage: PropTypes.number.isRequired,
+    rowKey: PropTypes.string,
     actions: PropTypes.any
 }
