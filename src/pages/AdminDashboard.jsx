@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from "react-router-dom"; //import Navigate module
+import { Outlet } from "react-router-dom"; //import Navigate module
 import Header from '../components/Global/Header/Header';
 import Card from '../components/Global/Card/Card';
 import Buttons from '../components/Global/Button/Button';
@@ -17,9 +17,7 @@ function AdminDashboard({user}) {
 
     return (
         <>
-            {isAdmin ? (
-                <Navigate to="/client-dashboard" /> //If not admin, redirect user to client dashboard
-            ) : (
+    
                 <div className='dashboard'>
                     <Header user={user} />
                     <div className='cards-container'>
@@ -35,7 +33,6 @@ function AdminDashboard({user}) {
                     </div>
                     <Table data={data} columns={columns} itemsPerPage={3}/>
                 </div>
-            )}
             <Outlet />
         </>
     );

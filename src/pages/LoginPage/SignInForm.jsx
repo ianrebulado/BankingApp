@@ -54,7 +54,11 @@ export default function SignInForm() {
       const SignedInUser = userSignedIn(formState.username, formState.password);
       const userRole = SignedInUser.role 
       userRole === 'admin' ? navigate('/admindashboard') : navigate('/dashboard') 
+      console.log(SignedInUser)
     }
+    
+    console.log(usersModel)
+    
   }
 
   function handleInputChange(name, value) {
