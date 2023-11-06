@@ -5,7 +5,7 @@ import { usersModel } from "../../lib/constants";
 import { validateSignInForm } from "../../lib/utils/validations";
 import { Link, useNavigate} from "react-router-dom";
 import SignupPage from "../SignupPage";
-import { userSignedIn } from "../../lib/utils/users";
+import { fetchUsers, userSignedIn } from "../../lib/utils/users";
 
 const inputs = [
   {
@@ -36,6 +36,7 @@ export default function SignInForm() {
     username: null,
     password: null,
   });
+  const usersData = fetchUsers();
 
   const navigate = useNavigate()
 
@@ -45,7 +46,7 @@ export default function SignInForm() {
       inputState,
       setInputState,
       formState,
-      usersModel
+      usersData
     );
 
     if (validUser) {
@@ -54,10 +55,8 @@ export default function SignInForm() {
       const SignedInUser = userSignedIn(formState.username, formState.password);
       const userRole = SignedInUser.role 
       userRole === 'admin' ? navigate('/admindashboard') : navigate('/dashboard') 
-      console.log(SignedInUser)
+      
     }
-    
-    console.log(usersModel)
     
   }
 

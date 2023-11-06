@@ -141,3 +141,7 @@ export function getTransactionsVolume() {
     return totalTransactionsVolumne;
   }
 }
+
+export function getAccountBalance(balance, expenses){
+  return balance - expenses;
+}
