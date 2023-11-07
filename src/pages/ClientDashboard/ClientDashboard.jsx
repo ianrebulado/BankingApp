@@ -15,7 +15,6 @@ import { getAccountBalance, getBalance, getMonthlyBalance } from "../../lib/util
 import {
   formatDate,
   formatAmount,
-  sortDescendingOrder,
 } from "../../lib/utils/formatter";
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
 import { signout } from "../../lib/utils/signout";
