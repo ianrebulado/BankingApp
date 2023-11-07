@@ -1,15 +1,15 @@
 @use '../../styles/variables/theme' as theme;
 
-.client-dashboard {
-  width:              100vw;
-}
-
 .expenses-container {
-  padding:            theme.$body-padding;
   display:            flex;
   flex-direction:     column;
-  width:              100vw;
   gap:                1rem;
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .cards-container {
     display:            flex;
@@ -55,14 +55,6 @@
 
   
 }
-
-// .expense-table {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100vw;
-// }
 
 .edit-icon {
   color:              theme.$accent-color-light;

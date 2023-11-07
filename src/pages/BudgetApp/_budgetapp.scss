@@ -1,0 +1,23 @@
+.client-dashboard {
+    display: flex;
+    justify-content: flex-end;
+
+    .sidebar {
+        position: fixed;
+        min-width: 20vw;
+        top: 0;
+        left: 0;
+    }
+
+    .expenses-container {
+        max-width: 80vw;;
+    }
+}
+
+@media (max-width: 768px){
+    .client-dashboard {
+        .sidebar {
+            display: none;
+        }
+    }
+}

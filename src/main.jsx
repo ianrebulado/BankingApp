@@ -11,6 +11,7 @@ import AdminLayout from "./pages/AdminDashboard/AdminLayout";
 import Accounts from "./pages/AdminDashboard/Accounts";
 import Transactions from "./pages/AdminDashboard/Transactions";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import BudgetApp from "./pages/BudgetApp/BudgetApp";
 
 const signedInUser = JSON.parse(localStorage.getItem("SignedInUser"));
 
@@ -48,6 +49,16 @@ const router = createBrowserRouter([
         <ClientDashboard />
       </ProtectedRoute>
     ),
+    children: [
+      {
+        index: true,
+        element: <BudgetApp />
+      },
+      {
+        path: "/dashboard/expenses",
+        element: <BudgetApp />
+      }
+    ]
   },
 ]);
 
