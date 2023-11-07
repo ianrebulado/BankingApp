@@ -1,15 +1,11 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function ProtectedRoute({ children, requiredRole }) {
   const SignedInUser = JSON.parse(localStorage.getItem('SignedInUser'));
-  const userRole = SignedInUser.role; 
   const getSigninState = localStorage.getItem('signedIn');
   const isAuthenticated = getSigninState === 'true';
-
-  console.log(isAuthenticated);
-  console.log(SignedInUser);
-  console.log(userRole);
+  const userRole = SignedInUser ? SignedInUser.role : useNavigate('/')
 
   const canAccessRoute = isAuthenticated && requiredRole === userRole;
   
