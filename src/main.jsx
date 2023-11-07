@@ -5,8 +5,8 @@ import SignupPage from "./pages/LoginPage/SignupPage.jsx";
 import AdminDashboard from "./pages//AdminDashboard/AdminDashboard";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import ProtectedRoute from './ProtectedRoute.jsx';
 import "./styles/styles.scss";
-import ProtectedRoute from "./lib/utils/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
