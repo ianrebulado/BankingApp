@@ -8,6 +8,8 @@ import {
   getUserExpenses,
   getExpense,
   getTotalExpenses,
+  getMonthlyExpenses,
+  storeInitialExpenses
 } from "../../lib/utils/expenses";
 import AddExpenseForm from "./Forms/AddExpenseForm";
 
@@ -30,7 +32,7 @@ function ClientDashboard() {
 
   let totalExpenses = getTotalExpenses(userId);
   const balance = getBalance(userId);
-  const monthlyBalance = getMonthlyBalance(userId);
+  const monthlyBalance = getMonthlyExpenses(userId);
   const userExpenses = getUserExpenses(userId);
   const accountBalance = getAccountBalance(balance,totalExpenses)
 

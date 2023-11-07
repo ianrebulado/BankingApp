@@ -1,5 +1,6 @@
 import generateId from "../utils/generateId";
 import expensesModel from "../constants/expensesModel.json";
+import { formatDate } from "./formatter";
 
 export function getExpense(id) {
   return expensesModel.find((expenses) => expenses.expense_id === id);
@@ -51,6 +52,7 @@ export function deleteExpense(id) {
 }
 
 export function storeInitialExpenses() {
+  console.log(expensesModel)
   localStorage.setItem("expenses", JSON.stringify(expensesModel));
 }
 
@@ -63,15 +65,11 @@ export function fetchExpenses() {
 }
 
 export function getUserExpenses(userId) {
-  const expenses = localStorage.getItem("expenses");
+  const expenses = expensesModel.filter((expense) => expense.user_id === userId);
 
   if(!expenses) return;
 
-  const userExpenses = JSON.parse(expenses).filter(
-    (item) => item.user_id === userId
-  );
-
-  return userExpenses;
+  return expenses;
 }
 
 export function getTotalExpenses(userId) {
@@ -90,3 +88,51 @@ export function getTotalExpenses(userId) {
 export function findExpenseIndex(id) {
   return expensesModel.findIndex((expense) => expense.expense_id === id);
 }
+
+export function getMonthlyExpenses(userId){
+
+  const expenses = getUserExpenses(userId);
+
+    const monthlyExpenses = [];
+    const monthYearSet = new Set();
+
+    if(!expenses) return;
+  
+    expenses.forEach((expense) => {
+      const [year, month, day] = formatDate(expense.created_on).split('-');
+      const monthYear = `${month}/${year}`
+      monthYearSet.add(monthYear);
+    });
+
+    monthYearSet.forEach((monthYear) => {
+      const [month, year] = monthYear.split('/');
+
+      let monthExpense = 0;
+
+      expenses.forEach((expense) => {
+        let monthNum = new Date(expense.created_on)
+          .getMonth() + 1;
+
+          monthNum = monthNum.toString().padStart(2,"0");
+
+        let yearNum = new Date(expense.created_on)
+          .getFullYear()
+          .toString();
+
+        if(monthNum === month && yearNum === year){
+          monthExpense += Number(expense.amount);
+        }
+      });   
+
+      monthlyExpenses.push({
+        date: month,
+        balance: monthExpense,
+      });
+    });
+
+    console.log('exp',expenses)
+    console.log('month',monthlyExpenses)
+
+    return monthlyExpenses;
+
+  }
