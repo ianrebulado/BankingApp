@@ -75,7 +75,6 @@ export function userSignedIn(username, password) {
   );
 
   if (user) {
-    console.log("Signed In User:", user);
     updateLocalStorage("SignedInUser", JSON.stringify(user));
   } else {
     localStorage.removeItem("SignedInUser");

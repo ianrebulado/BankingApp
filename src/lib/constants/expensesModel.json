@@ -2,8 +2,48 @@
   {
     "expense_id": "20231025214524552",
     "user_id": "u-l2hckqwf1p",
+    "description": "shopping",
+    "amount": 3000,
+    "created_on": "2023-08-05T00:30:10.308Z",
+    "updated_on": "2023-11-05T00:30:10.308Z"
+  },
+  {
+    "expense_id": "20231025214524552",
+    "user_id": "u-l2hckqwf1p",
+    "description": "meals",
+    "amount": 5000,
+    "created_on": "2023-08-05T00:30:10.308Z",
+    "updated_on": "2023-11-05T00:30:10.308Z"
+  },
+  {
+    "expense_id": "20231025214524552",
+    "user_id": "u-l2hckqwf1p",
+    "description": "meals",
+    "amount": 5000,
+    "created_on": "2023-09-05T00:30:10.308Z",
+    "updated_on": "2023-11-05T00:30:10.308Z"
+  },
+  {
+    "expense_id": "20231025214524552",
+    "user_id": "u-l2hckqwf1p",
     "description": "dinner",
     "amount": 1000,
+    "created_on": "2023-10-05T00:30:10.308Z",
+    "updated_on": "2023-11-05T00:30:10.308Z"
+  },
+  {
+    "expense_id": "20231025214524552",
+    "user_id": "u-l2hckqwf1p",
+    "description": "shopping",
+    "amount": 3000,
+    "created_on": "2023-08-05T00:30:10.308Z",
+    "updated_on": "2023-11-05T00:30:10.308Z"
+  },
+  {
+    "expense_id": "20231025214524552",
+    "user_id": "u-l2hckqwf1p",
+    "description": "dinner",
+    "amount": 5000,
     "created_on": "2023-11-05T00:30:10.308Z",
     "updated_on": "2023-11-05T00:30:10.308Z"
   },
@@ -37,6 +77,14 @@
     "description": "groceries",
     "amount": 9000,
     "created_on": "2023-11-05T00:30:10.308Z",
+    "updated_on": "2023-11-05T00:30:10.308Z"
+  },
+  {
+    "expense_id": "20231025214439076",
+    "user_id": "u-l2hckqwf1p",
+    "description": "groceries",
+    "amount": 8000,
+    "created_on": "2023-10-05T00:30:10.308Z",
     "updated_on": "2023-11-05T00:30:10.308Z"
   },
   {
