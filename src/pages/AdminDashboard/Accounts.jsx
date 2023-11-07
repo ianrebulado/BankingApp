@@ -25,7 +25,7 @@ import { formatNumber } from "../../lib/utils/formatter";
 
 const initialUsersTable = createUsersTable(usersModel);
 
-export default function Accounts({ user }) {
+export default function Accounts() {
   const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [message, setMessage] = useState(null);
@@ -36,8 +36,9 @@ export default function Accounts({ user }) {
   const totalUsers = formatNumber(getTotalUsers());
   const totalTransactions = formatNumber(getTotalTransactions());
   const totalTransactionsVolume = formatNumber(getTransactionsVolume());
-
   const usersData = fetchUsers();
+
+  const user = localStorage.getItem("SignedInUser");
 
   const columns = ["user_id", "username", "name", "email", "balance"];
 
@@ -111,52 +112,54 @@ export default function Accounts({ user }) {
   return (
     <>
       {showToast && <Toast type={"success"} message={message} />}
-      <div className="dashboard">
-        <div className="header-container">
-          <Header user={user.username} />
-          <Button
-            type={"button"}
-            text={"Create User"}
-            handleClick={() => handleClick("createUser")}
-          />
-        </div>
-
-        <div className="cards-container">
-          <Card title={"Total Users"}>{totalUsers}</Card>
-          <Card title={"Total Transactions"}>{totalTransactions}</Card>
-          <Card title={"Transaction Volume"}>{totalTransactionsVolume}</Card>
-        </div>
-        <div className="search-container">
-          <SearchInput
-            placeholder={"Search users..."}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-          />
-          <div className="buttons-container">
+      {user && (
+        <div className="dashboard">
+          <div className="header-container">
+            <Header user={user.username} />
             <Button
               type={"button"}
-              text={"Deposit"}
-              handleClick={() => handleClick("deposit")}
-            />
-            <Button
-              type={"button"}
-              text={"Withdraw"}
-              handleClick={() => handleClick("withdraw")}
-            />
-            <Button
-              type={"button"}
-              text={"Transfer"}
-              handleClick={() => handleClick("transfer")}
+              text={"Create User"}
+              handleClick={() => handleClick("createUser")}
             />
           </div>
+
+          <div className="cards-container">
+            <Card title={"Total Users"}>{totalUsers}</Card>
+            <Card title={"Total Transactions"}>{totalTransactions}</Card>
+            <Card title={"Transaction Volume"}>{totalTransactionsVolume}</Card>
+          </div>
+          <div className="search-container">
+            <SearchInput
+              placeholder={"Search users..."}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+            />
+            <div className="buttons-container">
+              <Button
+                type={"button"}
+                text={"Deposit"}
+                handleClick={() => handleClick("deposit")}
+              />
+              <Button
+                type={"button"}
+                text={"Withdraw"}
+                handleClick={() => handleClick("withdraw")}
+              />
+              <Button
+                type={"button"}
+                text={"Transfer"}
+                handleClick={() => handleClick("transfer")}
+              />
+            </div>
+          </div>
+          {showModal && (
+            <Modal onClose={() => setShowModal(false)}>{formComponent}</Modal>
+          )}
+          {usersTableData && (
+            <Table data={usersTableData} columns={columns} itemsPerPage={5} />
+          )}
         </div>
-        {showModal && (
-          <Modal onClose={() => setShowModal(false)}>{formComponent}</Modal>
-        )}
-        {usersTableData && (
-          <Table data={usersTableData} columns={columns} itemsPerPage={5} />
-        )}
-      </div>
+      )}
     </>
   );
 }

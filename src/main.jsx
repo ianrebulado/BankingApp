@@ -4,12 +4,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./styles/styles.scss";
 
-import SignupPage from "./pages/LoginPage/SignupPage.jsx";
+import ProtectedRoute from "./ProtectedRoute";
+import SignupPage from "./pages/LoginPage/SignupPage";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 import AdminLayout from "./pages/AdminDashboard/AdminLayout";
 import Accounts from "./pages/AdminDashboard/Accounts";
 import Transactions from "./pages/AdminDashboard/Transactions";
-import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 const signedInUser = JSON.parse(localStorage.getItem("SignedInUser"));
 
@@ -24,7 +25,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admindashboard",
-    element: <AdminLayout />,
+    element: (
+      <ProtectedRoute requiredRole={"admin"}>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
@@ -38,7 +43,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <ClientDashboard />,
+    element: (
+      <ProtectedRoute requiredRole={"client"}>
+        <ClientDashboard />
+      </ProtectedRoute>
+    ),
   },
 ]);
 
