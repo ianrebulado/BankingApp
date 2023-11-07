@@ -1,0 +1,43 @@
+@use "../../../styles/variables/theme" as theme;
+
+.select-input {
+  font-size: theme.$font-size-small;
+  padding-bottom: theme.$body-padding;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  select {
+    background-color: theme.$white-color-lighter;
+    color: theme.$secondary-color-dark;
+    box-shadow: theme.$box-shadow;
+    padding: 0.5rem 0.75rem;
+    height: fit-content;
+    border-radius: 5rem;
+    width: 100%;
+    min-width: 5rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  option {
+    cursor: pointer;
+  }
+
+  option:checked {
+    background-color: theme.$primary-color;
+    color: theme.$secondary-color-light;
+  }
+
+  option:hover {
+    background-color: red;
+    filter: brightness(80%);
+  }
+}
+
+.input-label {
+  font-weight: theme.$font-weight-semibold;
+  color: theme.$grey;
+}

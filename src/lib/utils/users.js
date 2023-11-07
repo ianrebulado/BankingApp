@@ -8,14 +8,14 @@ export function createUser(newUserForm) {
   const user_id = generateId("user");
   const createdOn = new Date();
   const updatedOn = new Date();
-  const role = "client";
+
+  console.log(newUserForm);
 
   usersData.push({
     ...newUserForm,
     user_id,
     createdOn,
     updatedOn,
-    role
   });
 
   storeUsers(usersData);

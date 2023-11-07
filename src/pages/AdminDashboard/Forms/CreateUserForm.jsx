@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { Button, Modal, InputField, FormProvider } from "../../../components/";
+import {
+  Button,
+  Modal,
+  InputField,
+  FormProvider,
+  SelectInput,
+} from "../../../components/";
 import { createUser } from "../../../lib/utils/users";
 import {
   createUserFormInputs,
@@ -53,7 +59,7 @@ export default function CreateUserForm({
 
   return (
     <>
-      <Modal title={"Create User"}>
+      <Modal title={"Create User"} setShowModal={setShowModal}>
         <FormProvider
           formValues={formState}
           handleInputChange={handleInputChange}
@@ -71,6 +77,15 @@ export default function CreateUserForm({
                 />
               )
             )}
+            <SelectInput
+              label={"Select a role"}
+              name={"role"}
+              placeholder={"Select a role..."}
+              options={[
+                { value: "admin", label: "Admin" },
+                { value: "client", label: "Client" },
+              ]}
+            />
             <Button type={"submit"} text={"Create User"} />
             <Button
               type={"button"}

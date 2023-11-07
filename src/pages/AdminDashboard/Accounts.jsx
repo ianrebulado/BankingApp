@@ -153,7 +153,7 @@ export default function Accounts() {
             </div>
           </div>
           {showModal && (
-            <Modal onClose={() => setShowModal(false)}>{formComponent}</Modal>
+            <Modal setShowModal={setShowModal}>{formComponent}</Modal>
           )}
           {usersTableData && (
             <Table data={usersTableData} columns={columns} itemsPerPage={5} />
