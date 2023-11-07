@@ -1,4 +1,3 @@
-import usersModel from "../constants/usersModel";
 import generateId from "../utils/generateId";
 import transactionsModel from "../constants/transactionsModel.json";
 
@@ -10,7 +9,7 @@ function createTransaction(userId, type, amount) {
     transaction_id: generateId(),
     user_id: userId,
     type: type,
-    amount: transactionAmount,
+    amount: parseFloat(transactionAmount),
     created_on: new Date(),
   });
 
@@ -75,7 +74,7 @@ export function getBalance(userId) {
   let transactions = getTransactions(userId);
 
   transactions.forEach((transaction) => {
-    balance += transaction.amount;
+    balance += parseFloat(transaction.amount);
   });
 
   return balance;
@@ -107,7 +106,7 @@ export function getMonthlyBalance(userId) {
       let yearNum = new Date(transaction.created_on).getFullYear().toString();
 
       if (monthNum === month && yearNum === year) {
-        monthlyBalance += transaction.amount;
+        monthlyBalance += parseFloat(transaction.amount);
       }
     });
 
@@ -142,6 +141,6 @@ export function getTransactionsVolume() {
   }
 }
 
-export function getAccountBalance(balance, expenses){
+export function getAccountBalance(balance, expenses) {
   return balance - expenses;
 }

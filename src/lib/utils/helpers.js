@@ -18,9 +18,9 @@ export function createUsersTable(userData) {
 
 export function createTransactionsTable(transactionData) {
   return transactionData.map((transaction) => {
-    const { created_on, transactions_id, user_id, type, amount } = transaction;
+    const { created_on, transaction_id, user_id, type, amount } = transaction;
 
-    const name = filterUsersById(user_id);
-    return { created_on, transactions_id, name, type, amount };
+    const name = filterUsersById(user_id).username;
+    return { created_on, transaction_id, name, type, amount };
   });
 }

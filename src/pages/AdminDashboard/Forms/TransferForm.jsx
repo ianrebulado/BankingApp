@@ -16,6 +16,7 @@ export default function TransferForm({
   usersData,
   setShowModal,
   setShowToast,
+  setMessage,
 }) {
   const [inputState, setInputState] = useState(transferFormInputs);
   const [formState, setFormState] = useState(initialTransferFormState);
@@ -48,6 +49,7 @@ export default function TransferForm({
 
       setShowToast(true);
       setShowModal(false);
+      setMessage("Successful transfer made");
     } else {
       console.log("Form is not valid");
     }

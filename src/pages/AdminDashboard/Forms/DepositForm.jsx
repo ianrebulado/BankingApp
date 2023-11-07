@@ -12,7 +12,12 @@ import {
 import { deposit } from "../../../lib/utils/transactions";
 import { filterUsersByName } from "../../../lib/utils/users";
 
-export default function DepositForm({ usersData, setShowModal, setShowToast }) {
+export default function DepositForm({
+  usersData,
+  setShowModal,
+  setShowToast,
+  setMessage,
+}) {
   const [inputState, setInputState] = useState(depositFormInputs);
   const [formState, setFormState] = useState(initialDepositFormState);
 
@@ -37,6 +42,7 @@ export default function DepositForm({ usersData, setShowModal, setShowToast }) {
 
       setShowToast(true);
       setShowModal(false);
+      setMessage("Successful deposit made");
     } else {
       console.log("Form is not valid");
     }
