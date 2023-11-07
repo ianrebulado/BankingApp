@@ -11,6 +11,7 @@ import AdminLayout from "./pages/AdminDashboard/AdminLayout";
 import Accounts from "./pages/AdminDashboard/Accounts";
 import Transactions from "./pages/AdminDashboard/Transactions";
 import LoginPage from "./pages/LoginPage/LoginPage";
+import ErrorPage from "./pages/ErrorPage";
 
 const signedInUser = JSON.parse(localStorage.getItem("SignedInUser"));
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
   },
+  {
+    path: '*',
+    element: <ErrorPage />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
