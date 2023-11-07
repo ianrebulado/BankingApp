@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { SearchInput, Table } from "../../components";
-import { TransactionsModel } from "../../lib/constants/";
+import { transactionsModel } from "../../lib/constants";
 import { filterData, createTransactionsTable } from "../../lib/utils/helpers";
 
-const initialTransactionsTable = createTransactionsTable(TransactionsModel);
+const initialTransactionsTable = createTransactionsTable(transactionsModel);
 
-function Expenses() {
+function Transactions() {
   const [searchTerm, setSearchTerm] = useState("");
   const [transactionsTableData, setTransactionsTableData] = useState(
     initialTransactionsTable
@@ -14,7 +14,8 @@ function Expenses() {
   const columns = [
     "Created On",
     "Transaction ID",
-    "Transaction Type",
+    "Username",
+    "Type",
     "Amount",
   ];
 
@@ -29,7 +30,7 @@ function Expenses() {
   }, [transactionsTableData, searchTerm]);
 
   return (
-    <>
+    <div className="transactions">
       <div className="search-container">
         <SearchInput
           placeholder={"Search users..."}
@@ -38,8 +39,8 @@ function Expenses() {
         />
       </div>
       <Table data={transactionsTableData} columns={columns} itemsPerPage={25} />
-    </>
+    </div>
   );
 }
 
-export default Expenses;
+export default Transactions;

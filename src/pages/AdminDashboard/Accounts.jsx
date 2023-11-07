@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Header,
   Card,
@@ -25,9 +25,10 @@ import { formatNumber } from "../../lib/utils/formatter";
 
 const initialUsersTable = createUsersTable(usersModel);
 
-function AdminDashboard({ user }) {
+export default function Accounts({ user }) {
   const [showModal, setShowModal] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [message, setMessage] = useState(null);
   const [formComponent, setFormComponent] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [usersTableData, setUsersTableData] = useState(initialUsersTable);
@@ -50,6 +51,7 @@ function AdminDashboard({ user }) {
             usersData={usersData}
             setShowModal={setShowModal}
             setShowToast={setShowToast}
+            setMessage={setMessage}
           />
         );
         break;
@@ -59,6 +61,7 @@ function AdminDashboard({ user }) {
             usersData={usersData}
             setShowModal={setShowModal}
             setShowToast={setShowToast}
+            setMessage={setMessage}
           />
         );
         break;
@@ -68,6 +71,7 @@ function AdminDashboard({ user }) {
             usersData={usersData}
             setShowModal={setShowModal}
             setShowToast={setShowToast}
+            setMessage={setMessage}
           />
         );
         break;
@@ -77,6 +81,7 @@ function AdminDashboard({ user }) {
             usersData={usersData}
             setShowModal={setShowModal}
             setShowToast={setShowToast}
+            setMessage={setMessage}
           />
         );
         break;
@@ -105,12 +110,10 @@ function AdminDashboard({ user }) {
 
   return (
     <>
-      {showToast && (
-        <Toast type={"success"} message={"User successfully created."} />
-      )}
+      {showToast && <Toast type={"success"} message={message} />}
       <div className="dashboard">
         <div className="header-container">
-          <Header user={user} />
+          <Header user={user.username} />
           <Button
             type={"button"}
             text={"Create User"}
@@ -157,5 +160,3 @@ function AdminDashboard({ user }) {
     </>
   );
 }
-
-export default AdminDashboard;

@@ -14,6 +14,7 @@ export default function CreateUserForm({
   usersData,
   setShowModal,
   setShowToast,
+  setMessage,
 }) {
   const [inputState, setInputState] = useState(createUserFormInputs);
   const [formState, setFormState] = useState(initialCreateUserFormState);
@@ -36,6 +37,7 @@ export default function CreateUserForm({
 
       setShowToast(true);
       setShowModal(false);
+      setMessage("User successfully created");
     } else {
       console.log("Form is not valid");
     }
