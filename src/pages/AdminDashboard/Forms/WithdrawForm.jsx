@@ -16,6 +16,7 @@ export default function WithdrawForm({
   usersData,
   setShowModal,
   setShowToast,
+  setMessage,
 }) {
   const [inputState, setInputState] = useState(withdrawFormInputs);
   const [formState, setFormState] = useState(initialWithdrawFormState);
@@ -41,6 +42,7 @@ export default function WithdrawForm({
 
       setShowToast(true);
       setShowModal(false);
+      setMessage("Successful withdrawal made");
     } else {
       console.log("Form is not valid");
     }

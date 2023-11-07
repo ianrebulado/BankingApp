@@ -1,13 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./styles/styles.scss";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SignupPage from "./pages/SignupPage.jsx";
-// import LoginPage from './pages/LoginPage.jsx'
-import AdminDashboard from "./pages//AdminDashboard/AdminDashboard";
-import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
-import LoginPage from "./pages/LoginPage.jsx";
 import { useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import "./styles/styles.scss";
+
+import SignupPage from "./pages/SignupPage";
+import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
+import AdminLayout from "./pages/AdminDashboard/AdminLayout";
+import Accounts from "./pages/AdminDashboard/Accounts";
+import Transactions from "./pages/AdminDashboard/Transactions";
+import LoginPage from "./pages/LoginPage.jsx";
+
+const signedInUser = JSON.parse(localStorage.getItem("SignedInUser"));
 
 const router = createBrowserRouter([
   {
@@ -20,14 +24,20 @@ const router = createBrowserRouter([
   },
   {
     path: "/admindashboard",
-    element: (
-      <>
-        <AdminDashboard />
-      </>
-    ),
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <Accounts user={signedInUser} />,
+      },
+      {
+        path: "/admindashboard/expenses",
+        element: <Transactions />,
+      },
+    ],
   },
   {
-    path: "/dashboard",
+    path: "/clientDashboard",
     element: <ClientDashboard />,
   },
 ]);
