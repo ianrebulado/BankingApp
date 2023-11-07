@@ -18,7 +18,7 @@ export function formatName(name) {
 }
 
 export function formatNumber(number) {
-  return new Intl.NumberFormat("en-IN").format(number);
+  return Intl.NumberFormat().format(number);
 }
 
 export function formatAmount(amount) {
