@@ -52,7 +52,6 @@ export function deleteExpense(id) {
 }
 
 export function storeInitialExpenses() {
-  console.log(expensesModel)
   localStorage.setItem("expenses", JSON.stringify(expensesModel));
 }
 
@@ -129,9 +128,6 @@ export function getMonthlyExpenses(userId){
         balance: monthExpense,
       });
     });
-
-    console.log('exp',expenses)
-    console.log('month',monthlyExpenses)
 
     return monthlyExpenses;
 
