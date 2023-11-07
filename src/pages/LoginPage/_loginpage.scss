@@ -1,22 +1,26 @@
 @use "/src/styles/variables/theme" as theme;
   
   .login-page {
-    background-color:   theme.$secondary-color-light;
+    background-color:   theme.$primary-color-light;
     display:            flex;
-    justify-content:    center;
-    width:              100vw;
-    height:             100vh;
+    justify-content:    flex-end;
+    width:              100%;
+    height:             auto;
 
     .home-img {
         box-shadow:     theme.$box-shadow;
-        width:          auto;
-        height:         auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width:          65%;
+        height:         100%;
         flex-grow:      1;
     }
     
     .home-logo {
         padding:        theme.$body-padding;
-        width:          45%;
+        width:          30%;
+        height:         auto;
     }
 
     .login-container {
@@ -32,17 +36,51 @@
     
     .login-form {
         background-color:   theme.$white-color-light;
-        box-shadow: theme.$box-shadow;
+        box-shadow:         theme.$box-shadow;
         padding:            calc(theme.$body-padding * 2);
         border-radius:      theme.$border-radius-2;
     }
 
+    .login-page-footer {
+      font-size:            theme.$font-size-smaller;
+      color:                theme.$grey;
+      padding:              theme.$body-padding;
+      display:              flex;
+      flex-direction:       column;
+      justify-content:      center;
+      align-items:          center;
+      text-align:           center;
+      gap:                  1rem;
+      width:                90%;
+    }
+
   }
 
-    .buttons-container {
-        display:            flex;
-        gap:                1rem;
+  .title-container {
+    padding:                calc(theme.$header-padding * 2) 
+                            calc(theme.$header-padding * 2) 
+                            0 
+                            calc(theme.$header-padding * 2);
+    display:                flex;
+    justify-content:        space-between;
+    align-items:            center;
+    gap: 2rem;
+
+    .form-title {
+      font-size:            theme.$font-size-large;
+      font-weight:          theme.$font-weight-bold;
+      color:                theme.$accent-color-light;
     }
+
+    .sign-up-logo {
+      width: 10%;
+    }
+  }
+
+  .buttons-container {
+      display:            flex;
+      gap:                1rem;
+  }
 
   .sign-up-link a {
     font-size:              theme.$font-size-smaller;
@@ -50,7 +88,22 @@
     text-decoration:        none;
   }
 
+  a:hover {
+    text-decoration: underline;
+  }
+
+
   @media (max-width: 768px){
+    .login-page {
+      justify-content: center;
+
+      .login-container {
+        justify-content:    center;
+        align-items: center;
+        width:              100vw;
+    }
+    }
+
     .home-logo {
         width: 100%;
     }
@@ -59,13 +112,14 @@
         display:            none;
     }
 
-    .login-container {
-        justify-content:    center;
-        width:              100%;
-    }
+    
 
     .buttons-container {
         flex-direction:     column;
+    }
+
+    .title-container {
+      flex-direction: column-reverse;
     }
   }
   

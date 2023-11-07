@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SignupPage from "./pages/SignupPage.jsx";
+import SignupPage from "./pages/LoginPage/SignupPage.jsx";
 import AdminDashboard from "./pages//AdminDashboard/AdminDashboard";
 import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 import "./styles/styles.scss";
+import ProtectedRoute from "./lib/utils/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -19,14 +20,20 @@ const router = createBrowserRouter([
   {
     path: "/admindashboard",
     element: (
-      <>
+      <ProtectedRoute requiredRole={'admin'}>
+        
         <AdminDashboard />
-      </>
+      </ProtectedRoute>
     ),
   },
   {
     path: "/dashboard",
-    element: <ClientDashboard />,
+    element: (
+      <ProtectedRoute requiredRole={'client'}>
+        
+        <ClientDashboard />
+      </ProtectedRoute>
+    ),
   },
 ]);
 
