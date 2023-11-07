@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Button, InputField } from "../../components";
-import { FormProvider } from "../../components/Global/Form/FormContext";
-import usersModel from "../../lib/constants/usersModel";
-import generateId from "../../lib/utils/generateId";
+import { Button, InputField } from "../../../components";
+import { FormProvider } from "../../../components/Global/Form/FormContext";
+import { usersModel } from "../../../lib/constants";
+import generateId from "../../../lib/utils/generateId";
 import {
   clearValidationMessages,
   validateSignUpForm,
-} from "../../lib/utils/validations";
-import { createUser } from "../../lib/utils/users";
+} from "../../../lib/utils/validations";
+import { createUser } from "../../../lib/utils/users";
+import { Link } from "react-router-dom";
 
 const inputs = [
   {
@@ -111,7 +112,10 @@ export default function SignUpForm() {
             />
           )
         )}
-        <Button type={"submit"} text={"Sign In"} />
+        <div className="buttons-container">
+          <Button type={"submit"} text={"Create Account"} />
+          <span className="sign-up-link"><Link to='/'>Go Back to Login Page</Link></span> 
+        </div>
       </form>
     </FormProvider>
   );
