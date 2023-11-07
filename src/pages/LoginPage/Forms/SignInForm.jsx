@@ -1,11 +1,9 @@
 import { useState } from "react";
-import { Button, InputField } from "../../components";
-import { FormProvider } from "../../components/Global/Form/FormContext";
-import { usersModel } from "../../lib/constants";
-import { validateSignInForm } from "../../lib/utils/validations";
+import { Button, InputField } from "../../../components";
+import { FormProvider } from "../../../components/Global/Form/FormContext";
+import { validateSignInForm } from "../../../lib/utils/validations";
 import { Link, useNavigate} from "react-router-dom";
-import SignupPage from "../SignupPage";
-import { fetchUsers, userSignedIn } from "../../lib/utils/users";
+import { fetchUsers, userSignedIn } from "../../../lib/utils/users";
 
 const inputs = [
   {
@@ -79,9 +77,10 @@ export default function SignInForm() {
             />
           )
         )}
-        <Button type={"submit"} text={"Sign In"} />
-        
-        <SignupLink />
+        <div className="buttons-container">
+          <Button type={"submit"} text={"Sign In"} />
+          <SignupLink />
+        </div>
 
       </form>
     </FormProvider>
@@ -89,5 +88,5 @@ export default function SignInForm() {
 }
 
 function SignupLink () {
-  return  <Link to='/signup'> Not yet a member? Sign up! </Link> 
+  return  <span className="sign-up-link"><Link to='/signup'>Not yet a member? Sign up!</Link></span> 
 }

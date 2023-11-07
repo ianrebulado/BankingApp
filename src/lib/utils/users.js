@@ -1,6 +1,6 @@
 import usersModel from "../constants/usersModel.json";
 import generateId from "./generateId";
-import { updateLocalStorage } from "../../pages/LoginPage/SignInForm";
+import { updateLocalStorage } from "../../pages/LoginPage/Forms/SignInForm";
 
 const usersData = fetchUsers();
 

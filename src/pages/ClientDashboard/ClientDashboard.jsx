@@ -15,9 +15,10 @@ import { getAccountBalance, getBalance, getMonthlyBalance } from "../../lib/util
 import {
   formatDate,
   formatAmount,
-  sortDescendingOrder,
 } from "../../lib/utils/formatter";
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
+import { signout } from "../../lib/utils/signout";
+import { Link } from "react-router-dom";
 
 function ClientDashboard() {
   const user = JSON.parse(localStorage.getItem("SignedInUser"));
@@ -123,7 +124,7 @@ function ClientDashboard() {
         <div className="expenses-container">
           <div className="header-container">
             <Header user={user.first_name} />
-            <LogOut className="logout-icon" />
+           <Link to={'/'}><LogOut className="logout-icon" onClick={signout} /> </Link> 
           </div>
           <div className="cards-container">
             <div className="balance-cards-container">
