@@ -11,13 +11,7 @@ function Transactions() {
     initialTransactionsTable
   );
 
-  const columns = [
-    "Created On",
-    "Transaction ID",
-    "Username",
-    "Type",
-    "Amount",
-  ];
+  const columns = ["created_on", "transaction_id", "name", "type", "amount"];
 
   useEffect(() => {
     if (searchTerm === "" || searchTerm.length === 1) {
