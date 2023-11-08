@@ -11,14 +11,14 @@ import {
   getMonthlyExpenses,
   storeInitialExpenses
 } from "../../lib/utils/expenses";
-import AddExpenseForm from "../ClientDashboard/Forms/AddExpenseForm";
+import AddExpenseForm from "./Forms/AddExpenseForm";
 
 import { getAccountBalance, getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
 import {
   formatDate,
   formatAmount,
 } from "../../lib/utils/formatter";
-import ConfirmExpenseDelete from "../ClientDashboard/Forms/ConfirmExpenseDelete";
+import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
 import { signout } from "../../lib/utils/signout";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";

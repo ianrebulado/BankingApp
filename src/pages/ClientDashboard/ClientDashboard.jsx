@@ -27,7 +27,7 @@ function ClientDashboard(props) {
 
   return (
     <div className='client-dashboard'>
-      <Sidebar isOpen={isSidebarOpen} navItems={navItems} />
+      <Sidebar isOpen={isSidebarOpen} navItems={navItems} toggleSidebar={toggleSideBar} />
       <Outlet />
       <MoreVertical className="mobile-menu" onClick={toggleSideBar} />
     </div>

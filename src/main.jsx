@@ -12,6 +12,7 @@ import Accounts from "./pages/AdminDashboard/Accounts";
 import Transactions from "./pages/AdminDashboard/Transactions";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import BudgetApp from "./pages/BudgetApp/BudgetApp";
+import UserAccount from "./pages/ClientDashboard/UserAccount";
 
 const signedInUser = JSON.parse(localStorage.getItem("SignedInUser"));
 
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <BudgetApp />
+        element: <UserAccount />
       },
       {
         path: "/dashboard/expenses",

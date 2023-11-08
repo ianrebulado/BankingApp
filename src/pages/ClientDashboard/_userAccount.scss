@@ -1,0 +1,100 @@
+@use "/src/styles/variables/theme" as theme;
+
+.account-container {
+    font-family: theme.$font-family;
+    padding-bottom: calc(theme.$body-padding * 2);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 10rem;
+
+    .account-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+
+        .account-info {
+            padding: theme.$body-padding;
+            display: flex;
+            flex-direction: column;
+
+            .account-number {
+                font-size: theme.$font-size-medium;
+                font-weight: theme.$font-weight-bold;
+            }
+
+            .account-name {
+                font-size: theme.$font-size-small;
+                color: theme.$grey;
+            }
+        }
+
+
+        .balance-container {
+            padding: theme.$body-padding;
+            display: flex;
+            flex-direction: column;
+
+            .balance-amount {
+                font-size: theme.$font-size-large;
+                font-weight: theme.$font-weight-bold;
+            }
+
+            .balance-label {
+                font-size: theme.$font-size-smaller;
+                color: theme.$grey;
+            }
+        }
+    }
+
+    .account-buttons-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        div {
+            color: theme.$accent-color-dark;
+            font-weight: theme.$font-weight-bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            width: max-content;
+            cursor: pointer;
+
+            h1 {
+                color: theme.$grey;
+                font-size: theme.$font-size-small;
+
+
+            }
+
+            &:hover {
+                color: theme.$accent-color-light;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .client-dashboard {
+        .account-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+    
+            .account-buttons-container {
+                flex-direction: row;
+            }
+        }
+    
+        .sidebar {
+            width: 100%;
+            left: -900px;
+        }
+    
+        .sidebar .open {
+            display: block;
+        }
+    }
+}

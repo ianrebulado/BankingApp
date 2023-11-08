@@ -44,7 +44,7 @@ export function send(sendingUserId, receivingUserId, amount) {
   return true;
 }
 
-function getTransactions(userId) {
+export function getTransactions(userId) {
   let transactionsData = fetchTransactions();
   let transactions = [];
 
