@@ -72,13 +72,15 @@ function SendAmount({ userId, usersData, setShowModal, setShowToast, updateTrans
                             ) : null
                         }
                     )}
-                    <Button type={"submit"} text={"Transfer"} />
-                    <Button
-                        type={"button"}
-                        text={"Cancel"}
-                        handleClick={handleCancel}
-                        secondary
-                    />
+                    <div className="buttons-container">
+                        <Button type={"submit"} text={"Transfer"} />
+                        <Button
+                            type={"button"}
+                            text={"Cancel"}
+                            handleClick={handleCancel}
+                            secondary
+                        />
+                    </div>
                 </form>
             </FormProvider>
         </div>

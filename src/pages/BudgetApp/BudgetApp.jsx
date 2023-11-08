@@ -125,9 +125,6 @@ function BudgetApp() {
         <div className="expenses-container">
           <div className="header-container">
             <Header user={user.first_name} />
-            {/* <Link to={'/'}>
-                <LogOut className="logout-icon" onClick={signout} />
-            </Link>  */}
           </div>
           <div className="cards-container">
             <div className="balance-cards-container">
@@ -138,11 +135,13 @@ function BudgetApp() {
               <BalanceChart title={"Expenses Overview"} data={monthlyBalance} />
             </div>
           </div>
-          <Button
-            type={"button"}
-            text={"New Expense"}
-            handleClick={handleAddClick}
-          />
+          <div className="buttons-container">
+            <Button
+              type={"button"}
+              text={"New Expense"}
+              handleClick={handleAddClick}
+            />
+          </div>
           {showModal && (
             <Modal
               title={

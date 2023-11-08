@@ -4,7 +4,16 @@
     background-size:    theme.$page-header-bg-size;
     font-family:        theme.$font-family;
     font-weight:        theme.$heading-font-weight;
-    font-size:          theme.$heading-font-size-h2;
+    // font-size:          theme.$heading-font-size-h2;
+    font-size:          clamp(1rem, -0.25rem + 3.333vw, 2.75rem);
     padding:            theme.$header-padding;
     color:              theme.$secondary-color-dark;
+    display:            flex;
+    justify-content:    flex-start;
+    align-items:        center;
+    width:              80vw;
+
+    .header-logo {
+        max-width: 3rem;
+    }
 }

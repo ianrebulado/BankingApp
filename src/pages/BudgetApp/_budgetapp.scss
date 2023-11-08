@@ -30,6 +30,11 @@
 
             table {
                 width: 100%;
+
+                th {
+                    background-color: theme.$secondary-color-light;
+                    color: theme.$accent-color-dark;
+                }
             }
         }
     }
@@ -45,12 +50,33 @@
             justify-content:  center;
             align-items:      center;
             width: 100%;
+            gap: 1rem;
 
             .account-container {
                 .card-container {
                     width: 100%;
                     height: auto;
                     gap: 1rem;
+                }
+            }
+
+            .table-container {
+                font-size: 0.5rem;
+                width: 100%;
+
+                th {
+                    display: none;
+                }
+
+                td {
+                    max-width: 1rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .edit-icon, .delete-icon {
+                    width: 0.9rem;
                 }
             }
         }
