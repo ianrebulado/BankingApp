@@ -47,6 +47,7 @@ export const initialCreateUserFormState = [
     last_name: null,
     email: null,
     password: null,
+    role: null,
   },
 ];
 

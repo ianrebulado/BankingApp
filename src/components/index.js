@@ -5,8 +5,9 @@ import InputField from "./Global/InputField/InputField";
 import { FormProvider } from "./Global/Form/FormContext";
 import Modal from "./Global/Modal/Modal";
 import SearchInput from "./Global/SearchInput/SearchInput";
-import Toast from "./Global/Toast/Toast";
+import SelectInput from "./Global/SelectInput/SelectInput";
 import Table from "./Global/Table/Table";
+import Toast from "./Global/Toast/Toast";
 
 export {
   Button,
@@ -16,6 +17,7 @@ export {
   FormProvider,
   Modal,
   SearchInput,
-  Toast,
+  SelectInput,
   Table,
+  Toast,
 };
