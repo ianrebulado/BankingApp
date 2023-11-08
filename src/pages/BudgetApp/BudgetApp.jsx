@@ -122,13 +122,12 @@ function BudgetApp() {
           }
         />
       )}
-      <div className="client-dashboard">
         <div className="expenses-container">
           <div className="header-container">
             <Header user={user.first_name} />
-            <Link to={'/'}>
+            {/* <Link to={'/'}>
                 <LogOut className="logout-icon" onClick={signout} />
-            </Link> 
+            </Link>  */}
           </div>
           <div className="cards-container">
             <div className="balance-cards-container">
@@ -173,21 +172,22 @@ function BudgetApp() {
               )}
             </Modal>
           )}
-          <Table
-                className="table-container"
-                data={data}
-                columns={columns}
-                itemsPerPage={5}
-                rowKey={"expense_id"}
-                actions={
-                <>
-                    <FileEdit className="edit-icon" onClick={handleEditClick} />
-                    <Trash2 className="delete-icon" onClick={handleDeleteClick} />
-                </>
-                }
-            />
+          <div className="table-container">
+            <Table
+                  className="table-container"
+                  data={data}
+                  columns={columns}
+                  itemsPerPage={5}
+                  rowKey={"expense_id"}
+                  actions={
+                  <>
+                      <FileEdit className="edit-icon" onClick={handleEditClick} />
+                      <Trash2 className="delete-icon" onClick={handleDeleteClick} />
+                  </>
+                  }
+              />
+          </div>
         </div>
-      </div>
     </>
   );
 }

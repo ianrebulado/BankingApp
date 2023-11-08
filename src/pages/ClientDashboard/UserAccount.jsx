@@ -135,13 +135,9 @@ function UserAccount() {
             />
         </Modal>
       )}
-      <div className="client-dashboard">
         <div className="expenses-container">
           <div className="header-container">
             <Header user={user.first_name} />
-            <Link to={'/'}>
-                <LogOut className="logout-icon" onClick={signout} />
-            </Link> 
           </div>
           <div className="account-container">
             <div className="card-container">
@@ -163,14 +159,15 @@ function UserAccount() {
                 <div onClick={handlePrint}><Printer  /><h1>Print SOA</h1></div>
             </div>
           </div>
-          <Table
-            data={data}
-            columns={columns}
-            itemsPerPage={10}
-            rowKey={"transaction_id"}
-          />
+          <div className="table-container">
+            <Table
+              data={data}
+              columns={columns}
+              itemsPerPage={10}
+              rowKey={"transaction_id"}
+            />
+          </div>
         </div>
-      </div>
     </>
   );
 }

@@ -1,4 +1,4 @@
-@use "/src/styles/variables/theme" as theme;
+@use "../../styles/variables/theme" as theme;
 
 .account-container {
     font-family: theme.$font-family;
@@ -6,7 +6,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
-    gap: 10rem;
+    gap: 5rem;
+    width: 100%;
 
     .account-card {
         display: flex;
@@ -37,7 +38,8 @@
             flex-direction: column;
 
             .balance-amount {
-                font-size: theme.$font-size-large;
+                // font-size: theme.$font-size-large;
+                font-size: clamp(1rem, 0.286rem + 1.905vw, 2rem);
                 font-weight: theme.$font-weight-bold;
             }
 
@@ -63,7 +65,7 @@
             cursor: pointer;
 
             h1 {
-                color: theme.$grey;
+                color: theme.$secondary-color-dark;
                 font-size: theme.$font-size-small;
 
 
@@ -82,6 +84,12 @@
             display: flex;
             flex-direction: column;
             gap: 2rem;
+
+            .account-card {
+                flex-direction: column-reverse;
+                gap: 0;
+                text-align: center;
+            }
     
             .account-buttons-container {
                 flex-direction: row;
@@ -91,10 +99,11 @@
         .sidebar {
             width: 100%;
             left: -900px;
+
+            .open {
+                left: 0;
+            }
         }
-    
-        .sidebar .open {
-            display: block;
-        }
+
     }
 }

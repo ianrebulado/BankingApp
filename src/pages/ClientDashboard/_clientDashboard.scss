@@ -1,71 +1,66 @@
 @use '../../styles/variables/theme' as theme;
 
-.expenses-container {
-  background-color: theme.$white-color-light;
-  display:            flex;
-  flex-direction:     column;
-  gap:                1rem;
-
-  .header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .cards-container {
-    display:            flex;
-    justify-content:    center;
-    align-items:        center;
-    width:              100%;
-    height:             50vh;
-    gap:                3rem;
+.client-dashboard {
+  .expenses-container {
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   
-    .balance-cards-container {
+    .cards-container {
       display:            flex;
-      flex-direction:     column;
-      width:              30%;
-      gap:                2rem;
-  
-      .balance-div {
-        font-weight:        theme.$font-weight-bold;
-        font-size:          theme.$font-size-large;
-        line-height:        theme.$line-height;
-        color:              theme.$grey;
+      justify-content:    center;
+      align-items:        center;
+      width:              100%;
+      height:             50vh;
+      gap:                3rem;
+    
+      .balance-cards-container {
         display:            flex;
-        justify-content:    center;
-        align-items:        center;
-        width:              100%;
-        height:             100%;
+        flex-direction:     column;
+        width:              30%;
+        gap:                2rem;
+    
+        .balance-div {
+          font-weight:        theme.$font-weight-bold;
+          // font-size:          theme.$font-size-large;
+          font-size:          clamp(1rem, 0.286rem + 1.905vw, 2rem);
+          line-height:        theme.$line-height;
+          display:            flex;
+          justify-content:    center;
+          align-items:        center;
+          width:              100%;
+          height:             100%;
+        }
+      }
+    
+      .chart-container {
+        width:                60%;
+        height:               100%;
+    
+        .balance-overview-chart-container {
+          font-size:        theme.$font-size-small;
+          padding:          theme.$body-padding;
+        }
       }
     }
   
-    .chart-container {
-      width:                60%;
-      height:               100%;
-  
-      .balance-overview-chart-container {
-        font-size:        theme.$font-size-small;
-        padding:          theme.$body-padding;
-      }
+    .new-expense-btn {
+      align-self:       flex-end;
     }
-  }
-
-  .new-expense-btn {
-    align-self:       flex-end;
-  }
-
   
+    
+  }
 }
 
 .edit-icon {
   color:              theme.$accent-color-light;
-  // padding:            0 3px;
   cursor:             pointer;
 }
 
 .delete-icon {
   color:              theme.$accent-color-dark;
-  // padding:            0 3px;
   cursor:             pointer;
 }
 
@@ -123,18 +118,13 @@
 }
 
 @media (max-width: 768px){
-  .expenses-container {
-      flex-direction:   column;
-      justify-content:  center;
-      align-items:      center;
-      width:            100vw;
-
+  .client-dashboard {
+    .expenses-container {
       .cards-container {
         flex-direction:     column;
         align-items:        center;
-        width:              100%;
+        max-width:          80vw;
         height:             100%;
-        min-width:          100vw;
 
         .balance-cards-container, .chart-container {
           width:             100%;
@@ -146,6 +136,7 @@
       .new-expense-btn {
         align-self:        center;
       }
+  }
   }
 
   .confirm-delete-container {
