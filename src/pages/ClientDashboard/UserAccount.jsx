@@ -24,6 +24,8 @@ function UserAccount() {
 
   const userId = user.user_id;
 
+  console.log('id',userId)
+
   const columns = ["transaction_id", "created_on", "type", "amount"];
   const initialInput = { user_id: userId, type: null, amount: null };
 
@@ -86,7 +88,7 @@ function UserAccount() {
         printWindow.document.write(`
             <html>
                 <head>
-                    <title>Print Statement of Account</title>
+                    <title>Statement of Account</title>
                 </head>
                 <body>${ReactDOMServer.renderToStaticMarkup(printContent)}</body>
             </html>
@@ -119,13 +121,7 @@ function UserAccount() {
       {showToast && (
         <Toast
           type={"success"}
-          message={
-            action === "delete"
-              ? "expense succesfully deleted."
-              : action === "add"
-              ? "expense successfully added."
-              : "expense successfully updated."
-          }
+          message={"amount successfully transferred."}
         />
       )}
       {showModal && (
@@ -135,6 +131,7 @@ function UserAccount() {
                 usersData={usersData} 
                 setShowModal={setShowModal}
                 setShowToast={setShowToast}
+                updateTransactions={updateTransactions}
             />
         </Modal>
       )}

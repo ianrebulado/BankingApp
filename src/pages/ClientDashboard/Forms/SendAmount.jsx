@@ -1,21 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { initialTransferFormState, transferFormInputs } from '../../../lib/constants/globals';
 import { FormProvider, InputField, Button } from '../../../components';
-import { validateTransferForm } from '../../../lib/utils/validations';
-import { filterUsersById } from '../../../lib/utils/users';
+import { validateTransferForm, clearValidationMessages } from '../../../lib/utils/validations';
+import { filterUsersById, filterUsersByName, filterUsersByUsername } from '../../../lib/utils/users';
+import { getTransactions, send } from '../../../lib/utils/transactions';
 
-function SendAmount({ userId, usersData, setShowModal, setShowToast }) {
+function SendAmount({ userId, usersData, setShowModal, setShowToast, updateTransactions }) {
     const sendingUsername = filterUsersById(userId)
     const [inputState, setInputState] = useState(transferFormInputs);
     const [formState, setFormState] = useState(initialTransferFormState);
 
     const handleInputChange = (name, value) => {
-        setFormState({ ...formState, [name]: value })
-        console.log(formState);
+        setFormState({ ...formState, sendingUsername:sendingUsername.first_name, [name]: value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        setInputState({ ...inputState, value: sendingUsername.first_name });
+        clearValidationMessages(inputState, setInputState);
 
         let isValidForm = false;
         isValidForm = validateTransferForm(
@@ -23,12 +26,28 @@ function SendAmount({ userId, usersData, setShowModal, setShowToast }) {
             setInputState,
             { ...formState,
                 type: "transfer",
-                sendingUsername: sendingUsername.username
             },
             usersData
         )
 
-        console.log(isValidForm, formState)
+        if(isValidForm){
+            const senderId = filterUsersByName(formState.sendingUsername).user_id;
+            const receiverId = filterUsersByUsername(formState.receivingUsername).user_id;
+
+            const isTransferred = send(senderId, receiverId, formState.amount);
+
+            if(isTransferred){
+                const updatedTransactions = getTransactions(senderId);
+                updateTransactions(updatedTransactions);
+                setShowToast(true);
+                setShowModal(false);
+            } else {
+                console.log('Transfer Unsuccessful');
+            }
+        } else {
+            console.log('Form not valid.')
+        }
+
     }
 
     const handleCancel = () => {

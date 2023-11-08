@@ -5,7 +5,8 @@ import {validateExpenseForm} from '../../../lib/utils/validations';
 import { addExpense, getUserExpenses, updateExpense } from '../../../lib/utils/expenses';
 
 const AddExpenseForm = ({setShowModal, setShowToast, updateExpenses, inputValues}) => {
-    const userId = JSON.parse(localStorage.getItem('SignedInUser').user_id);
+    const user = JSON.parse(localStorage.getItem('SignedInUser'));
+    const userId = user.user_id;
     const inputs = [
         {
             type: "text",

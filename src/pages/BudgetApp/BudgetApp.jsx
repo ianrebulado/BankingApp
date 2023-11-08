@@ -21,7 +21,6 @@ import {
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
 import { signout } from "../../lib/utils/signout";
 import { Link } from "react-router-dom";
-import Sidebar from "../../components/Sidebar/Sidebar";
 
 function BudgetApp() {
   const user = JSON.parse(localStorage.getItem("SignedInUser"));
@@ -175,17 +174,18 @@ function BudgetApp() {
             </Modal>
           )}
           <Table
-            data={data}
-            columns={columns}
-            itemsPerPage={5}
-            rowKey={"expense_id"}
-            actions={
-              <>
-                <FileEdit className="edit-icon" onClick={handleEditClick} />
-                <Trash2 className="delete-icon" onClick={handleDeleteClick} />
-              </>
-            }
-          />
+                className="table-container"
+                data={data}
+                columns={columns}
+                itemsPerPage={5}
+                rowKey={"expense_id"}
+                actions={
+                <>
+                    <FileEdit className="edit-icon" onClick={handleEditClick} />
+                    <Trash2 className="delete-icon" onClick={handleDeleteClick} />
+                </>
+                }
+            />
         </div>
       </div>
     </>

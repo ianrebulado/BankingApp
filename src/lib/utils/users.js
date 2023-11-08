@@ -56,6 +56,8 @@ export function filterUsersByName(name) {
       user.last_name.toLowerCase().includes(name.toLowerCase())
   );
 
+  console.log('match',matchedUser)
+
   return matchedUser[0];
 }
 

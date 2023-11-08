@@ -1,6 +1,9 @@
+@use "/src//styles//variables/theme" as theme;
+
 .client-dashboard {
     display: flex;
     justify-content: flex-end;
+    width: 100vw;
 
     .sidebar {
         position: fixed;
@@ -10,6 +13,21 @@
     }
 
     .expenses-container {
-        max-width: 80vw;;
+        max-width: 80vw;
+        background-color: transparent;
+        
+        .table-container {
+            // justify-self: center;
+            font-size: theme.$font-size-small;
+        }
+    }
+
+}
+
+@media (max-width: 768px){
+    .client-dashboard {
+        .expenses-container {
+            max-width: 100vw;
+        }
     }
 }
