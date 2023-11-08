@@ -17,7 +17,7 @@ export default function ErrorPage() {
 
   return (
     <>
-      <div className='error'>
+      <div className='error-page'>
         {showMessage && <h1>404. <br /> <br /> Hello, Stanley. </h1>}
       </div>
 
