@@ -1,90 +1,95 @@
-@use '../../styles/variables/theme' as theme;
+@use "../../styles/variables/theme" as theme;
 
 .sidebar {
-    background-color:   theme.$secondary-color-light;
-    min-width:          40vmin;
-    height:             100vh;
-    box-shadow:         theme.$box-shadow;
-    font-family:        theme.$font-family;
-    display:            flex;
-    flex-direction:     column;
-    z-index:            3;
-    transition:         left 0.3s;
+  position: relative;
+  background-color: theme.$secondary-color-light;
+  min-width: 25vmin;
+  min-height: 100vh;
+  height: auto;
+  box-shadow: theme.$box-shadow;
+  font-family: theme.$font-family;
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+  transition: left 0.3s;
+  color: theme.$grey;
 
-    &.open {
-        left:           0;
-    }
+  &.open {
+    left: 0;
+  }
 }
 
 .sidebar-header {
-    display:            flex;
-    align-items:        center;
-    height:             20%;
+  display: flex;
+  align-items: center;
+  height: 20%;
 }
 
 .logo {
-    width:              theme.$logo-medium;
-    height:             auto;
+  width: theme.$logo-medium;
+  height: auto;
 }
 
 .nav-list {
-    padding:            calc(theme.$body-padding *3);
-    height:             70%;
-    line-height:        theme.$line-height;
-    font-weight:        theme.$font-weight-semibold;
-    font-size:          theme.$font-size-medium;
+  padding: calc(theme.$body-padding * 3);
+  height: 70%;
+  line-height: theme.$line-height;
+  font-weight: theme.$font-weight-semibold;
+  font-size: theme.$font-size-medium;
 
+  ul {
     li {
-        padding-top:    theme.$body-padding;
-        cursor:         pointer;
-
-        a {
-            text-decoration:    none;
-            color:              theme.$secondary-color-dark;
-        }
+      padding-top: theme.$body-padding;
+      cursor: pointer;
+      a {
+        color: theme.$grey;
+        text-decoration: none;
+      }
     }
+  }
 }
 
-.active, li a:hover {
-  border-left:          5px solid theme.$primary-color;
-  color:                theme.$accent-color-light;
+.active,
+li a:hover {
+  border-left: 5px solid theme.$primary-color;
+  color: theme.$accent-color-light;
 }
 
-
-.nav-icon, .toggle-icon {
-    height:             theme.$icon-small;
+.nav-icon,
+.toggle-icon {
+  height: theme.$icon-small;
 }
 
 .toggle-icon {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .sidebar-control {
-    display:            flex;
-    justify-content:    space-between;
-    align-items:        center;
-    padding:            theme.$body-padding;
-    height:             10%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: theme.$body-padding;
+  height: 10%;
 }
 
 .mobile-menu {
-    display: none;
-    z-index: 4;
+  display: none;
+  z-index: 4;
 }
 
-@media (max-width: 768px){
-    .sidebar {
-        position:       fixed;
-        width:          100%;
-        height:         100%;
-        left:           -30rem;
-    }
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: -30rem;
+  }
 
-    .mobile-menu {
-        display:        block;
-        position:       fixed;
-        top:            20px;
-        right:          20px;
-        cursor:         pointer;
-    }
+  .mobile-menu {
+    display: block;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+  }
 }

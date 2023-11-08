@@ -1,0 +1,97 @@
+@use "../../styles/variables/theme" as theme;
+
+.admin-layout {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+  font: theme.$font-family;
+
+  .sidebar {
+    height: 100%;
+    width: fit-content;
+    min-width: 35vmin;
+    background-color: transparent;
+    filter: blur(100%);
+    border-radius: 0 0 2rem;
+    box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.2);
+  }
+
+  .dashboard,
+  .transactions {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+
+    .cards-container {
+      display: flex;
+      min-height: 10rem;
+      width: 100%;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .card {
+        height: 10rem;
+        width: 33%;
+        min-width: 10rem;
+        background-color: transparent;
+        box-shadow: -2px -2px 5px -1px white, 0px 0px 5px -2px rgba(0, 0, 0, 1);
+
+        .card-body {
+          font-size: theme.$font-size-large;
+          font-weight: theme.$font-weight-bold;
+        }
+      }
+    }
+
+    .search-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      min-width: 7.5rem;
+
+      .inputField {
+        height: 100%;
+        width: 100%;
+        min-width: 7.5rem;
+        padding: 0;
+      }
+    }
+  }
+  @media (max-width: 768px) {
+    .sidebar {
+      width: 50%;
+      background-color: theme.$secondary-color-light;
+    }
+    .dashboard,
+    .transactions {
+      .header-container,
+      .cards-container,
+      .search-container {
+        flex-direction: column;
+
+        button {
+          width: 100%;
+        }
+
+        .card {
+          width: 100%;
+        }
+
+        .buttons-container {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          padding: 0;
+        }
+      }
+    }
+  }
+}

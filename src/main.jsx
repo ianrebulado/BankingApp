@@ -1,13 +1,61 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './styles/styles.scss'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>,
-)
+import "./styles/styles.scss";
+
+import ProtectedRoute from "./ProtectedRoute";
+import SignupPage from "./pages/LoginPage/SignupPage";
+import ClientDashboard from "./pages/ClientDashboard/ClientDashboard";
+import AdminLayout from "./pages/AdminDashboard/AdminLayout";
+import Accounts from "./pages/AdminDashboard/Accounts";
+import Transactions from "./pages/AdminDashboard/Transactions";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import ErrorPage from "./pages/ErrorPage";
+
+const signedInUser = JSON.parse(localStorage.getItem("SignedInUser"));
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LoginPage />,
+  },
+  {
+    path: "/signup",
+    element: <SignupPage />,
+  },
+  {
+    path: "/admindashboard",
+    element: (
+      <ProtectedRoute requiredRole={"admin"}>
+        <AdminLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Accounts user={signedInUser} />,
+      },
+      {
+        path: "/admindashboard/expenses",
+        element: <Transactions />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <ProtectedRoute requiredRole={"client"}>
+        <ClientDashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: '*',
+    element: <ErrorPage />
+  }
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={router} />
+);
