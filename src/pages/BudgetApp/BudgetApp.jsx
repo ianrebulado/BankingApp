@@ -8,8 +8,7 @@ import {
   getUserExpenses,
   getExpense,
   getTotalExpenses,
-  getMonthlyExpenses,
-  storeInitialExpenses
+  getMonthlyExpenses
 } from "../../lib/utils/expenses";
 import AddExpenseForm from "./Forms/AddExpenseForm";
 
@@ -19,8 +18,6 @@ import {
   formatAmount,
 } from "../../lib/utils/formatter";
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
-import { signout } from "../../lib/utils/signout";
-import { Link } from "react-router-dom";
 
 function BudgetApp() {
   const user = JSON.parse(localStorage.getItem("SignedInUser"));
@@ -176,7 +173,7 @@ function BudgetApp() {
                   className="table-container"
                   data={data}
                   columns={columns}
-                  itemsPerPage={5}
+                  itemsPerPage={20}
                   rowKey={"expense_id"}
                   actions={
                   <>

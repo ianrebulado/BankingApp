@@ -2,19 +2,14 @@ import React, { useState, useEffect } from "react";
 import ReactDOMServer from 'react-dom/server';
 import { Card, Header, Modal, Table, Toast } from "../../components";
 
-import { LogOut, Wallet, Printer } from "lucide-react";
-import {
-  getTotalExpenses,
-  getMonthlyExpenses
-} from "../../lib/utils/expenses";
+import { Wallet, Printer } from "lucide-react";
+import {getTotalExpenses} from "../../lib/utils/expenses";
 
-import { getAccountBalance, getBalance, getMonthlyBalance, getTransactions } from "../../lib/utils/transactions";
+import { getAccountBalance, getBalance, getTransactions } from "../../lib/utils/transactions";
 import {
   formatDate,
   formatAmount,
 } from "../../lib/utils/formatter";
-import { signout } from "../../lib/utils/signout";
-import { Link } from "react-router-dom";
 import { fetchUsers } from "../../lib/utils/users";
 import SendAmount from "./Forms/SendAmount"
 
@@ -24,23 +19,16 @@ function UserAccount() {
 
   const userId = user.user_id;
 
-  console.log('id',userId)
-
   const columns = ["transaction_id", "created_on", "type", "amount"];
-  const initialInput = { user_id: userId, type: null, amount: null };
 
   let totalExpenses = getTotalExpenses(userId);
   const balance = getBalance(userId);
-  const monthlyBalance = getMonthlyExpenses(userId);
   const userTransactions = getTransactions(userId);
   const accountBalance = getAccountBalance(balance,totalExpenses)
 
   const [showToast, setShowToast] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState([]);
-  const [inputValues, setInputValues] = useState(initialInput);
-  const [action, setAction] = useState("");
-  const [message, setMessage] = useState(null);
 
   const updateTransactions = (transaction) => {
     if (transaction) {
@@ -59,8 +47,6 @@ function UserAccount() {
 
       setData(newData);
     }
-
-    setInputValues(initialInput);
   };
 
   const handleSend = () => {
@@ -163,7 +149,7 @@ function UserAccount() {
             <Table
               data={data}
               columns={columns}
-              itemsPerPage={10}
+              itemsPerPage={20}
               rowKey={"transaction_id"}
             />
           </div>
