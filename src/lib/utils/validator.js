@@ -145,9 +145,10 @@ export default class Validator {
   }
 
   userExists(users, errorMessage = `Username not found`) {
+
     if (this._checkError()) return this;
 
-    if (!users.some((user) => user.username === this.value)) {
+    if (!users.some((user) => user.username === this.value || user.first_name === this.value)) {
       this.errorMessage = errorMessage;
     }
 

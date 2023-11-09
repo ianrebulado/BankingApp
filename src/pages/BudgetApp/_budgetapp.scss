@@ -1,0 +1,84 @@
+@use "../../styles/variables/theme" as theme;
+
+.client-dashboard {
+    
+    padding: theme.$body-padding;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 95vw;
+
+    .sidebar {
+        background-color: theme.$secondary-color-light;
+        position: fixed;
+        min-width: 20vw;
+        top: 0;
+        left: 0;
+    }
+
+    .expenses-container {  
+        display: flex;
+        flex-direction: column;
+        width: 70vw;
+        gap: 1rem;
+
+        .header-container {
+            padding: theme.$body-padding;
+        }
+
+        .table-container {
+            font-size: theme.$font-size-small;
+
+            table {
+                width: 100%;
+
+                th {
+                    background-color: theme.$secondary-color-light;
+                    color: theme.$accent-color-dark;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 768px){
+    .client-dashboard {
+        min-width: 100vw;
+
+        .expenses-container {
+            flex-direction:   column;
+            justify-content:  center;
+            align-items:      center;
+            width: 100%;
+            gap: 1rem;
+
+            .account-container {
+                .card-container {
+                    width: 100%;
+                    height: auto;
+                    gap: 1rem;
+                }
+            }
+
+            .table-container {
+                font-size: 0.5rem;
+                width: 100%;
+
+                th {
+                    display: none;
+                }
+
+                td {
+                    max-width: 1rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                .edit-icon, .delete-icon {
+                    width: 0.9rem;
+                }
+            }
+        }
+    }
+}

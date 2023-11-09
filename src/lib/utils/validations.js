@@ -180,6 +180,7 @@ export function validateTransferForm(
   formState,
   usersData
 ) {
+
   let updatedInputState = inputState.map((input) => {
     if (input.name === "sendingUsername") {
       input.value = formState.sendingUsername;
@@ -200,7 +201,9 @@ export function validateTransferForm(
           .userExists(usersData).errorMessage,
       };
     } else if (input.name === "amount") {
-      let sendingUserId = filterUsersByName(formState.sendingUsername).user_id;
+
+      const sender = filterUsersByName(formState.sendingUsername);
+      let sendingUserId = sender.user_id;
       let balance = getBalance(sendingUserId);
 
       input.value = formState.amount;
