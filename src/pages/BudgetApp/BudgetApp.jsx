@@ -173,7 +173,7 @@ function BudgetApp() {
                   className="table-container"
                   data={data}
                   columns={columns}
-                  itemsPerPage={5}
+                  itemsPerPage={20}
                   rowKey={"expense_id"}
                   actions={
                   <>

@@ -149,7 +149,7 @@ function UserAccount() {
             <Table
               data={data}
               columns={columns}
-              itemsPerPage={10}
+              itemsPerPage={20}
               rowKey={"transaction_id"}
             />
           </div>
