@@ -12,12 +12,7 @@ import {
 import { withdraw } from "../../../lib/utils/transactions";
 import { filterUsersByName } from "../../../lib/utils/users";
 
-export default function WithdrawForm({
-  usersData,
-  setShowModal,
-  setShowToast,
-  setMessage,
-}) {
+export default function WithdrawForm({ usersData, setAccountState }) {
   const [inputState, setInputState] = useState(withdrawFormInputs);
   const [formState, setFormState] = useState(initialWithdrawFormState);
 
@@ -40,25 +35,35 @@ export default function WithdrawForm({
 
       withdraw(userId, formState.amount);
 
-      setShowToast(true);
-      setShowModal(false);
-      setMessage("Successful withdrawal made");
+      setAccountState((prevState) => ({
+        ...prevState,
+        showToast: true,
+        showModal: false,
+        toastMessage: "Withdraw transaction made",
+      }));
     } else {
       console.log("Form is not valid");
     }
   }
 
   function handleCancel() {
-    setShowModal(false);
+    setAccountState((prevState) => ({ ...prevState, showModal: false }));
   }
 
   function handleInputChange(name, value) {
     setFormState({ ...formState, [name]: value });
   }
 
+  function handleShowModal() {
+    setAccountState((prevState) => ({
+      ...prevState,
+      showModal: false,
+    }));
+  }
+
   return (
     <>
-      <Modal title={"Make a Withdrawal"}>
+      <Modal title={"Make a Withdrawal"} setShowModal={handleShowModal}>
         <FormProvider
           formValues={formState}
           handleInputChange={handleInputChange}

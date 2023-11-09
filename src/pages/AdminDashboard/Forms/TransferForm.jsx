@@ -12,12 +12,7 @@ import {
 import { deposit, withdraw } from "../../../lib/utils/transactions";
 import { filterUsersByUsername } from "../../../lib/utils/users";
 
-export default function TransferForm({
-  usersData,
-  setShowModal,
-  setShowToast,
-  setMessage,
-}) {
+export default function TransferForm({ usersData, setAccountState }) {
   const [inputState, setInputState] = useState(transferFormInputs);
   const [formState, setFormState] = useState(initialTransferFormState);
 
@@ -47,25 +42,35 @@ export default function TransferForm({
       withdraw(sendingUserId, formState.amount);
       deposit(receivingUserId, formState.amount);
 
-      setShowToast(true);
-      setShowModal(false);
-      setMessage("Successful transfer made");
+      setAccountState((prevState) => ({
+        ...prevState,
+        showToast: true,
+        showModal: false,
+        toastMessage: "Transfer transaction made",
+      }));
     } else {
       console.log("Form is not valid");
     }
   }
 
   function handleCancel() {
-    setShowModal(false);
+    setAccountState((prevState) => ({ ...prevState, showModal: false }));
   }
 
   function handleInputChange(name, value) {
     setFormState({ ...formState, [name]: value });
   }
 
+  function handleShowModal() {
+    setAccountState((prevState) => ({
+      ...prevState,
+      showModal: false,
+    }));
+  }
+
   return (
     <>
-      <Modal title={"Make a Tansfer"}>
+      <Modal title={"Make a Tansfer"} setShowModal={handleShowModal}>
         <FormProvider
           formValues={formState}
           handleInputChange={handleInputChange}

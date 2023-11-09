@@ -12,12 +12,7 @@ import {
 import { deposit } from "../../../lib/utils/transactions";
 import { filterUsersByName } from "../../../lib/utils/users";
 
-export default function DepositForm({
-  usersData,
-  setShowModal,
-  setShowToast,
-  setMessage,
-}) {
+export default function DepositForm({ usersData, setAccountState }) {
   const [inputState, setInputState] = useState(depositFormInputs);
   const [formState, setFormState] = useState(initialDepositFormState);
 
@@ -40,25 +35,35 @@ export default function DepositForm({
 
       deposit(userId, formState.amount);
 
-      setShowToast(true);
-      setShowModal(false);
-      setMessage("Successful deposit made");
+      setAccountState((prevState) => ({
+        ...prevState,
+        showToast: true,
+        showModal: false,
+        toastMessage: "Deposit transaction made",
+      }));
     } else {
       console.log("Form is not valid");
     }
   }
 
   function handleCancel() {
-    setShowModal(false);
+    setAccountState((prevState) => ({ ...prevState, showModal: false }));
   }
 
   function handleInputChange(name, value) {
     setFormState({ ...formState, [name]: value });
   }
 
+  function handleShowModal() {
+    setAccountState((prevState) => ({
+      ...prevState,
+      showModal: false,
+    }));
+  }
+
   return (
     <>
-      <Modal title={"Make a Deposit"}>
+      <Modal title={"Make a Deposit"} setShowModal={handleShowModal}>
         <FormProvider
           formValues={formState}
           handleInputChange={handleInputChange}
