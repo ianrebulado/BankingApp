@@ -72,7 +72,10 @@ export function getTotalUsers() {
 }
 
 export function userSignedIn(username, password) {
-  const user = usersData.find(
+
+  const users = fetchUsers();
+
+  const user = users.find(
     (u) => u.username === username && u.password === password
   );
 

@@ -3,7 +3,6 @@ import { XCircle } from "lucide-react";
 
 export default function Modal({ title, setShowModal, children }) {
   const handleClose = () => {
-    console.log("running");
     setShowModal(false);
   };
 

@@ -22,7 +22,8 @@
   display:              flex;
   flex-direction:       column;
   justify-content:      flex-start;
-  width:                30vw;
+  // width:                30vw;
+  min-width:            40vw;
   height:               auto;
   z-index:              20;
 }
@@ -53,6 +54,19 @@
 
 @media (max-width: 768px){
   .modal-container {
-    width: 100vw;
+    max-width: 80vw;
+
+    .buttons-container {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.5rem;
+  
+      button {
+        width: 100%;
+      }
+    }
+
   }
+
+  
 }
