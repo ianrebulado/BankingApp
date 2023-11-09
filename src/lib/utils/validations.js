@@ -1,5 +1,5 @@
 import { getBalance } from "./transactions";
-import { filterUsersByName } from "./users";
+import { filterUsersByName, filterUsersByUsername } from "./users";
 import Validator from "./validator";
 import { usersModel } from "../constants";
 
@@ -48,12 +48,12 @@ export function validateSignInForm(
   return isValid;
 }
 
-export function validateExpenseForm(inputState, setInputState, formState){
-    const updatedInputState = checkMissingValues(inputState, formState);
-    setInputState(updatedInputState)
-    
-    const isValid = checkValidForm(updatedInputState)
-    return isValid;
+export function validateExpenseForm(inputState, setInputState, formState) {
+  const updatedInputState = checkMissingValues(inputState, formState);
+  setInputState(updatedInputState);
+
+  const isValid = checkValidForm(updatedInputState);
+  return isValid;
 }
 
 function checkMissingValues(inputState, formState) {
@@ -152,7 +152,7 @@ export function validateTransactionForm(
           message: Validator.for(input).isRequired().greater(500).errorMessage,
         };
       } else if (formState.type === "withdraw") {
-        let userId = filterUsersByName(formState.username).user_id;
+        let userId = filterUsersByUsername(formState.username).user_id;
         let balance = getBalance(userId);
 
         if (!balance) return;
@@ -180,7 +180,6 @@ export function validateTransferForm(
   formState,
   usersData
 ) {
-
   let updatedInputState = inputState.map((input) => {
     if (input.name === "sendingUsername") {
       input.value = formState.sendingUsername;
@@ -201,7 +200,6 @@ export function validateTransferForm(
           .userExists(usersData).errorMessage,
       };
     } else if (input.name === "amount") {
-
       const sender = filterUsersByName(formState.sendingUsername);
       let sendingUserId = sender.user_id;
       let balance = getBalance(sendingUserId);

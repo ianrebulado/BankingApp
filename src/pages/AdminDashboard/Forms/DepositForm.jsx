@@ -10,7 +10,7 @@ import {
   validateTransactionForm,
 } from "../../../lib/utils/validations";
 import { deposit } from "../../../lib/utils/transactions";
-import { filterUsersByName } from "../../../lib/utils/users";
+import { filterUsersByUsername } from "../../../lib/utils/users";
 
 export default function DepositForm({ usersData, setAccountState }) {
   const [inputState, setInputState] = useState(depositFormInputs);
@@ -31,7 +31,7 @@ export default function DepositForm({ usersData, setAccountState }) {
     );
 
     if (isValidForm) {
-      const userId = filterUsersByName(formState.username).user_id;
+      const userId = filterUsersByUsername(formState.username).user_id;
 
       deposit(userId, formState.amount);
 

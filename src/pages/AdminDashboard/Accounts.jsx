@@ -72,8 +72,6 @@ export default function Accounts() {
     }));
   }
 
-  console.log(user);
-
   return (
     <>
       {showToast && <Toast type={"success"} message={toastMessage} />}
