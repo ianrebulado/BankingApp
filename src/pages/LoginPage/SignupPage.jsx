@@ -8,7 +8,7 @@ export default function SignupPage() {
         <img className="home-img" src="/public/assets/1.jpg" />
         <div className="login-container">
             <div className="title-container">
-              <h1 className='form-title'>Register</h1>
+              {/* <h1 className='form-title'>Register</h1> */}
               <img
                 src="/public/assets/combi-dark-logo.png"
                 alt="logo"
