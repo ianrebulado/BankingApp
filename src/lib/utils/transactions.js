@@ -1,5 +1,6 @@
 import generateId from "../utils/generateId";
 import transactionsModel from "../constants/transactionsModel.json";
+import { formatAmount } from "./formatter";
 
 function createTransaction(userId, type, amount) {
   let transactionsData = fetchTransactions();
@@ -77,7 +78,7 @@ export function getBalance(userId) {
     balance += parseFloat(transaction.amount);
   });
 
-  return balance;
+  return formatAmount(balance);
 }
 
 export function getMonthlyBalance(userId) {
