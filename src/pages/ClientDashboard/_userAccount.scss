@@ -38,7 +38,6 @@
             flex-direction: column;
 
             .balance-amount {
-                // font-size: theme.$font-size-large;
                 font-size: clamp(1rem, 0.286rem + 1.905vw, 2rem);
                 font-weight: theme.$font-weight-bold;
             }

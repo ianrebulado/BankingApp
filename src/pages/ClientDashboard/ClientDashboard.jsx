@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import BudgetApp from '../BudgetApp/BudgetApp';
 import { LayoutDashboard, ArrowRightLeft, MoreVertical } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { Outlet } from 'react-router-dom';
@@ -18,7 +17,7 @@ const navItems = [
   },
 ];
 
-function ClientDashboard(props) {
+function ClientDashboard() {
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const toggleSideBar = () => {

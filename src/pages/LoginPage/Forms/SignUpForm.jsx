@@ -98,16 +98,11 @@ export default function SignUpForm() {
         updatedOn,
       });
 
-      // console.log(usersData)
-      storeUsers(usersData);
-      
-
-      
+      storeUsers(usersData);      
       navigate("/");
 
     } else {
       console.log("Form is not valid");
-      //Add toast
     }
   }
 

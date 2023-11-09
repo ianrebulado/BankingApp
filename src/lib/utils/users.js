@@ -9,8 +9,6 @@ export function createUser(newUserForm) {
   const createdOn = new Date();
   const updatedOn = new Date();
 
-  console.log(newUserForm);
-
   usersData.push({
     ...newUserForm,
     user_id,
@@ -55,8 +53,6 @@ export function filterUsersByName(name) {
       user.first_name.toLowerCase().includes(name.toLowerCase()) ||
       user.last_name.toLowerCase().includes(name.toLowerCase())
   );
-
-  console.log('match',matchedUser)
 
   return matchedUser[0];
 }

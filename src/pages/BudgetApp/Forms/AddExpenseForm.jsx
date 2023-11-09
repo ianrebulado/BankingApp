@@ -67,11 +67,8 @@ const AddExpenseForm = ({setShowModal, setShowToast, updateExpenses, inputValues
         setShowModal(false)
     }
 
-    
-
     return (
         <>
-            
             <FormProvider formValues={formState} handleInputChange={handleInputChange}>
                 <form onSubmit={handleSubmit}>
                     {
