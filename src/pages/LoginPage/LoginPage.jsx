@@ -5,10 +5,10 @@ export default function LoginPage() {
   return (
     <>
       <div className="login-page">
-        <img className="home-img" src="/public/assets/1.jpg" />
+        <img className="home-img" src="/public/1.jpg" />
         <div className="login-container">
           <img
-            src="/public/assets/combi-light-logo.png"
+            src="/public/combi-light-logo.png"
             alt="logo"
             className="home-logo"
             />
