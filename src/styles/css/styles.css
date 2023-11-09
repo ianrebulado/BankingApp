@@ -149,8 +149,7 @@ input {
   color: #1d1b21;
 }
 
-.active,
-li a:hover {
+li a:hover, a:active {
   border-left: 5px solid #5b82a3;
   color: #bf8043;
 }

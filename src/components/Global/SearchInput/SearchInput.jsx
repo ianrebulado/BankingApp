@@ -1,8 +1,11 @@
-import { useState } from "react";
-
-function SearchInput({ placeholder, searchTerm, setSearchTerm }) {
+function SearchInput({
+  placeholder,
+  searchTerm,
+  accountState,
+  setAccountState,
+}) {
   const handleSearch = (e) => {
-    setSearchTerm(e.target.value);
+    setAccountState({ ...accountState, searchTerm: e.target.value });
   };
 
   return (
