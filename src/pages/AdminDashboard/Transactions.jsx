@@ -1,27 +1,49 @@
 import { useState, useEffect } from "react";
-import { SearchInput, Table } from "../../components";
+import { SearchInput } from "../../components";
+import { TransactionsTable } from "./Components";
 import { transactionsModel } from "../../lib/constants";
 import { filterData, createTransactionsTable } from "../../lib/utils/helpers";
 
 const initialTransactionsTable = createTransactionsTable(transactionsModel);
 
 function Transactions() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [transactionsTableData, setTransactionsTableData] = useState(
-    initialTransactionsTable
-  );
+  const [transactionsState, setTransactionsState] = useState({
+    showModal: false,
+    showToast: false,
+    toastMessage: null,
+    formComponent: null,
+    searchTerm: "",
+    transactionsTableData: initialTransactionsTable,
+  });
 
-  const columns = ["created_on", "transaction_id", "name", "type", "amount"];
+  const {
+    showModal,
+    showToast,
+    toastMessage,
+    formComponent,
+    searchTerm,
+    transactionsTableData,
+  } = transactionsState;
 
   useEffect(() => {
     if (searchTerm === "" || searchTerm.length === 1) {
-      setTransactionsTableData(initialTransactionsTable);
+      setTransactionsState((prevState) => ({
+        ...prevState,
+        transactionsTableData: initialTransactionsTable,
+      }));
     } else {
-      setTransactionsTableData(
-        filterData(transactionsTableData, "username", searchTerm)
+      const filteredData = filterData(
+        initialTransactionsTable,
+        "name",
+        searchTerm
       );
+
+      setTransactionsState((prevState) => ({
+        ...prevState,
+        transactionsTableData: filteredData,
+      }));
     }
-  }, [transactionsTableData, searchTerm]);
+  }, [searchTerm]);
 
   return (
     <div className="transactions">
@@ -29,10 +51,11 @@ function Transactions() {
         <SearchInput
           placeholder={"Search users..."}
           searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
+          state={transactionsState}
+          setState={setTransactionsState}
         />
       </div>
-      <Table data={transactionsTableData} columns={columns} itemsPerPage={25} />
+      <TransactionsTable transactionsTableData={transactionsTableData} />
     </div>
   );
 }

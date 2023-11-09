@@ -3,9 +3,12 @@ import { Modal, Toast } from "../../components";
 import usersModel from "../../lib/constants/usersModel";
 import { filterData, createUsersTable } from "../../lib/utils/helpers";
 import { fetchUsers } from "../../lib/utils/users";
-import { AdminCards, UsersTable } from "./Components";
-import AdminControls from "./Components/AdminControls";
-import AdminHeader from "./Components/AdminHeader";
+import {
+  AdminCards,
+  AdminControls,
+  AdminHeader,
+  UsersTable,
+} from "./Components";
 
 const initialUsersTable = createUsersTable(usersModel);
 
@@ -68,6 +71,8 @@ export default function Accounts() {
       showModal: false,
     }));
   }
+
+  console.log("Accounts:", accountState);
 
   return (
     <>

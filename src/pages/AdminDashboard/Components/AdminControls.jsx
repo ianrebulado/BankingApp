@@ -48,8 +48,8 @@ export default function AdminControls({
       <SearchInput
         placeholder={"Search users..."}
         searchTerm={searchTerm}
-        accountState={accountState}
-        setAccountState={setAccountState}
+        state={accountState}
+        setState={setAccountState}
       />
       <div className="buttons-container">
         <Button

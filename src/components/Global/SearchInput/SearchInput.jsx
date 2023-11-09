@@ -1,11 +1,6 @@
-function SearchInput({
-  placeholder,
-  searchTerm,
-  accountState,
-  setAccountState,
-}) {
+function SearchInput({ placeholder, searchTerm, state, setState }) {
   const handleSearch = (e) => {
-    setAccountState({ ...accountState, searchTerm: e.target.value });
+    setState({ ...state, searchTerm: e.target.value });
   };
 
   return (

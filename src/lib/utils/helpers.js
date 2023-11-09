@@ -44,32 +44,6 @@ export function getAdminCardsData() {
   return { totalUsers, totalTransactions, totalTransactionsVolume };
 }
 
-// export function getFormComponent(type, usersData, setAccountState) {
-//   switch (type) {
-//     case "createUser":
-//       return (
-//         <CreateUserForm
-//           usersData={usersData}
-//           setAccountState={setAccountState}
-//         />
-//       );
-//     case "deposit":
-//       return (
-//         <DepositForm usersData={usersData} setAccountState={setAccountState} />
-//       );
-//     case "withdraw":
-//       return (
-//         <WithdrawForm usersData={usersData} setAccountState={setAccountState} />
-//       );
-//     case "transfer":
-//       return (
-//         <TransferForm usersData={usersData} setAccountState={setAccountState} />
-//       );
-//     default:
-//       return null;
-//   }
-// }
-
 export function formatNumber(number) {
   return Intl.NumberFormat().format(number);
 }
