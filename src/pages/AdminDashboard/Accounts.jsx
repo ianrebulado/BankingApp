@@ -33,7 +33,7 @@ export default function Accounts() {
 
   const usersData = fetchUsers();
 
-  const user = localStorage.getItem("SignedInUser");
+  const user = JSON.parse(localStorage.getItem("SignedInUser"));
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -72,13 +72,15 @@ export default function Accounts() {
     }));
   }
 
+  console.log(user);
+
   return (
     <>
       {showToast && <Toast type={"success"} message={toastMessage} />}
       {user && (
         <div className="dashboard">
           <AdminHeader
-            username={user.first_name}
+            username={user.first_name ? user.first_name : user.username}
             usersData={usersData}
             accountState={accountState}
             setAccountState={setAccountState}

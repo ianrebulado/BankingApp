@@ -9,6 +9,13 @@
   overflow: hidden;
   font: theme.$font-family;
 
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   .sidebar {
     background-color: transparent;
     filter: blur(100%);
