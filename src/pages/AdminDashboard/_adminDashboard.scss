@@ -78,6 +78,10 @@
       li {
         min-width: 15rem;
       }
+
+      &.open {
+        width: 100%;
+      }
     }
     .dashboard,
     .transactions {
