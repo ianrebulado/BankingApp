@@ -45,9 +45,12 @@
         }
       }
     }
-  
-    .new-expense-btn {
-      align-self:       flex-end;
+    
+    .buttons-container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 1rem;
     }
   
     
@@ -67,13 +70,6 @@
 .logout-icon {
   cursor:             pointer;
   color:              theme.$accent-color-dark;
-}
-
-.buttons-container {
-  padding:            theme.$body-padding;
-  display:            flex;
-  justify-content:    center;
-  align-items:        center;
 }
 
 .confirm-delete-container {
