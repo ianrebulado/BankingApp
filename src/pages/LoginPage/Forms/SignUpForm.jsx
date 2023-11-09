@@ -8,7 +8,8 @@ import {
   validateSignUpForm,
 } from "../../../lib/utils/validations";
 import { createUser } from "../../../lib/utils/users";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { fetchUsers, storeUsers } from "../../../lib/utils/users";
 
 const inputs = [
   {
@@ -61,11 +62,14 @@ export default function SignUpForm() {
     last_name: null,
     email: null,
     password: null,
+    role: 'client'
   });
 
   const user_id = generateId("user");
   const createdOn = new Date();
   const updatedOn = new Date();
+
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -80,11 +84,27 @@ export default function SignUpForm() {
       usersModel
     );
 
+    
     if (isValidForm) {
-      createUser(formState);
-      // usersModel.push({ ...formState, user_id, createdOn, updatedOn });
-      //Add toast
-      //Redirect to sign in page
+      const user_id = generateId("user");
+      const createdOn = new Date();
+      const updatedOn = new Date();
+      const usersData = fetchUsers();
+
+      usersData.push({
+        ...formState,
+        user_id,
+        createdOn,
+        updatedOn,
+      });
+
+      // console.log(usersData)
+      storeUsers(usersData);
+      
+
+      
+      navigate("/");
+
     } else {
       console.log("Form is not valid");
       //Add toast
@@ -112,7 +132,9 @@ export default function SignUpForm() {
         )}
         <div className="buttons-container">
           <Button type={"submit"} text={"Create Account"} />
-          <span className="sign-up-link"><Link to='/'>Go Back to Login Page</Link></span> 
+          <span className="sign-up-link">
+            <Link to="/">Go Back to Login Page</Link>
+          </span>
         </div>
       </form>
     </FormProvider>

@@ -51,9 +51,9 @@ export default function SignInForm() {
       updateLocalStorage("username", formState.username);
       updateLocalStorage("signedIn", true);
       const SignedInUser = userSignedIn(formState.username, formState.password);
+
       const userRole = SignedInUser.role 
       userRole === 'admin' ? navigate('/admindashboard') : navigate('/dashboard') 
-      
     }
     
   }
