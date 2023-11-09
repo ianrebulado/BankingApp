@@ -21,6 +21,7 @@
     filter: blur(100%);
     border-radius: 0 0 2rem;
     box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.2);
+    height: 100vh;
   }
 
   .dashboard,
@@ -74,13 +75,15 @@
   @media (max-width: 768px) {
     .sidebar {
       background-color: theme.$secondary-color-light;
+      width: 100%;
+      left: -900px;
 
       li {
         min-width: 15rem;
       }
 
       &.open {
-        width: 100%;
+        left: 0;
       }
     }
     .dashboard,

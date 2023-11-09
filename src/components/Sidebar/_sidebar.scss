@@ -1,15 +1,16 @@
 @use "../../styles/variables/theme" as theme;
 
 .sidebar {
-  position: relative;
   background-color: theme.$secondary-color-light;
-  min-width: 25vmin;
-  min-height: 100vh;
-  height: auto;
-  box-shadow: theme.$box-shadow;
   font-family: theme.$font-family;
+  box-shadow: theme.$box-shadow;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 20vmin;
+  min-height: 100vh;
+  height: 100%;
   z-index: 3;
   transition: left 0.3s;
 
@@ -19,7 +20,9 @@
 
   .sidebar-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
     height: 20%;
 
     .logo {
@@ -30,10 +33,9 @@
   
   .nav-list {
     padding: calc(theme.$body-padding * 3);
-    height: 60vh;
     line-height: theme.$line-height;
-    font-weight: theme.$font-weight-semibold;
-    font-size: theme.$font-size-medium;
+    font-size: 2vmin;
+    width: 100%;
   
     ul {
       li {
@@ -50,7 +52,7 @@
       }
       
       .nav-icon {
-        height: theme.$icon-small;
+        height: 2vmin;
         color: theme.$accent-color-dark;
       }
     }
@@ -58,9 +60,10 @@
   
   .sidebar-control {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: calc(theme.$body-padding * 2);
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: flex-start;
+    padding-left: calc(theme.$body-padding * 2);
     height: 10%;
 
     a {
@@ -76,10 +79,19 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    position: fixed;
     width: 100%;
     height: 100%;
     left: -30rem;
+
+    .nav-list {
+      font-size: 5vmin;
+
+      ul {
+        .nav-icon {
+          height: 5vmin;
+        }
+      }
+    }
   }
 
   .mobile-menu {
