@@ -1,16 +1,18 @@
 import React from "react";
 import SignUpForm from "./Forms/SignUpForm";
-import bgImg from "../../../public/1.jpg";
-import logo from "../../../public/combi-light-logo.png";
+import home from "../../../public/1.jpg";
+import logo from "../../../public/combi-dark-logo.png";
 
 export default function SignupPage() {
   return (
     <>
       <div className="login-page">
-        <img className="home-img" src={bgImg} />
+        <img className="home-img" src={home} />
         <div className="login-container">
-          {/* <h1 className='form-title'>Register</h1> */}
-          <img src={logo} alt="logo" className="home-logo" />
+          <div className="title-container">
+            <h1 className="form-title">Register</h1>
+            <img src={logo} alt="logo" className="sign-up-logo" />
+          </div>
           <div className="login-form">
             <SignUpForm className={"sign-in-form"} />
           </div>
