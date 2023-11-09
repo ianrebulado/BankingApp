@@ -5,7 +5,7 @@
     display:            flex;
     justify-content:    flex-end;
     width:              100%;
-    height:             auto;
+    height:             100vh;
 
     .home-img {
         box-shadow:     theme.$box-shadow;
@@ -27,31 +27,34 @@
         padding:            theme.$body-padding;
         display:            flex;
         flex-direction:     column;
-        justify-content:    flex-start;
+        justify-content:    space-evenly;
         align-items:        center;
         width:              35%;
-        height:             auto;
+        height:             100%;
         gap:                3rem;
-    }
-    
-    .login-form {
-        background-color:   theme.$white-color-light;
-        box-shadow:         theme.$box-shadow;
-        padding:            calc(theme.$body-padding * 2);
-        border-radius:      theme.$border-radius-2;
-    }
 
-    .login-page-footer {
-      font-size:            theme.$font-size-smaller;
-      color:                theme.$grey;
-      padding:              theme.$body-padding;
-      display:              flex;
-      flex-direction:       column;
-      justify-content:      center;
-      align-items:          center;
-      text-align:           center;
-      gap:                  1rem;
-      width:                90%;
+        .login-form {
+          background-color:   theme.$white-color-light;
+          box-shadow:         theme.$box-shadow;
+          padding:            calc(theme.$body-padding * 2);
+          border-radius:      theme.$border-radius-2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+
+      .login-page-footer {
+        font-size:            theme.$font-size-smaller;
+        color:                theme.$grey;
+        padding:              theme.$body-padding;
+        display:              flex;
+        flex-direction:       column;
+        justify-content:      center;
+        align-items:          center;
+        text-align:           center;
+        gap:                  1rem;
+        width:                90%;
+      }
     }
 
   }
