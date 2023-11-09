@@ -1,14 +1,16 @@
 import React from "react";
 import SignInForm from "./Forms/SignInForm";
+import home from '../../../public/1.jpg'
+import logo from '../../../public/combi-dark-logo.png'
 
 export default function LoginPage() {
   return (
     <>
       <div className="login-page">
-        <img className="home-img" src="/public/1.jpg" />
+        <img className="home-img" src={home} />
         <div className="login-container">
           <img
-            src="/public/combi-light-logo.png"
+            src={logo}
             alt="logo"
             className="home-logo"
             />
