@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button, InputField } from "../../../components";
 import { FormProvider } from "../../../components/Global/Form/FormContext";
 import { usersModel } from "../../../lib/constants";
-import generateId from "../../../lib/utils/generateId";
 import {
   clearValidationMessages,
   validateSignUpForm,
@@ -10,7 +9,6 @@ import {
 import { createUser } from "../../../lib/utils/users";
 import { createUserFormInputs } from "../../../lib/constants";
 import { Link, useNavigate } from "react-router-dom";
-import { fetchUsers, storeUsers } from "../../../lib/utils/users";
 import useLocalStorage from "../../../hooks/localStorage";
 
 export default function SignUpForm() {

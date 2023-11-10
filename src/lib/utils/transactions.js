@@ -1,4 +1,4 @@
-import generateId from "../utils/generateId";
+import { generateId } from "../utils/helpers";
 import transactionsModel from "../constants/transactionsModel.json";
 
 function createTransaction(userId, type, amount) {
