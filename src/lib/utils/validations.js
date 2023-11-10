@@ -224,7 +224,5 @@ export function validateTransferForm(
 
   setInputState(updatedInputState);
 
-  console.log(updatedInputState)
-
   return checkValidForm(updatedInputState);
 }
