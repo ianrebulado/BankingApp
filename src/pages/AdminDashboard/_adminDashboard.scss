@@ -17,10 +17,30 @@
   }
 
   .sidebar {
-    height: 200%;
+    min-height: 100vh;
+    max-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
     filter: blur(100%);
     border-radius: 0 0 2rem;
     box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.2);
+
+    .nav-list {
+      display: flex;
+      align-items: start;
+      justify-content: flex-start;
+      padding: theme.$body-padding;
+      background-color: #fff;
+    }
+
+    .sidebar-control {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      width: 100%;
+      padding: theme.$body-padding;
+    }
   }
 
   .dashboard,
@@ -100,7 +120,7 @@
   @media (max-width: 768px) {
     .sidebar {
       background-color: theme.$secondary-color-light;
-      width: 100%;
+      width: 100vw;
       left: -900px;
 
       li {
