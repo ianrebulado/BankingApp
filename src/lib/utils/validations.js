@@ -137,10 +137,11 @@ export function validateTransactionForm(
           message: Validator.for(input).isRequired().greater(500).errorMessage,
         };
       } else if (formState.type === "withdraw") {
-        let userId = filterUsersByUsername(formState.username).user_id;
-        let balance = getBalance(userId);
+        let user = filterUsersByUsername(formState.username);
 
-        if (!balance) return;
+        if (!user) return { ...input, message: "Could not find user" };
+
+        let balance = getBalance(user.user_id);
 
         input.value = formState.amount;
         return {
@@ -186,6 +187,8 @@ export function validateTransferForm(
       };
     } else if (input.name === "amount") {
       const sender = filterUsersByName(formState.sendingUsername);
+
+      if (!sender) return { ...input, message: "Could not find user" };
       let sendingUserId = sender.user_id;
       let balance = getBalance(sendingUserId);
 
