@@ -22,23 +22,16 @@ function UserAccount() {
 
   const userId = user.user_id;
 
-  console.log("id", userId);
-
   const columns = ["transaction_id", "created_on", "type", "amount"];
-  const initialInput = { user_id: userId, type: null, amount: null };
 
   let totalExpenses = getTotalExpenses(userId);
   const balance = getBalance(userId);
-  const monthlyBalance = getMonthlyExpenses(userId);
   const userTransactions = getTransactions(userId);
   const accountBalance = getAccountBalance(balance, totalExpenses);
 
   const [showToast, setShowToast] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [data, setData] = useState([]);
-  const [inputValues, setInputValues] = useState(initialInput);
-  const [action, setAction] = useState("");
-  const [message, setMessage] = useState(null);
 
   const updateTransactions = (transaction) => {
     if (transaction) {
@@ -57,8 +50,6 @@ function UserAccount() {
 
       setData(newData);
     }
-
-    setInputValues(initialInput);
   };
 
   const handleSend = () => {
@@ -162,6 +153,7 @@ function UserAccount() {
             <div onClick={handleSend}>
               <Wallet />
               <h1>Send Money</h1>
+
             </div>
             <div onClick={handlePrint}>
               <Printer />

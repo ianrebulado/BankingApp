@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { initialTransferFormState, transferFormInputs } from '../../../lib/constants/globals';
 import { FormProvider, InputField, Button } from '../../../components';
 import { validateTransferForm, clearValidationMessages } from '../../../lib/utils/validations';

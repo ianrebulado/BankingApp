@@ -1,15 +1,16 @@
 @use "../../styles/variables/theme" as theme;
 
 .sidebar {
-  position: relative;
   background-color: theme.$secondary-color-light;
-  min-width: 25vmin;
-  min-height: 100vh;
-  height: auto;
-  box-shadow: theme.$box-shadow;
   font-family: theme.$font-family;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: clamp(13.5rem, 12.5rem + 1.563vw, 15rem);
+  min-height: 100vh;
+  height: 100%;
   z-index: 3;
   transition: left 0.3s;
 
@@ -19,28 +20,27 @@
 
   .sidebar-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-self: flex-start;
     height: 20%;
 
     .logo {
-      width: theme.$logo-medium;
+      width: 15vmin;
       height: auto;
     }
   }
   
   .nav-list {
-    padding: calc(theme.$body-padding * 3);
-    height: 60vh;
     line-height: theme.$line-height;
-    font-weight: theme.$font-weight-semibold;
-    font-size: theme.$font-size-medium;
+    font-size: clamp(0.8rem, 0.267rem + 0.833vw, 1.6rem);
+    width: 100%;
   
     ul {
       li {
         padding-top: theme.$body-padding;
         cursor: pointer;
         a {
-          // color: theme.$primary-color;
           text-decoration: none;
         }
 
@@ -51,7 +51,7 @@
       }
       
       .nav-icon {
-        height: theme.$icon-small;
+        height: 2vmin;
         color: theme.$accent-color-dark;
       }
     }
@@ -59,13 +59,16 @@
   
   .sidebar-control {
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    padding: calc(theme.$body-padding * 2);
+    justify-content: flex-end;
+    align-items: flex-end;
+    align-self: flex-start;
     height: 10%;
 
     a {
       color: theme.$accent-color-dark;
+       svg {
+        width: 3.5vmin;
+       }
     }
   }
 }
@@ -77,10 +80,19 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    position: fixed;
     width: 100%;
     height: 100%;
     left: -30rem;
+
+    .nav-list {
+      font-size: 5vmin;
+
+      ul {
+        .nav-icon {
+          height: 5vmin;
+        }
+      }
+    }
   }
 
   .mobile-menu {

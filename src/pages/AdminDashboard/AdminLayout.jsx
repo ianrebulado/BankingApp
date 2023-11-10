@@ -27,7 +27,7 @@ export default function AdminLayout() {
 
   return (
     <section className="admin-layout">
-      <Sidebar isOpen={isSidebarOpen} navItems={adminNavItems} />
+      <Sidebar isOpen={isSidebarOpen} navItems={adminNavItems} toggleSidebar={toggleSideBar} />
       <Outlet />
       <MoreVertical className="mobile-menu" onClick={toggleSideBar} />
     </section>

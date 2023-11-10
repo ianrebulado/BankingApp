@@ -43,10 +43,10 @@ export default function SignUpForm() {
       setUsersData([...usersData]);
 
       //Add toast
+
       navigate("/");
     } else {
       console.log("Form is not valid");
-      //Add toast
     }
   }
 

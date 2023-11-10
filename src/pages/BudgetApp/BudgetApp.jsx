@@ -130,6 +130,7 @@ function BudgetApp() {
           <div className="balance-cards-container">
             <BalanceCard title={"Account Balance"} balance={accountBalance} />
             <BalanceCard title={"Total Expenses"} balance={totalExpenses} />
+
           </div>
           <div className="chart-container">
             <BalanceChart title={"Expenses Overview"} data={monthlyBalance} />
@@ -160,6 +161,7 @@ function BudgetApp() {
                 setShowModal={setShowModal}
                 updateExpenses={updateExpenses}
                 setShowToast={setShowToast}
+
               />
             ) : (
               <AddExpenseForm
