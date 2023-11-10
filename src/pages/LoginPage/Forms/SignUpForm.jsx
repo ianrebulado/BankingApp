@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button, InputField } from "../../../components";
+import { useState, useEffect } from "react";
+import { Button, InputField, Toast } from "../../../components";
 import { FormProvider } from "../../../components/Global/Form/FormContext";
 import { usersModel } from "../../../lib/constants";
 import {
@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useLocalStorage from "../../../hooks/localStorage";
 
 export default function SignUpForm() {
+  const [showToast, setShowToast] = useState(false);
   const [usersData, setUsersData] = useLocalStorage("users", usersModel);
   const [inputState, setInputState] = useState(createUserFormInputs);
   const [formState, setFormState] = useState({
@@ -22,6 +23,16 @@ export default function SignUpForm() {
     password: null,
     role: "client",
   });
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowToast(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [showToast]);
 
   const navigate = useNavigate();
 
@@ -40,11 +51,13 @@ export default function SignUpForm() {
 
     if (isValidForm) {
       usersData.push(createUser(formState));
-      setUsersData([...usersData]);
+      setUsersData([...usersData]); 
 
-      //Add toast
+      setShowToast(true);
 
-      navigate("/");
+      setTimeout(() => {
+       navigate("/");
+      }, 5500);
     } else {
       console.log("Form is not valid");
     }
@@ -70,7 +83,8 @@ export default function SignUpForm() {
           )
         )}
         <div className="buttons-container">
-          <Button type={"submit"} text={"Create Account"} />
+          <Button type={"submit"} text={"Create Account"} handleClick={handleSubmit} />
+            {showToast && (<Toast type={'Success'} message={'Redirecting to Login Page'}/>)}
           <span className="sign-up-link">
             <Link to="/">Go Back to Login Page</Link>
           </span>
