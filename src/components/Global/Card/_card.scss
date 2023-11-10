@@ -14,12 +14,13 @@
 }
 
 .card-header {
-  color: theme.$accent-color-dark;
+  color: theme.$primary-color;
   padding: theme.$header-padding;
   font-weight: theme.$font-weight-bold;
   line-height: theme.$line-height;
   border-radius: theme.$border-radius;
   text-align: left;
+  height: 50%;
 }
 
 .card-body {

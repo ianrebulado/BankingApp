@@ -42,6 +42,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      .buttons-container {
+        display: flex;
+        align-items: start;
+        padding: 0;
+        flex-direction: column;
+      }
     }
 
     .login-page-footer {
@@ -96,6 +103,17 @@ a:hover {
       justify-content: center;
       align-items: center;
       width: 100vw;
+
+      .login-form {
+        .buttons-container {
+          width: 100%;
+          text-align: center;
+
+          * {
+            width: 100%;
+          }
+        }
+      }
     }
   }
 
