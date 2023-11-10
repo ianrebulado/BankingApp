@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Modal, Toast } from "../../components";
 import usersModel from "../../lib/constants/usersModel";
 import { filterData, createUsersTable } from "../../lib/utils/helpers";
-import { fetchUsers } from "../../lib/utils/users";
 import {
   AdminCards,
   AdminControls,
@@ -11,11 +10,10 @@ import {
 } from "./Components";
 import useLocalStorage from "../../hooks/localStorage";
 
-const initialUsersTable = createUsersTable(usersModel);
-
 export default function Accounts() {
   const [usersData, setUsersData] = useLocalStorage("users", usersModel);
   const [user] = useLocalStorage("SignedInUser", "");
+  const initialUsersTable = createUsersTable(usersData);
   const [accountState, setAccountState] = useState({
     showModal: false,
     showToast: false,
@@ -64,6 +62,13 @@ export default function Accounts() {
     }
   }, [searchTerm]);
 
+  useEffect(() => {
+    setAccountState((prevState) => ({
+      ...prevState,
+      usersTableData: initialUsersTable,
+    }));
+  }, [usersData]);
+
   function handleShowModal() {
     setAccountState((prevState) => ({
       ...prevState,
@@ -87,6 +92,7 @@ export default function Accounts() {
             accountState={accountState}
             setAccountState={setAccountState}
           />
+          <h1 className="table-header">Accounts</h1>
           <UsersTable usersTableData={usersTableData} />
           {showModal && (
             <Modal setShowModal={handleShowModal}>{formComponent}</Modal>

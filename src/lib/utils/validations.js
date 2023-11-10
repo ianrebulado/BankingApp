@@ -174,7 +174,7 @@ export function validateTransferForm(
         message: Validator.for(input)
           .isRequired()
           .isEqualTo(formState.receivingUsername)
-          .userExists(usersData).errorMessage,
+          .usernameExists(usersData).errorMessage,
       };
     } else if (input.name === "receivingUsername") {
       input.value = formState.receivingUsername;
@@ -183,7 +183,7 @@ export function validateTransferForm(
         message: Validator.for(input)
           .isRequired()
           .isEqualTo(formState.sendingUsername)
-          .userExists(usersData).errorMessage,
+          .usernameExists(usersData).errorMessage,
       };
     } else if (input.name === "amount") {
       const sender = filterUsersByName(formState.sendingUsername);

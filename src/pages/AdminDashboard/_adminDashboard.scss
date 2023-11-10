@@ -33,6 +33,12 @@
     padding: theme.$body-padding;
     overflow: hidden;
 
+    .table-header {
+      font-family: inherit;
+      font-weight: 700;
+      color: theme.$primary-color;
+    }
+
     .cards-container {
       display: flex;
       gap: 1rem;
