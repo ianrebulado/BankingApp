@@ -120,9 +120,7 @@ function BudgetApp() {
         />
       )}
         <div className="expenses-container">
-          <div className="header-container">
-            <Header user={user.first_name} />
-          </div>
+          <Header user={user.first_name} />
           <div className="cards-container">
             <div className="balance-cards-container">
               <BalanceCard title={"Account Balance"} balance={accountBalance} />
