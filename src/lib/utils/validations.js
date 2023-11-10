@@ -92,7 +92,26 @@ export function validateSignInForm(
 }
 
 export function validateExpenseForm(inputState, setInputState, formState) {
-  const updatedInputState = checkMissingValues(inputState, formState);
+
+  const updatedInputState = inputState.map((input) => {
+    if(input.name === "description"){
+      input.value = formState.description;
+      return {
+        ...input,
+        message: Validator.for(input)
+        .isRequired().errorMessage
+      }
+    } else if(input.name === "amount"){
+      input.value = formState.amount;
+      return {
+        ...input,
+        message: Validator.for(input)
+        .isRequired()
+        .greater(500).errorMessage
+      }
+    }
+  })
+
   setInputState(updatedInputState);
 
   const isValid = checkValidForm(updatedInputState);
@@ -204,6 +223,8 @@ export function validateTransferForm(
   });
 
   setInputState(updatedInputState);
+
+  console.log(updatedInputState)
 
   return checkValidForm(updatedInputState);
 }
