@@ -1,26 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { Button, Card, Header, Modal, Table, Toast } from "../../components";
+import { useState, useEffect } from "react";
+import { Button, Header, Modal, Table, Toast } from "../../components";
 import BalanceCard from "../ClientDashboard/Cards/BalanceCard";
 import BalanceChart from "../ClientDashboard/Cards/BalanceChart";
 
-import { FileEdit, Trash2, LogOut, PlusSquare } from "lucide-react";
+import { FileEdit, Trash2 } from "lucide-react";
 import {
   getUserExpenses,
   getExpense,
   getTotalExpenses,
-  getMonthlyExpenses,
-  storeInitialExpenses,
+  getMonthlyExpenses
 } from "../../lib/utils/expenses";
 import AddExpenseForm from "./Forms/AddExpenseForm";
 
 import {
   getAccountBalance,
-  getBalance,
-  getMonthlyBalance,
+  getBalance
 } from "../../lib/utils/transactions";
 import { formatDate, formatAmount } from "../../lib/utils/formatter";
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
-import { Link } from "react-router-dom";
 
 function BudgetApp() {
   const user = JSON.parse(localStorage.getItem("SignedInUser"));

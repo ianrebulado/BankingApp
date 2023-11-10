@@ -1,18 +1,16 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReactDOMServer from "react-dom/server";
 import { Card, Header, Modal, Table, Toast } from "../../components";
 
-import { LogOut, Wallet, Printer } from "lucide-react";
-import { getTotalExpenses, getMonthlyExpenses } from "../../lib/utils/expenses";
+import { Wallet, Printer } from "lucide-react";
+import { getTotalExpenses } from "../../lib/utils/expenses";
 
 import {
   getAccountBalance,
   getBalance,
-  getMonthlyBalance,
   getTransactions,
 } from "../../lib/utils/transactions";
 import { formatDate, formatAmount } from "../../lib/utils/formatter";
-import { Link } from "react-router-dom";
 import { fetchUsers } from "../../lib/utils/users";
 import SendAmount from "./Forms/SendAmount";
 
@@ -153,7 +151,6 @@ function UserAccount() {
             <div onClick={handleSend}>
               <Wallet />
               <h1>Send Money</h1>
-
             </div>
             <div onClick={handlePrint}>
               <Printer />

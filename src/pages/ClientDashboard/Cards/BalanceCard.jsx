@@ -1,4 +1,3 @@
-import React from "react";
 import { Card } from "../../../components";
 import { formatAmount } from "../../../lib/utils/formatter";
 

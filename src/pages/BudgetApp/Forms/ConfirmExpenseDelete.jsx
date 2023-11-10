@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '../../../components';
 import { formatDate, formatAmount } from '../../../lib/utils/formatter';
 import { deleteExpense, getUserExpenses } from '../../../lib/utils/expenses';

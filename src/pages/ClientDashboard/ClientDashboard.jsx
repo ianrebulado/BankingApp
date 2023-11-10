@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState } from 'react';
 import { LayoutDashboard, ArrowRightLeft, MoreVertical } from 'lucide-react';
 import Sidebar from '../../components/Sidebar/Sidebar';
