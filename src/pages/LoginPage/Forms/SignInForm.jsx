@@ -1,61 +1,54 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, InputField } from "../../../components";
 import { FormProvider } from "../../../components/Global/Form/FormContext";
 import { validateSignInForm } from "../../../lib/utils/validations";
-import { Link, useNavigate} from "react-router-dom";
-import { fetchUsers, userSignedIn } from "../../../lib/utils/users";
-
-const inputs = [
-  {
-    type: "text",
-    label: "Username",
-    name: "username",
-    placeholder: "Username",
-    isRequired: true,
-    message: "",
-  },
-  {
-    type: "password",
-    label: "Password",
-    name: "password",
-    placeholder: "Password",
-    isRequired: true,
-    message: "",
-  },
-];
-
-export function updateLocalStorage(key, value) {
-  localStorage.setItem(key, value);
-}
+import { Link, useNavigate } from "react-router-dom";
+import { userSignedIn } from "../../../lib/utils/users";
+import { usersModel } from "../../../lib/constants";
+import { signInInputs } from "../../../lib/constants/globals";
+import useLocalStorage from "../../../hooks/localStorage";
 
 export default function SignInForm() {
-  const [inputState, setInputState] = useState(inputs);
+  const usersData = useLocalStorage("users", usersModel)[0];
+  const setUsername = useLocalStorage("username", "")[1];
+  const setSignedIn = useLocalStorage("signedIn", false)[1];
+  const setSignedInUser = useLocalStorage("SignedInUser", [])[1];
+
+  const [inputState, setInputState] = useState(signInInputs);
   const [formState, setFormState] = useState({
     username: null,
     password: null,
   });
-  const usersData = fetchUsers();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    let validUser = validateSignInForm(
+    let isValidForm = validateSignInForm(
       inputState,
       setInputState,
       formState,
       usersData
     );
 
-    if (validUser) {
-      updateLocalStorage("username", formState.username);
-      updateLocalStorage("signedIn", true);
+    if (isValidForm) {
+      await setUsername(formState.username);
+      await setSignedIn(true);
+
       const SignedInUser = userSignedIn(formState.username, formState.password);
 
-      const userRole = SignedInUser.role 
-      userRole === 'admin' ? navigate('/admindashboard') : navigate('/dashboard') 
+      if (SignedInUser) {
+        await setSignedInUser(SignedInUser);
+      } else {
+        localStorage.removeItem("SignedInUser");
+      }
+
+      const userRole = SignedInUser.role;
+
+      userRole === "admin"
+        ? navigate("/admindashboard")
+        : navigate("/dashboard");
     }
-    
   }
 
   function handleInputChange(name, value) {
@@ -81,12 +74,15 @@ export default function SignInForm() {
           <Button type={"submit"} text={"Sign In"} />
           <SignupLink />
         </div>
-
       </form>
     </FormProvider>
   );
 }
 
-function SignupLink () {
-  return  <span className="sign-up-link"><Link to='/signup'>Not yet a member? Sign up!</Link></span> 
+function SignupLink() {
+  return (
+    <span className="sign-up-link">
+      <Link to="/signup">Not yet a member? Sign up!</Link>
+    </span>
+  );
 }

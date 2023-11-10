@@ -39,6 +39,25 @@ export const createUserFormInputs = [
   },
 ];
 
+export const signInInputs = [
+  {
+    type: "text",
+    label: "Username",
+    name: "username",
+    placeholder: "Username",
+    isRequired: true,
+    message: "",
+  },
+  {
+    type: "password",
+    label: "Password",
+    name: "password",
+    placeholder: "Password",
+    isRequired: true,
+    message: "",
+  },
+];
+
 export const initialCreateUserFormState = {
   username: null,
   first_name: null,

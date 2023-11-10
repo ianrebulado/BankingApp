@@ -1,6 +1,5 @@
 import usersModel from "../constants/usersModel.json";
 import generateId from "./generateId";
-import { updateLocalStorage } from "../../pages/LoginPage/Forms/SignInForm";
 
 const usersData = fetchUsers();
 
@@ -71,12 +70,6 @@ export function userSignedIn(username, password) {
   const user = users.find(
     (u) => u.username === username && u.password === password
   );
-
-  if (user) {
-    updateLocalStorage("SignedInUser", JSON.stringify(user));
-  } else {
-    localStorage.removeItem("SignedInUser");
-  }
 
   return user;
 }
