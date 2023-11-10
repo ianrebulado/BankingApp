@@ -78,7 +78,7 @@ export function getBalance(userId) {
     balance += parseFloat(transaction.amount);
   });
 
-  return formatAmount(balance);
+  return balance;
 }
 
 export function getMonthlyBalance(userId) {
