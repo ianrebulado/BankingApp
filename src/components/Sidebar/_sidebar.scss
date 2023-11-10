@@ -3,12 +3,12 @@
 .sidebar {
   background-color: theme.$secondary-color-light;
   font-family: theme.$font-family;
-  box-shadow: theme.$box-shadow;
+  box-shadow: 1px 1px 5px rgb(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-width: 20vmin;
+  width: clamp(13.5rem, 12.5rem + 1.563vw, 15rem);
   min-height: 100vh;
   height: 100%;
   z-index: 3;
@@ -26,15 +26,14 @@
     height: 20%;
 
     .logo {
-      width: theme.$logo-medium;
+      width: 15vmin;
       height: auto;
     }
   }
   
   .nav-list {
-    padding: calc(theme.$body-padding * 3);
     line-height: theme.$line-height;
-    font-size: 2vmin;
+    font-size: clamp(0.8rem, 0.267rem + 0.833vw, 1.6rem);
     width: 100%;
   
     ul {
@@ -63,11 +62,13 @@
     justify-content: flex-end;
     align-items: flex-end;
     align-self: flex-start;
-    padding-left: calc(theme.$body-padding * 2);
     height: 10%;
 
     a {
       color: theme.$accent-color-dark;
+       svg {
+        width: 3.5vmin;
+       }
     }
   }
 }

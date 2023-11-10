@@ -122,9 +122,7 @@ function UserAccount() {
         </Modal>
       )}
         <div className="expenses-container">
-          <div className="header-container">
-            <Header user={user.first_name} />
-          </div>
+          <Header user={user.first_name} />
           <div className="account-container">
             <div className="card-container">
                 <Card title="Savings Account">

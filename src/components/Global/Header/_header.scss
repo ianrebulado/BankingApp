@@ -3,9 +3,9 @@
 .page-header {
     background-size:    theme.$page-header-bg-size;
     font-family:        theme.$font-family;
-    font-weight:        theme.$heading-font-weight;
-    font-size:          clamp(1rem, -0.25rem + 3.333vw, 2.75rem);
-    padding:            theme.$header-padding;
+    font-size:          3vmin;
+    padding-top:        calc(theme.$header-padding *2);
+    padding-bottom:     calc(theme.$header-padding *2);
     color:              theme.$secondary-color-dark;
     display:            flex;
     justify-content:    flex-start;
