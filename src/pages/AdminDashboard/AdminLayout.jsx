@@ -10,12 +10,12 @@ const adminNavItems = [
   {
     label: "Dashboard",
     icon: <LayoutDashboard className="nav-icon" />,
-    link: "/admindashboard",
+    link: "/admin/dashboard",
   },
   {
     label: "Transactions",
     icon: <ArrowRightLeft className="nav-icon" />,
-    link: "/admindashboard/expenses",
+    link: "/admin/transactions",
   },
 ];
 
