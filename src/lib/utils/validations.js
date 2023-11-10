@@ -18,11 +18,46 @@ export function validateSignUpForm(
 ) {
   let isValid = true;
 
-  const { username, firstName, lastName, email, password } = inputState;
+  console.log(formState);
 
-  let updatedInputState = checkMissingValues(inputState, formState);
+  let updatedInputState = inputState.map((input) => {
+    if (input.name === "username") {
+      input.value = formState.username;
+      return {
+        ...input,
+        message: Validator.for(input)
+          .isRequired()
+          .isString()
+          .min(3)
+          .max(50)
+          .isUnique(usersData).errorMessage,
+      };
+    } else if (input.name === "email") {
+      input.value = formState.email;
+      return {
+        ...input,
+        message: Validator.for(input)
+          .isRequired()
+          .max(50)
+          .isEmail()
+          .isUnique(usersData).errorMessage,
+      };
+    } else if (input.name === "password") {
+      input.value = formState.password;
+      return {
+        ...input,
+        message: Validator.for(input)
+          .isRequired()
+          .min(8)
+          .max(50)
+          .hasCap()
+          .hasNumber()
+          .hasSpecial().errorMessage,
+      };
+    }
 
-  updatedInputState = checkDuplicate(updatedInputState, formState, usersData);
+    return { ...input };
+  });
 
   setInputState(updatedInputState);
 

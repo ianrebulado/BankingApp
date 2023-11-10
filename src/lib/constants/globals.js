@@ -24,7 +24,6 @@ export const createUserFormInputs = [
     message: "",
   },
   {
-    type: "email",
     label: "Email",
     name: "email",
     isRequired: true,
