@@ -6,7 +6,9 @@ export default function LoginPage() {
   return (
     <>
       <div className="login-page">
-        <img className="home-img" src={home} />
+        <div className="home-img-container">
+          <img className="home-img" src={home} />
+        </div>
         <div className="login-container">
           <img src={logo} alt="logo" className="home-logo" />
           <div className="login-form">

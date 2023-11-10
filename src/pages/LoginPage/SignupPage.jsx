@@ -7,7 +7,9 @@ export default function SignupPage() {
   return (
     <>
       <div className="login-page">
-        <img className="home-img" src={home} />
+        <div className="home-img-container">
+          <img className="home-img" src={home} />
+        </div>{" "}
         <div className="login-container">
           <div className="title-container">
             <h1 className="form-title">Register</h1>
