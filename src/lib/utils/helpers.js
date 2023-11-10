@@ -1,16 +1,10 @@
 import {
-  CreateUserForm,
-  DepositForm,
-  WithdrawForm,
-  TransferForm,
-} from "../../pages/AdminDashboard/Forms";
-
-import {
   getBalance,
   getTotalTransactions,
   getTransactionsVolume,
 } from "./transactions";
 import { filterUsersById, getTotalUsers } from "./users";
+import { formatAmount, formatNumber } from "./formatter";
 
 export function filterData(data, property, condition) {
   return data.filter((item) =>
@@ -22,18 +16,25 @@ export function createUsersTable(userData) {
   return userData.map((user) => {
     const { user_id, username, first_name, last_name, email } = user;
     const name = `${first_name} ${last_name}`;
-    const balance = getBalance(user_id);
+    const balance = formatAmount(getBalance(user_id));
     return { user_id, username, name, email, balance };
   });
 }
 
 export function createTransactionsTable(transactionData) {
   return transactionData.map((transaction) => {
-    const { created_on, transaction_id, user_id, type, amount } = transaction;
+    let { created_on, transaction_id, user_id, type, amount } = transaction;
 
     const name = filterUsersById(user_id).username;
+    amount = formatAmount(amount);
     return { created_on, transaction_id, name, type, amount };
   });
+}
+
+export function signout() {
+  localStorage.setItem("signedIn", false);
+  localStorage.removeItem("SignedInUser");
+  localStorage.removeItem("username");
 }
 
 export function getAdminCardsData() {
@@ -42,10 +43,6 @@ export function getAdminCardsData() {
   const totalTransactionsVolume = formatNumber(getTransactionsVolume());
 
   return { totalUsers, totalTransactions, totalTransactionsVolume };
-}
-
-export function formatNumber(number) {
-  return Intl.NumberFormat().format(number);
 }
 
 export function generateId(type) {
