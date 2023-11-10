@@ -15,8 +15,6 @@ import BudgetApp from "./pages/BudgetApp/BudgetApp";
 import UserAccount from "./pages/ClientDashboard/UserAccount";
 import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
-const signedInUser = JSON.parse(localStorage.getItem("SignedInUser"));
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,7 +34,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Accounts user={signedInUser} />,
+        element: <Accounts />,
       },
       {
         path: "/admindashboard/expenses",
@@ -54,18 +52,18 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <UserAccount />
+        element: <UserAccount />,
       },
       {
         path: "/dashboard/expenses",
-        element: <BudgetApp />
-      }
-    ]
+        element: <BudgetApp />,
+      },
+    ],
   },
   {
-    path: '*',
-    element: <ErrorPage />
-  }
+    path: "*",
+    element: <ErrorPage />,
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

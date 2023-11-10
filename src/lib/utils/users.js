@@ -1,6 +1,5 @@
 import usersModel from "../constants/usersModel.json";
-import generateId from "./generateId";
-import { updateLocalStorage } from "../../pages/LoginPage/Forms/SignInForm";
+import { generateId } from "./helpers";
 
 const usersData = fetchUsers();
 
@@ -9,14 +8,12 @@ export function createUser(newUserForm) {
   const createdOn = new Date();
   const updatedOn = new Date();
 
-  usersData.push({
+  return {
     ...newUserForm,
     user_id,
     createdOn,
     updatedOn,
-  });
-
-  storeUsers(usersData);
+  };
 }
 
 export function storeUsers(usersData) {
@@ -68,18 +65,11 @@ export function getTotalUsers() {
 }
 
 export function userSignedIn(username, password) {
-
   const users = fetchUsers();
 
   const user = users.find(
     (u) => u.username === username && u.password === password
   );
-
-  if (user) {
-    updateLocalStorage("SignedInUser", JSON.stringify(user));
-  } else {
-    localStorage.removeItem("SignedInUser");
-  }
 
   return user;
 }

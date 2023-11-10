@@ -145,10 +145,13 @@ export default class Validator {
   }
 
   userExists(users, errorMessage = `Username not found`) {
-
     if (this._checkError()) return this;
 
-    if (!users.some((user) => user.username === this.value || user.first_name === this.value)) {
+    if (
+      !users.some(
+        (user) => user.username === this.value || user.first_name === this.value
+      )
+    ) {
       this.errorMessage = errorMessage;
     }
 
@@ -188,10 +191,15 @@ export default class Validator {
     return this;
   }
 
-  isValidCredentials(users, email, errorMessage = "Password is incorrect") {
+  isValidCredentials(
+    users,
+    property,
+    value,
+    errorMessage = "Password is incorrect"
+  ) {
     if (this._checkError()) return this;
 
-    const user = users.find((user) => user.email === email);
+    const user = users.find((user) => user[property] === value);
 
     if (user && user.password !== this.value) {
       this.errorMessage = errorMessage;

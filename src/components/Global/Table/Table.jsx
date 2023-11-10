@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { formatName } from "../../../lib/utils/formatName";
+import { formatName } from "../../../lib/utils/formatter";
 import { ChevronLeftSquare, ChevronRightSquare } from "lucide-react";
 
 const Table = ({ data, columns, itemsPerPage, rowKey, actions }) => {

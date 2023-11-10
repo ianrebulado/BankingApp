@@ -1,4 +1,3 @@
-import React from "react";
 import SignInForm from "./Forms/SignInForm";
 import home from "../../../public/1.jpg";
 import logo from "../../../public/combi-dark-logo.png";

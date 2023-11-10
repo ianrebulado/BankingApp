@@ -8,16 +8,19 @@ import {
   getUserExpenses,
   getExpense,
   getTotalExpenses,
-  getMonthlyExpenses
+  getMonthlyExpenses,
+  storeInitialExpenses,
 } from "../../lib/utils/expenses";
 import AddExpenseForm from "./Forms/AddExpenseForm";
 
-import { getAccountBalance, getBalance, getMonthlyBalance } from "../../lib/utils/transactions";
 import {
-  formatDate,
-  formatAmount,
-} from "../../lib/utils/formatter";
+  getAccountBalance,
+  getBalance,
+  getMonthlyBalance,
+} from "../../lib/utils/transactions";
+import { formatDate, formatAmount } from "../../lib/utils/formatter";
 import ConfirmExpenseDelete from "./Forms/ConfirmExpenseDelete";
+import { Link } from "react-router-dom";
 
 function BudgetApp() {
   const user = JSON.parse(localStorage.getItem("SignedInUser"));
@@ -31,7 +34,7 @@ function BudgetApp() {
   const balance = getBalance(userId);
   const monthlyBalance = getMonthlyExpenses(userId);
   const userExpenses = getUserExpenses(userId);
-  const accountBalance = getAccountBalance(balance,totalExpenses)
+  const accountBalance = getAccountBalance(balance, totalExpenses);
 
   const [showToast, setShowToast] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -119,69 +122,73 @@ function BudgetApp() {
           }
         />
       )}
-        <div className="expenses-container">
+      <div className="expenses-container">
+        <div className="header-container">
           <Header user={user.first_name} />
-          <div className="cards-container">
-            <div className="balance-cards-container">
-              <BalanceCard title={"Account Balance"} balance={accountBalance} />
-              <BalanceCard title={"Total Expenses"} balance={totalExpenses} />
-            </div>
-            <div className="chart-container">
-              <BalanceChart title={"Expenses Overview"} data={monthlyBalance} />
-            </div>
+        </div>
+        <div className="cards-container">
+          <div className="balance-cards-container">
+            <BalanceCard title={"Account Balance"} balance={accountBalance} />
+            <BalanceCard title={"Total Expenses"} balance={totalExpenses} />
+
           </div>
-          <div className="buttons-container">
-            <Button
-              type={"button"}
-              text={"New Expense"}
-              handleClick={handleAddClick}
-            />
-          </div>
-          {showModal && (
-            <Modal
-              title={
-                showDeleteConfirm
-                  ? "Delete Expense"
-                  : inputValues.expense_id
-                  ? "Update Expense"
-                  : "New Expense"
-              }
-              setShowModal={setShowModal}
-            >
-              {showDeleteConfirm ? (
-                <ConfirmExpenseDelete
-                  expense={deleteExpense}
-                  setShowDeleteConfirm={setShowDeleteConfirm}
-                  setShowModal={setShowModal}
-                  updateExpenses={updateExpenses}
-                  setShowToast={setShowToast}
-                />
-              ) : (
-                <AddExpenseForm
-                  setShowModal={setShowModal}
-                  updateExpenses={updateExpenses}
-                  inputValues={inputValues}
-                  setShowToast={setShowToast}
-                />
-              )}
-            </Modal>
-          )}
-          <div className="table-container">
-            <Table
-                  className="table-container"
-                  data={data}
-                  columns={columns}
-                  itemsPerPage={20}
-                  rowKey={"expense_id"}
-                  actions={
-                  <>
-                      <FileEdit className="edit-icon" onClick={handleEditClick} />
-                      <Trash2 className="delete-icon" onClick={handleDeleteClick} />
-                  </>
-                  }
-              />
+          <div className="chart-container">
+            <BalanceChart title={"Expenses Overview"} data={monthlyBalance} />
           </div>
         </div>
+        <div className="buttons-container">
+          <Button
+            type={"button"}
+            text={"New Expense"}
+            handleClick={handleAddClick}
+          />
+        </div>
+        {showModal && (
+          <Modal
+            title={
+              showDeleteConfirm
+                ? "Delete Expense"
+                : inputValues.expense_id
+                ? "Update Expense"
+                : "New Expense"
+            }
+            setShowModal={setShowModal}
+          >
+            {showDeleteConfirm ? (
+              <ConfirmExpenseDelete
+                expense={deleteExpense}
+                setShowDeleteConfirm={setShowDeleteConfirm}
+                setShowModal={setShowModal}
+                updateExpenses={updateExpenses}
+                setShowToast={setShowToast}
+
+              />
+            ) : (
+              <AddExpenseForm
+                setShowModal={setShowModal}
+                updateExpenses={updateExpenses}
+                inputValues={inputValues}
+                setShowToast={setShowToast}
+              />
+            )}
+          </Modal>
+        )}
+        <div className="table-container">
+          <Table
+            className="table-container"
+            data={data}
+            columns={columns}
+            itemsPerPage={5}
+            rowKey={"expense_id"}
+            actions={
+              <>
+                <FileEdit className="edit-icon" onClick={handleEditClick} />
+                <Trash2 className="delete-icon" onClick={handleDeleteClick} />
+              </>
+            }
+          />
+        </div>
+      </div>
     </>
   );
 }

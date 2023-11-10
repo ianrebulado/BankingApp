@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import SidebarHeader from './SidebarHeader';
-import SidebarControl from './SidebarControl';
-import NavList from './NavList';
+import SidebarHeader from "./SidebarHeader";
+import SidebarControl from "./SidebarControl";
+import NavList from "./NavList";
 
 function Sidebar({ isOpen, navItems, toggleSidebar }) {
   return (

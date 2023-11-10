@@ -9,10 +9,13 @@ import {
   AdminHeader,
   UsersTable,
 } from "./Components";
+import useLocalStorage from "../../hooks/localStorage";
 
 const initialUsersTable = createUsersTable(usersModel);
 
 export default function Accounts() {
+  const [usersData, setUsersData] = useLocalStorage("users", usersModel);
+  const [user] = useLocalStorage("SignedInUser", "");
   const [accountState, setAccountState] = useState({
     showModal: false,
     showToast: false,
@@ -30,10 +33,6 @@ export default function Accounts() {
     searchTerm,
     usersTableData,
   } = accountState;
-
-  const usersData = fetchUsers();
-
-  const user = JSON.parse(localStorage.getItem("SignedInUser"));
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -79,8 +78,7 @@ export default function Accounts() {
         <div className="dashboard">
           <AdminHeader
             username={user.first_name ? user.first_name : user.username}
-            usersData={usersData}
-            accountState={accountState}
+            usersHook={[usersData, setUsersData]}
             setAccountState={setAccountState}
           />
           <AdminCards />
