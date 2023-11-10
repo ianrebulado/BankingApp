@@ -73,7 +73,7 @@ export default function Accounts() {
 
   return (
     <>
-      {showToast && <Toast type={"success"} message={toastMessage} />}
+      <Toast type={"success"} message={toastMessage} />
       {user && (
         <div className="dashboard">
           <AdminHeader
