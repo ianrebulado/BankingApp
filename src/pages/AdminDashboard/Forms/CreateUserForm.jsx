@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Button,
-  Modal,
   InputField,
   FormProvider,
   SelectInput,
@@ -16,7 +15,8 @@ import {
   validateSignUpForm,
 } from "../../../lib/utils/validations";
 
-export default function CreateUserForm({ usersData, setAccountState }) {
+export default function CreateUserForm({ usersHook, setAccountState }) {
+  const [usersData, setUsersData] = usersHook;
   const [inputState, setInputState] = useState(createUserFormInputs);
   const [formState, setFormState] = useState(initialCreateUserFormState);
 
@@ -34,7 +34,9 @@ export default function CreateUserForm({ usersData, setAccountState }) {
     );
 
     if (isValidForm) {
-      createUser(formState);
+      usersData.push(createUser(formState));
+
+      setUsersData([...usersData]);
 
       setAccountState((prevState) => ({
         ...prevState,

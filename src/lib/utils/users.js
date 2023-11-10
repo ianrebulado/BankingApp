@@ -9,16 +9,12 @@ export function createUser(newUserForm) {
   const createdOn = new Date();
   const updatedOn = new Date();
 
-  console.log(newUserForm);
-
-  usersData.push({
+  return {
     ...newUserForm,
     user_id,
     createdOn,
     updatedOn,
-  });
-
-  storeUsers(usersData);
+  };
 }
 
 export function storeUsers(usersData) {
@@ -56,8 +52,6 @@ export function filterUsersByName(name) {
       user.last_name.toLowerCase().includes(name.toLowerCase())
   );
 
-  console.log('match',matchedUser)
-
   return matchedUser[0];
 }
 
@@ -72,7 +66,6 @@ export function getTotalUsers() {
 }
 
 export function userSignedIn(username, password) {
-
   const users = fetchUsers();
 
   const user = users.find(
