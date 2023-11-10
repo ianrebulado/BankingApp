@@ -46,7 +46,7 @@ export default function SignInForm() {
       const userRole = SignedInUser.role;
 
       userRole === "admin"
-        ? navigate("/admindashboard")
+        ? navigate("/admin/dashboard")
         : navigate("/dashboard");
     }
   }

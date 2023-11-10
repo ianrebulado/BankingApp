@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/admindashboard",
+    path: "/admin",
     element: (
       <ProtectedRoute requiredRole={"admin"}>
         <AdminLayout />
@@ -35,13 +35,14 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorPage />,
     children: [
+    
       {
-        index: true,
+        path:"/admin/dashboard",
         element: <Accounts />,
         errorElement: <ErrorPage />
       },
       {
-        path: "/admindashboard/expenses",
+        path: "/admin/transactions",
         element: <Transactions />,
         errorElement: <ErrorPage />
       },
@@ -69,7 +70,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/*",
+    path: "*",
     element: <ErrorPage />,
     errorElement: <ErrorPage />
   },
