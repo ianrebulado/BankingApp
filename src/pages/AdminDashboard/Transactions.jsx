@@ -2,11 +2,16 @@ import { useState, useEffect } from "react";
 import { SearchInput } from "../../components";
 import { TransactionsTable } from "./Components";
 import { transactionsModel } from "../../lib/constants";
-import { filterData, createTransactionsTable } from "../../lib/utils/helpers";
 
-const initialTransactionsTable = createTransactionsTable(transactionsModel);
+import { filterData, createTransactionsTable } from "../../lib/utils/helpers";
+import useLocalStorage from "../../hooks/localStorage";
 
 function Transactions() {
+  const [transactionsData, setTransactionsData] = useLocalStorage(
+    "transactions",
+    transactionsModel
+  );
+  const initialTransactionsTable = createTransactionsTable(transactionsData);
   const [transactionsState, setTransactionsState] = useState({
     showModal: false,
     showToast: false,
@@ -16,14 +21,7 @@ function Transactions() {
     transactionsTableData: initialTransactionsTable,
   });
 
-  const {
-    showModal,
-    showToast,
-    toastMessage,
-    formComponent,
-    searchTerm,
-    transactionsTableData,
-  } = transactionsState;
+  const { searchTerm, transactionsTableData } = transactionsState;
 
   useEffect(() => {
     if (searchTerm === "" || searchTerm.length === 1) {
@@ -44,6 +42,13 @@ function Transactions() {
       }));
     }
   }, [searchTerm]);
+
+  useEffect(() => {
+    setTransactionsState((prevState) => ({
+      ...prevState,
+      transactionsTableData: initialTransactionsTable,
+    }));
+  }, [transactionsData]);
 
   return (
     <div className="transactions">
