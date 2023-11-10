@@ -18,7 +18,7 @@ export default function ErrorPage() {
   return (
     <>
       <div className='error-page'>
-        {showMessage && <h1>404. <br /> <br /> Hello, Stanley. </h1>}
+        {showMessage && <h1>Error. <br /> <br /> Hello, Stanley. </h1>}
       </div>
 
       {showMessage ? null : <Navigate to={'/'} />}

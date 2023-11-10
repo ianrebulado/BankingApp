@@ -19,10 +19,12 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LoginPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/signup",
     element: <SignupPage />,
+    errorElement: <ErrorPage />
   },
   {
     path: "/admindashboard",
@@ -31,14 +33,17 @@ const router = createBrowserRouter([
         <AdminLayout />
       </ProtectedRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <Accounts />,
+        errorElement: <ErrorPage />
       },
       {
         path: "/admindashboard/expenses",
         element: <Transactions />,
+        errorElement: <ErrorPage />
       },
     ],
   },
@@ -49,20 +54,24 @@ const router = createBrowserRouter([
         <ClientDashboard />
       </ProtectedRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
         element: <UserAccount />,
+        errorElement: <ErrorPage />
       },
       {
         path: "/dashboard/expenses",
         element: <BudgetApp />,
+        errorElement: <ErrorPage />
       },
     ],
   },
   {
-    path: "*",
+    path: "/*",
     element: <ErrorPage />,
+    errorElement: <ErrorPage />
   },
 ]);
 
