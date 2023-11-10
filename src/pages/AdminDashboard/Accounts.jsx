@@ -92,6 +92,7 @@ export default function Accounts() {
             accountState={accountState}
             setAccountState={setAccountState}
           />
+          <h1 className="table-header">Accounts</h1>
           <UsersTable usersTableData={usersTableData} />
           {showModal && (
             <Modal setShowModal={handleShowModal}>{formComponent}</Modal>

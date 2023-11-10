@@ -60,6 +60,7 @@ function Transactions() {
           setState={setTransactionsState}
         />
       </div>
+      <h1 className="table-header">Transactions</h1>
       <TransactionsTable transactionsTableData={transactionsTableData} />
     </div>
   );
