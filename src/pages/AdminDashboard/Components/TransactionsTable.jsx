@@ -10,7 +10,7 @@ export default function TransactionsTable({ transactionsTableData }) {
         <Table
           data={transactionsTableData}
           columns={columns}
-          itemsPerPage={20}
+          itemsPerPage={25}
         />
       )}
     </>

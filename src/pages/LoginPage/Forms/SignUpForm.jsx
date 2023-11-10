@@ -51,12 +51,12 @@ export default function SignUpForm() {
 
     if (isValidForm) {
       usersData.push(createUser(formState));
-      setUsersData([...usersData]); 
+      setUsersData([...usersData]);
 
       setShowToast(true);
 
       setTimeout(() => {
-       navigate("/");
+        navigate("/");
       }, 5500);
     } else {
       console.log("Form is not valid");
@@ -83,8 +83,14 @@ export default function SignUpForm() {
           )
         )}
         <div className="buttons-container">
-          <Button type={"submit"} text={"Create Account"} handleClick={handleSubmit} />
-            {showToast && (<Toast type={'Success'} message={'Redirecting to Login Page'}/>)}
+          <Button
+            type={"submit"}
+            text={"Create Account"}
+            handleClick={handleSubmit}
+          />
+          {showToast && (
+            <Toast type={"Success"} message={"Redirecting to Login Page"} />
+          )}
           <span className="sign-up-link">
             <Link to="/">Go Back to Login Page</Link>
           </span>

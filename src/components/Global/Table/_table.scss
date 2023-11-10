@@ -4,45 +4,50 @@
   box-shadow: theme.$box-shadow;
   border-radius: theme.$border-radius;
   font-family: theme.$font-family;
+  overflow: auto;
 
-  thead {
-    tr {
-      border-bottom: theme.$border-solid-white;
-      background-color: theme.$white-color-light;
-      padding: theme.$body-padding;
-      font-weight: theme.$font-weight-light;
-      font-size: theme.$font-size-small;
-      cursor: pointer;
-
-      &:hover {
-        color: theme.$white-color-lighter;
-      }
-
-      th {
+  table {
+    height: 100%;
+    width: 100%;
+    thead {
+      tr {
+        border-bottom: theme.$border-solid-white;
+        background-color: theme.$white-color-light;
         padding: theme.$body-padding;
+        font-weight: theme.$font-weight-light;
         font-size: theme.$font-size-small;
-        font-weight: theme.$font-weight-semibold;
-        background-color: theme.$white-color-lighter;
-        color: theme.$primary-color;
-        text-align: start;
+        cursor: pointer;
+
+        &:hover {
+          color: theme.$white-color-lighter;
+        }
+
+        th {
+          padding: theme.$body-padding;
+          font-size: theme.$font-size-small;
+          font-weight: theme.$font-weight-semibold;
+          background-color: theme.$white-color-lighter;
+          color: theme.$primary-color;
+          text-align: start;
+        }
       }
     }
-  }
 
-  tbody {
-    tr {
-      border: 1px solid theme.$secondary-color-light;
+    tbody {
+      tr {
+        text-align: start;
+        border: 1px solid theme.$secondary-color-light;
 
-      &:hover {
-        background-color: transparent;
-        filter: brightness(80%);
-      }
-      td {
-        padding: theme.$table-row-padding;
-        text-overflow: ellipsis;
-        text-wrap: nowrap;
-        text-transform: capitalize;
-        color: theme.$grey;
+        &:hover {
+          background-color: transparent;
+          filter: brightness(80%);
+        }
+        td {
+          padding: theme.$table-row-padding;
+          text-overflow: ellipsis;
+          text-wrap: nowrap;
+          color: theme.$grey;
+        }
       }
     }
   }

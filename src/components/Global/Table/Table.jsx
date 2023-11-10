@@ -15,8 +15,8 @@ const Table = ({ data, columns, itemsPerPage, rowKey, actions }) => {
   const currentData = data.slice(startIndex, endIndex);
 
   return (
-    <>
-      <table className="table-container">
+    <div className="table-container">
+      <table>
         <thead>
           <tr>
             {columns.map((column, index) => (
@@ -49,7 +49,7 @@ const Table = ({ data, columns, itemsPerPage, rowKey, actions }) => {
           className={currentPage === totalPages ? "button disabled" : "button"}
         />
       </div>
-    </>
+    </div>
   );
 };
 
