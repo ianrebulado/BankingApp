@@ -2,13 +2,13 @@ import React from "react";
 import { CreateUserForm } from "../Forms";
 import { Header, Button } from "../../../components";
 
-export default function AdminHeader({ username, usersData, setAccountState }) {
+export default function AdminHeader({ username, usersHook, setAccountState }) {
   function handleClick() {
     setAccountState((prevState) => ({
       ...prevState,
       formComponent: (
         <CreateUserForm
-          usersData={usersData}
+          usersHook={usersHook}
           setAccountState={setAccountState}
         />
       ),

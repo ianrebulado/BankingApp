@@ -1,4 +1,4 @@
-import generateId from "../utils/generateId";
+import { generateId } from "../utils/helpers";
 import expensesModel from "../constants/expensesModel.json";
 import { formatDate } from "./formatter";
 
@@ -11,7 +11,7 @@ export function addExpense(newExpense) {
   const createdOn = new Date();
   const updatedOn = createdOn;
 
-  const data = expensesModel
+  const data = expensesModel;
   const expenses = data ? data : [];
 
   newExpense = {
@@ -22,7 +22,7 @@ export function addExpense(newExpense) {
   };
 
   expenses.push(newExpense);
-  localStorage.setItem('expenses', JSON.stringify(expenses))
+  localStorage.setItem("expenses", JSON.stringify(expenses));
 }
 
 export function updateExpense(id, editedAmount) {
@@ -32,7 +32,7 @@ export function updateExpense(id, editedAmount) {
     expensesModel[expenseIndex].amount = editedAmount;
     expensesModel[expenseIndex].updated_on = new Date();
 
-    localStorage.setItem('expenses', JSON.stringify(expensesModel))
+    localStorage.setItem("expenses", JSON.stringify(expensesModel));
     return true;
   }
 
@@ -44,7 +44,7 @@ export function deleteExpense(id) {
 
   if (expenseIndex !== -1) {
     expensesModel.splice(expenseIndex, 1);
-    localStorage.setItem('expenses', JSON.stringify(expensesModel));
+    localStorage.setItem("expenses", JSON.stringify(expensesModel));
     return true;
   }
 
@@ -64,9 +64,11 @@ export function fetchExpenses() {
 }
 
 export function getUserExpenses(userId) {
-  const expenses = expensesModel.filter((expense) => expense.user_id === userId);
+  const expenses = expensesModel.filter(
+    (expense) => expense.user_id === userId
+  );
 
-  if(!expenses) return;
+  if (!expenses) return;
 
   return expenses;
 }
@@ -75,7 +77,7 @@ export function getTotalExpenses(userId) {
   const expenses = getUserExpenses(userId);
   let total = 0;
 
-  if(expenses){
+  if (expenses) {
     expenses.forEach((expense) => {
       total += Number(expense.amount);
     });
@@ -88,47 +90,42 @@ export function findExpenseIndex(id) {
   return expensesModel.findIndex((expense) => expense.expense_id === id);
 }
 
-export function getMonthlyExpenses(userId){
-
+export function getMonthlyExpenses(userId) {
   const expenses = getUserExpenses(userId);
 
-    const monthlyExpenses = [];
-    const monthYearSet = new Set();
+  const monthlyExpenses = [];
+  const monthYearSet = new Set();
 
-    if(!expenses) return;
-  
+  if (!expenses) return;
+
+  expenses.forEach((expense) => {
+    const [year, month, day] = formatDate(expense.created_on).split("-");
+    const monthYear = `${month}/${year}`;
+    monthYearSet.add(monthYear);
+  });
+
+  monthYearSet.forEach((monthYear) => {
+    const [month, year] = monthYear.split("/");
+
+    let monthExpense = 0;
+
     expenses.forEach((expense) => {
-      const [year, month, day] = formatDate(expense.created_on).split('-');
-      const monthYear = `${month}/${year}`
-      monthYearSet.add(monthYear);
+      let monthNum = new Date(expense.created_on).getMonth() + 1;
+
+      monthNum = monthNum.toString().padStart(2, "0");
+
+      let yearNum = new Date(expense.created_on).getFullYear().toString();
+
+      if (monthNum === month && yearNum === year) {
+        monthExpense += Number(expense.amount);
+      }
     });
 
-    monthYearSet.forEach((monthYear) => {
-      const [month, year] = monthYear.split('/');
-
-      let monthExpense = 0;
-
-      expenses.forEach((expense) => {
-        let monthNum = new Date(expense.created_on)
-          .getMonth() + 1;
-
-          monthNum = monthNum.toString().padStart(2,"0");
-
-        let yearNum = new Date(expense.created_on)
-          .getFullYear()
-          .toString();
-
-        if(monthNum === month && yearNum === year){
-          monthExpense += Number(expense.amount);
-        }
-      });   
-
-      monthlyExpenses.push({
-        date: month,
-        balance: monthExpense,
-      });
+    monthlyExpenses.push({
+      date: month,
+      balance: monthExpense,
     });
+  });
 
-    return monthlyExpenses;
-
-  }
+  return monthlyExpenses;
+}

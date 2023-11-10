@@ -24,7 +24,6 @@ export const createUserFormInputs = [
     message: "",
   },
   {
-    type: "email",
     label: "Email",
     name: "email",
     isRequired: true,
@@ -40,16 +39,33 @@ export const createUserFormInputs = [
   },
 ];
 
-export const initialCreateUserFormState = [
+export const signInInputs = [
   {
-    username: null,
-    first_name: null,
-    last_name: null,
-    email: null,
-    password: null,
-    role: null,
+    type: "text",
+    label: "Username",
+    name: "username",
+    placeholder: "Username",
+    isRequired: true,
+    message: "",
+  },
+  {
+    type: "password",
+    label: "Password",
+    name: "password",
+    placeholder: "Password",
+    isRequired: true,
+    message: "",
   },
 ];
+
+export const initialCreateUserFormState = {
+  username: null,
+  first_name: null,
+  last_name: null,
+  email: null,
+  password: null,
+  role: null,
+};
 
 export const depositFormInputs = [
   {

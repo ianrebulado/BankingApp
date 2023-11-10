@@ -4,14 +4,13 @@
   position: fixed;
   z-index: 100;
   top: 1rem;
-  right: 50%;
-  transform: translateX(50%, -200%);
+  right: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   height: fit-content;
-  width: 80%;
+  width: fit-content;
   font-family: theme.$font-family;
   font-size: theme.$font-size-small;
   background-color: theme.$white-color-lighter;
@@ -53,10 +52,10 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 768px) {
   .toast-container {
-    right: 1rem;
-    transform: translateX((0%));
-    width: fit-content;
+    top: 0;
+    right: 0;
+    width: 100%;
   }
 }

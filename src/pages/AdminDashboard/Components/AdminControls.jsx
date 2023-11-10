@@ -25,14 +25,7 @@ export default function AdminControls({
   accountState,
   setAccountState,
 }) {
-  const {
-    showModal,
-    showToast,
-    toastMessage,
-    formComponent,
-    searchTerm,
-    usersTableData,
-  } = accountState;
+  const { showModal, searchTerm } = accountState;
 
   function handleClick(type) {
     const formComponent = getFormComponent(type, usersData, setAccountState);
