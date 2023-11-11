@@ -31,7 +31,6 @@ export default function DepositForm({ usersData, setAccountState }) {
     );
 
     if (isValidForm) {
-      console.log(usersData);
       const userId = filterUsersByUsername(
         formState.username,
         usersData
@@ -43,6 +42,7 @@ export default function DepositForm({ usersData, setAccountState }) {
         ...prevState,
         showToast: true,
         showModal: false,
+        isTransacting: true,
         toastMessage: "Deposit transaction made",
       }));
     } else {

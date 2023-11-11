@@ -42,6 +42,7 @@ export default function WithdrawForm({ usersData, setAccountState }) {
         ...prevState,
         showToast: true,
         showModal: false,
+        isTransacting: true,
         toastMessage: "Withdraw transaction made",
       }));
     } else {

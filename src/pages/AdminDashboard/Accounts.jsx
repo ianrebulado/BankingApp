@@ -20,6 +20,7 @@ export default function Accounts() {
     toastMessage: null,
     formComponent: null,
     searchTerm: "",
+    isTransacting: false,
     usersTableData: initialUsersTable,
   });
 
@@ -63,11 +64,14 @@ export default function Accounts() {
   }, [searchTerm]);
 
   useEffect(() => {
-    setAccountState((prevState) => ({
-      ...prevState,
-      usersTableData: initialUsersTable,
-    }));
-  }, [usersData, accountState]);
+    if (accountState.isTransacting) {
+      setAccountState((prevState) => ({
+        ...prevState,
+        isTransacting: false,
+        usersTableData: initialUsersTable,
+      }));
+    }
+  }, [accountState]);
 
   function handleShowModal() {
     setAccountState((prevState) => ({

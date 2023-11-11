@@ -48,6 +48,7 @@ export default function TransferForm({ usersData, setAccountState }) {
         ...prevState,
         showToast: true,
         showModal: false,
+        isTransacting: true,
         toastMessage: "Transfer transaction made",
       }));
     } else {
