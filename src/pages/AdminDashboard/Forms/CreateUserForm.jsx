@@ -42,6 +42,7 @@ export default function CreateUserForm({ usersHook, setAccountState }) {
         ...prevState,
         showToast: true,
         showModal: false,
+        isTransacting: true,
         toastMessage: "User successfully created",
       }));
     } else {
