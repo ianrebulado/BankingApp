@@ -11,14 +11,14 @@ function SendAmount({ userId, usersData, setShowModal, setShowToast, updateTrans
     const [formState, setFormState] = useState(initialTransferFormState);
 
     const handleInputChange = (name, value) => {
-        setFormState({ ...formState, sendingUsername:sendingUsername.first_name, [name]: value })
+        setFormState({ ...formState, sendingUsername:sendingUsername.username, [name]: value })
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        setInputState({ ...inputState, value: sendingUsername.first_name });
         clearValidationMessages(inputState, setInputState);
+        setInputState({ ...inputState, value: sendingUsername.username });
 
         let isValidForm = false;
         isValidForm = validateTransferForm(
@@ -31,7 +31,7 @@ function SendAmount({ userId, usersData, setShowModal, setShowToast, updateTrans
         )
 
         if(isValidForm){
-            const senderId = filterUsersByName(formState.sendingUsername).user_id;
+            const senderId = filterUsersByUsername(formState.sendingUsername).user_id;
             const receiverId = filterUsersByUsername(formState.receivingUsername).user_id;
 
             const isTransferred = send(senderId, receiverId, formState.amount);
