@@ -205,7 +205,7 @@ export function validateTransferForm(
           .usernameExists(usersData).errorMessage,
       };
     } else if (input.name === "amount") {
-      const sender = filterUsersByName(formState.sendingUsername);
+      const sender = filterUsersByUsername(formState.sendingUsername); 
 
       if (!sender) return { ...input, message: "Could not find user" };
       let sendingUserId = sender.user_id;
