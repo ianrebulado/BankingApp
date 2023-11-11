@@ -67,7 +67,7 @@ export default function Accounts() {
       ...prevState,
       usersTableData: initialUsersTable,
     }));
-  }, [usersData]);
+  }, [usersData, accountState]);
 
   function handleShowModal() {
     setAccountState((prevState) => ({

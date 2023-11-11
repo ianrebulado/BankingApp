@@ -36,8 +36,8 @@ export function filterUsersById(userId) {
   return matchedUser[0];
 }
 
-export function filterUsersByUsername(username, users) {
-  const matchedUser = users.filter((user) =>
+export function filterUsersByUsername(username) {
+  const matchedUser = usersData.filter((user) =>
     user.username.toLowerCase().includes(username.toLowerCase())
   );
 
