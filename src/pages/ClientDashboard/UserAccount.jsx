@@ -33,34 +33,20 @@ function UserAccount() {
 
   const updateTransactions = (transaction) => {
     if (transaction) {
-      // const newData = transaction.map((item) => {
-      //   const { transaction_id, created_on, type, amount } = item;
-      //   const formattedDate = formatDate(created_on);
-      //   const formattedAmount = formatAmount(amount);
+      const newData = transaction.map((item) => {
+        const { transaction_id, created_on, type, amount } = item;
+        const formattedDate = formatDate(created_on);
+        const formattedAmount = formatAmount(amount);
 
-      //   return {
-      //     transaction_id,
-      //     created_on: formattedDate,
-      //     type,
-      //     amount: formattedAmount,
-      //   };
-      // });
-
-      // setData(newData);
-      
-      setData(() => {
-        transaction.map((item) => {
-          const { created_on, amount } = item;
-          const formattedDate = formatDate(created_on);
-          const formattedAmount = formatAmount(amount);
-
-          return {
-            ...item,
-            created_on: formattedDate,
-            amount: formattedAmount
-          }
-        })
+        return {
+          transaction_id,
+          created_on: formattedDate,
+          type,
+          amount: formattedAmount,
+        };
       });
+
+      setData(newData);
     }
   };
 
