@@ -31,7 +31,10 @@ export default function WithdrawForm({ usersData, setAccountState }) {
     );
 
     if (isValidForm) {
-      const userId = filterUsersByUsername(formState.username).user_id;
+      const userId = filterUsersByUsername(
+        formState.username,
+        usersData
+      ).user_id;
 
       withdraw(userId, formState.amount);
 

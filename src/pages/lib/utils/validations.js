@@ -92,22 +92,7 @@ export function validateSignInForm(
 }
 
 export function validateExpenseForm(inputState, setInputState, formState) {
-  const updatedInputState = inputState.map((input) => {
-    if (input.name === "description") {
-      input.value = formState.description;
-      return {
-        ...input,
-        message: Validator.for(input).isRequired().errorMessage,
-      };
-    } else if (input.name === "amount") {
-      input.value = formState.amount;
-      return {
-        ...input,
-        message: Validator.for(input).isRequired().greater(500).errorMessage,
-      };
-    }
-  });
-
+  const updatedInputState = checkMissingValues(inputState, formState);
   setInputState(updatedInputState);
 
   const isValid = checkValidForm(updatedInputState);
@@ -152,7 +137,7 @@ export function validateTransactionForm(
           message: Validator.for(input).isRequired().greater(500).errorMessage,
         };
       } else if (formState.type === "withdraw") {
-        let user = filterUsersByUsername(formState.username, usersData);
+        let user = filterUsersByUsername(formState.username);
 
         if (!user) return { ...input, message: "Could not find user" };
 
@@ -201,10 +186,7 @@ export function validateTransferForm(
           .usernameExists(usersData).errorMessage,
       };
     } else if (input.name === "amount") {
-      const sender = filterUsersByUsername(
-        formState.sendingUsername,
-        usersData
-      );
+      const sender = filterUsersByName(formState.sendingUsername);
 
       if (!sender) return { ...input, message: "Could not find user" };
       let sendingUserId = sender.user_id;

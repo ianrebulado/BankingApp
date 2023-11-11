@@ -31,7 +31,11 @@ export default function DepositForm({ usersData, setAccountState }) {
     );
 
     if (isValidForm) {
-      const userId = filterUsersByUsername(formState.username).user_id;
+      console.log(usersData);
+      const userId = filterUsersByUsername(
+        formState.username,
+        usersData
+      ).user_id;
 
       deposit(userId, formState.amount);
 

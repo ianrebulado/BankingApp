@@ -32,11 +32,13 @@ export default function TransferForm({ usersData, setAccountState }) {
 
     if (isValidForm) {
       const sendingUserId = filterUsersByUsername(
-        formState.sendingUsername
+        formState.sendingUsername,
+        usersData
       ).user_id;
 
       const receivingUserId = filterUsersByUsername(
-        formState.receivingUsername
+        formState.receivingUsername,
+        usersData
       ).user_id;
 
       withdraw(sendingUserId, formState.amount);
