@@ -29,7 +29,8 @@ export function fetchUsers() {
 }
 
 export function filterUsersById(userId) {
-  const matchedUser = usersData.filter((user) =>
+  const users = fetchUsers();
+  const matchedUser = users.filter((user) =>
     user.user_id.toLowerCase().includes(userId.toLowerCase())
   );
 
