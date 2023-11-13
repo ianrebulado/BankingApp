@@ -103,7 +103,7 @@ export function validateExpenseForm(inputState, setInputState, formState) {
       input.value = formState.amount;
       return {
         ...input,
-        message: Validator.for(input).isRequired().greater(500).errorMessage,
+        message: Validator.for(input).isRequired().greater(0).errorMessage,
       };
     }
   });
